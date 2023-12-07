@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
-void main() {
-  runApp(const RiderApp());
-}
+import 'package:qwiker_rider/core/routing/app_router.dart';
+import 'package:qwiker_rider/core/theaming/app_colors.dart';
 
 class RiderApp extends StatelessWidget {
   const RiderApp({super.key});
@@ -13,11 +11,12 @@ class RiderApp extends StatelessWidget {
     return ScreenUtilInit(
       designSize: const Size(428, 926),
       minTextAdapt: true,
-      child: MaterialApp(
+      child: MaterialApp.router(
+        routerConfig: AppRouter().router,
         debugShowCheckedModeBanner: false,
-        title: 'Rider App',
+        title: 'Qwiker Rider',
         theme: ThemeData(
-          scaffoldBackgroundColor: Colors.white,
+          scaffoldBackgroundColor: AppColors.whaiteBlue,
         ),
       ),
     );
