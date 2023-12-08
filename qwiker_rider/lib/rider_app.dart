@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:qwiker_rider/core/routing/app_router.dart';
 import 'package:qwiker_rider/core/theaming/app_colors.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+import 'core/global_functions.dart';
 
 class RiderApp extends StatelessWidget {
   const RiderApp({super.key});
