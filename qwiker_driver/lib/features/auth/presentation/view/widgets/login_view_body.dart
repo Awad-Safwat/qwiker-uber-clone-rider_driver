@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
-import 'package:qwiker_rider/core/routing/views_name.dart';
+import 'package:qwiker_driver/core/routing/views_name.dart';
 import '../../../../../core/theaming/app_fonts.dart';
 import 'dont_or_have_account_secction.dart';
 import 'login_field_with_button_secction.dart';

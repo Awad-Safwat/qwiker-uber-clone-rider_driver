@@ -38,7 +38,7 @@ class Onboarding2Text extends StatelessWidget {
         Gap(20.h),
         Text(
           'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
-          style: AppFonts.poppinsMedium_16,
+          style: AppFonts.poppinsMediumGray_16,
           textAlign: TextAlign.center,
         ),
       ],
@@ -62,7 +62,7 @@ class Onboarding1Text extends StatelessWidget {
         Gap(20.h),
         Text(
           'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
-          style: AppFonts.poppinsMedium_16,
+          style: AppFonts.poppinsMediumGray_16,
           textAlign: TextAlign.center,
         ),
       ],

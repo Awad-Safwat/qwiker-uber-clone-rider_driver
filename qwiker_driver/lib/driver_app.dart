@@ -14,7 +14,7 @@ class DriverApp extends StatelessWidget {
       child: MaterialApp.router(
         routerConfig: AppRouter().router,
         debugShowCheckedModeBanner: false,
-        title: 'Qwiker Rider',
+        title: 'Qwiker driver',
         theme: ThemeData(
           scaffoldBackgroundColor: AppColors.whaiteBlue,
         ),

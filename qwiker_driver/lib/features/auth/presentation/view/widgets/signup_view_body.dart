@@ -2,19 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
-import 'package:qwiker_rider/core/routing/views_name.dart';
+import 'package:qwiker_driver/core/routing/views_name.dart';
+
 import '../../../../../core/theaming/app_fonts.dart';
 import 'dont_or_have_account_secction.dart';
 import 'login_field_with_button_secction.dart';
+import 'signup_field_with_button_secction.dart';
 
-class LogInViewBody extends StatefulWidget {
-  const LogInViewBody({super.key});
+class SignUpViewBody extends StatelessWidget {
+  const SignUpViewBody({super.key});
 
-  @override
-  State<LogInViewBody> createState() => _LogInViewBodyState();
-}
-
-class _LogInViewBodyState extends State<LogInViewBody> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,7 +19,7 @@ class _LogInViewBodyState extends State<LogInViewBody> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Gap(180.h),
+            Gap(80.h),
             Center(
               // the app logo with name
               child: Image.asset(
@@ -31,29 +28,24 @@ class _LogInViewBodyState extends State<LogInViewBody> {
                 width: 220.w,
               ),
             ),
-            Gap(99.h),
+            Gap(50.h),
             const Text(
-              'Login',
+              'Sign Up',
               style: AppFonts.medel_36,
             ),
             Gap(50.h),
-            Text(
-              'Login with your phone number',
-              style: AppFonts.poppinsRegularBlack_16,
-            ),
-            Gap(20.h),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 35.w),
-              child: const LoginTFieldWithButtonSecction(),
+              child: const SignUpFieldWithButtonSecction(),
             ),
             Gap(160.h),
             DontORHaveAccountSecction(
               onPressed: () {
-                GoRouter.of(context).pushReplacement(ViewsName.signUpView);
+                GoRouter.of(context).pushReplacement(ViewsName.logInView);
               },
-              text: 'Don\'t have an account?',
+              text: 'Already have an account?',
               textStyle: AppFonts.poppinsRegularBlack_16,
-              textButtonTitle: 'Sign Up',
+              textButtonTitle: 'Login',
               textButtonTitleStyle: AppFonts.poppinsBoldBlue_16,
             ),
           ],
