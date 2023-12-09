@@ -1,5 +1,7 @@
 import 'package:go_router/go_router.dart';
+import 'package:qwiker_driver/core/routing/views_name.dart';
 import 'package:qwiker_driver/features/auth/presentation/view/login_view.dart';
+import 'package:qwiker_driver/features/auth/presentation/view/signup_view.dart';
 import 'package:qwiker_driver/features/onpoarding/view/onpoarding_view.dart';
 
 import '../global_functions.dart';
@@ -17,8 +19,12 @@ class AppRouter {
       },
     ),
     GoRoute(
-      path: '/LoginView',
+      path: ViewsName.logInView,
       builder: (context, state) => const LogInView(),
+    ),
+    GoRoute(
+      path: ViewsName.signUpView,
+      builder: (context, state) => const SignUpView(),
     ),
   ]);
 }
