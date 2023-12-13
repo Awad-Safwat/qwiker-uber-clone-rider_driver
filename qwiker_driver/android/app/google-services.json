@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "518647738491",
+    "project_id": "qwiker-9f0d8",
+    "storage_bucket": "qwiker-9f0d8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:518647738491:android:ec2d10fbbfc3ab01b372de",
+        "android_client_info": {
+          "package_name": "com.example.qwiker_driver"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBBbsGykXpS644r-eqvpeNR2hZV4GLsA1M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:518647738491:android:8249ea4388c4876cb372de",
+        "android_client_info": {
+          "package_name": "com.example.qwiker_rider"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBBbsGykXpS644r-eqvpeNR2hZV4GLsA1M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

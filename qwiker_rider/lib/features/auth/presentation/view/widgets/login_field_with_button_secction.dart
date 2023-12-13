@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 import 'package:qwiker_rider/core/theaming/app_colors.dart';
-import 'package:qwiker_rider/features/auth/presentation/view/widgets/custom_button.dart';
+import 'package:qwiker_rider/core/widgets/custom_button.dart';
+import 'package:qwiker_rider/features/auth/presentation/manager/auth_cubit/auth_cubit.dart';
 import '../../../../../core/theaming/app_fonts.dart';
 import 'custom_text_form_field.dart';
 
@@ -53,7 +55,10 @@ class _LoginTFieldWithButtonSecctionState
           CustomButton(
             onPressed: () {
               if (_formKey.currentState!.validate()) {
-                print('good');
+                BlocProvider.of<AuthCubit>(context).phoneNumber =
+                    _controller.value.text;
+                BlocProvider.of<AuthCubit>(context)
+                    .submitPhoneNumber(_controller.value.text);
               }
             },
             title: 'Send Code',
