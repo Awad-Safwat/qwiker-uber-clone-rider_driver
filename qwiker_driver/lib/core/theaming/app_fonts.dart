@@ -19,6 +19,10 @@ class AppFonts {
     fontSize: 20,
     fontWeight: FontWeight.w500,
   );
+  static TextStyle poppinsMedium_26 = GoogleFonts.poppins(
+    fontSize: 26,
+    fontWeight: FontWeight.w500,
+  );
 
   static TextStyle poppinsMediumGray_16 = GoogleFonts.poppins(
     fontSize: 16,
@@ -43,6 +47,12 @@ class AppFonts {
   static TextStyle poppinsRegularGray_14 = GoogleFonts.poppins(
     fontSize: 14,
     fontWeight: FontWeight.w500,
+    color: const Color(0xffA5A5A5),
+  );
+
+  static TextStyle poppinsBoldGray_14 = GoogleFonts.poppins(
+    fontSize: 14,
+    fontWeight: FontWeight.w700,
     color: const Color(0xffA5A5A5),
   );
 }

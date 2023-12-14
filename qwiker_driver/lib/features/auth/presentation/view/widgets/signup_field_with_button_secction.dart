@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
-import 'package:qwiker_driver/features/auth/presentation/view/widgets/custom_button.dart';
+import 'package:qwiker_driver/core/widgets/custom_button.dart';
+import 'package:qwiker_driver/features/auth/presentation/manager/auth_cubit/auth_cubit.dart';
 
 import '../../../../../core/theaming/app_colors.dart';
 import '../../../../../core/theaming/app_fonts.dart';
@@ -95,9 +97,7 @@ class _SignUpFieldWithButtonSecctionState
           Gap(30.h),
           CustomButton(
             onPressed: () {
-              if (_formKey.currentState!.validate()) {
-                print('good');
-              }
+              BlocProvider.of<AuthCubit>(context).logOut();
             },
             title: 'Sign Up',
             backgroundColor: AppColors.mainBlue,

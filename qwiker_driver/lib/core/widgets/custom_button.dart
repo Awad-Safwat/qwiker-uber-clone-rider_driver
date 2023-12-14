@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../../../core/theaming/app_colors.dart';
-import '../../../../../core/theaming/app_fonts.dart';
+import '../theaming/app_colors.dart';
+import '../theaming/app_fonts.dart';
 
 class CustomButton extends StatelessWidget {
   const CustomButton({
