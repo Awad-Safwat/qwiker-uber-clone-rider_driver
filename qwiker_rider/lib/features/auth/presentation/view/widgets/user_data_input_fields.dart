@@ -9,16 +9,14 @@ import '../../../../../core/theaming/app_colors.dart';
 import '../../../../../core/theaming/app_fonts.dart';
 import 'custom_text_form_field.dart';
 
-class SignUpFieldWithButtonSecction extends StatefulWidget {
-  const SignUpFieldWithButtonSecction({super.key});
+class UserDataInputFields extends StatefulWidget {
+  const UserDataInputFields({super.key});
 
   @override
-  State<SignUpFieldWithButtonSecction> createState() =>
-      _SignUpFieldWithButtonSecctionState();
+  State<UserDataInputFields> createState() => _UserDataInputFieldsState();
 }
 
-class _SignUpFieldWithButtonSecctionState
-    extends State<SignUpFieldWithButtonSecction> {
+class _UserDataInputFieldsState extends State<UserDataInputFields> {
   final TextEditingController _controller = TextEditingController();
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
@@ -44,7 +42,7 @@ class _SignUpFieldWithButtonSecctionState
             onSave: (val) {},
             keyboardType: TextInputType.phone,
             fillColor: AppColors.whaite,
-            hintText: 'Full Name',
+            hintText: 'Full Name (required)',
             hintStyle: AppFonts.poppinsRegularGray_14,
             borderRadius: 50.r,
             enabledBorderColor: AppColors.liteGray,
@@ -66,7 +64,7 @@ class _SignUpFieldWithButtonSecctionState
             onSave: (val) {},
             keyboardType: TextInputType.phone,
             fillColor: AppColors.whaite,
-            hintText: 'Email',
+            hintText: 'Email (optional)',
             hintStyle: AppFonts.poppinsRegularGray_14,
             borderRadius: 50.r,
             enabledBorderColor: AppColors.liteGray,
@@ -88,7 +86,7 @@ class _SignUpFieldWithButtonSecctionState
             onSave: (val) {},
             keyboardType: TextInputType.phone,
             fillColor: AppColors.whaite,
-            hintText: 'phone Number',
+            hintText: 'Extra phone Number (optional)',
             hintStyle: AppFonts.poppinsRegularGray_14,
             borderRadius: 50.r,
             enabledBorderColor: AppColors.liteGray,
@@ -99,7 +97,7 @@ class _SignUpFieldWithButtonSecctionState
             onPressed: () {
               BlocProvider.of<AuthCubit>(context).logOut();
             },
-            title: 'Sign Up',
+            title: 'Save Data',
             backgroundColor: AppColors.mainBlue,
             titleStyle:
                 AppFonts.poppinsMedium_18.copyWith(color: AppColors.whaite),

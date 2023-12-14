@@ -21,7 +21,8 @@ class PinCodeInputView extends StatelessWidget {
             if (state is AuthSendingCode) {
               showProgressIndicator(context);
             } else if (state is AuthSuccess) {
-              GoRouter.of(context).pushReplacement(ViewsName.signUpView);
+              GoRouter.of(context)
+                  .pushReplacement(ViewsName.completeProfileInfoView);
             } else if (state is AuthFailer) {
               GoRouter.of(context).pop();
               CustomToast(message: 'Pin Code not correct !!').show(context);

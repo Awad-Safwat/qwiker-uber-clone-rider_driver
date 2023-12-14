@@ -3,12 +3,14 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
 import 'package:qwiker_rider/core/routing/views_name.dart';
+
 import '../../../../../core/theaming/app_fonts.dart';
 import 'dont_or_have_account_secction.dart';
 import 'login_field_with_button_secction.dart';
+import 'user_data_input_fields.dart';
 
-class LogInViewBody extends StatelessWidget {
-  const LogInViewBody({super.key});
+class CompleteProfileInforViewBody extends StatelessWidget {
+  const CompleteProfileInforViewBody({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +18,7 @@ class LogInViewBody extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Gap(180.h),
+          Gap(80.h),
           Center(
             // the app logo with name
             child: Image.asset(
@@ -25,31 +27,21 @@ class LogInViewBody extends StatelessWidget {
               width: 220.w,
             ),
           ),
-          Gap(99.h),
+          Gap(50.h),
           const Text(
-            'Login',
+            'Wellcome',
             style: AppFonts.medel_36,
           ),
-          Gap(50.h),
+          Gap(20.h),
           Text(
-            'Login with your phone number',
+            'Please Complete your profile data',
             style: AppFonts.poppinsRegularBlack_16,
           ),
-          Gap(20.h),
+          Gap(50.h),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 35.w),
-            child: const LoginTFieldWithButtonSecction(),
+            child: const UserDataInputFields(),
           ),
-          Gap(160.h),
-          // DontORHaveAccountSecction(
-          //   onPressed: () {
-          //     GoRouter.of(context).pushReplacement(ViewsName.completeProfileInfoView);
-          //   },
-          //   text: 'Don\'t have an account?',
-          //   textStyle: AppFonts.poppinsRegularBlack_16,
-          //   textButtonTitle: 'Sign Up',
-          //   textButtonTitleStyle: AppFonts.poppinsBoldBlue_16,
-          // ),
         ],
       ),
     );

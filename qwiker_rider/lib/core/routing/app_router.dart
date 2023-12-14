@@ -3,9 +3,9 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:go_router/go_router.dart';
 import 'package:qwiker_rider/core/global_functions.dart';
 import 'package:qwiker_rider/core/routing/views_name.dart';
+import 'package:qwiker_rider/features/auth/presentation/view/complete_profile_info.dart';
 import 'package:qwiker_rider/features/auth/presentation/view/login_view.dart';
 import 'package:qwiker_rider/features/auth/presentation/view/pin_code_input_view.dart';
-import 'package:qwiker_rider/features/auth/presentation/view/signup_view.dart';
 import 'package:qwiker_rider/features/onpoarding/view/onpoarding_view.dart';
 
 class AppRouter {
@@ -19,7 +19,7 @@ class AppRouter {
         } else if (FirebaseAuth.instance.currentUser == null) {
           return const LogInView();
         } else {
-          return const SignUpView();
+          return const CompleteProfileInfoView();
         }
       },
     ),
@@ -28,8 +28,8 @@ class AppRouter {
       builder: (context, state) => const LogInView(),
     ),
     GoRoute(
-      path: ViewsName.signUpView,
-      builder: (context, state) => const SignUpView(),
+      path: ViewsName.completeProfileInfoView,
+      builder: (context, state) => const CompleteProfileInfoView(),
     ),
     GoRoute(
       path: ViewsName.pinCodeInputView,
