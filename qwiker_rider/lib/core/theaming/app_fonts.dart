@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:qwiker_rider/core/theaming/app_colors.dart';
 
 class AppFonts {
   static const TextStyle medel_36 = TextStyle(
@@ -17,14 +18,39 @@ class AppFonts {
     fontSize: 20,
     fontWeight: FontWeight.w500,
   );
+  static TextStyle poppinsMedium_26 = GoogleFonts.poppins(
+    fontSize: 26,
+    fontWeight: FontWeight.w500,
+  );
 
-  static TextStyle poppinsMedium_16 = GoogleFonts.poppins(
+  static TextStyle poppinsMediumGray_16 = GoogleFonts.poppins(
     fontSize: 16,
     fontWeight: FontWeight.w500,
-    color: const Color(0xff525252),
+    color: AppColors.moreGray,
+  );
+  static TextStyle poppinsBoldBlue_16 = GoogleFonts.poppins(
+    fontSize: 16,
+    fontWeight: FontWeight.w700,
+    color: AppColors.mainBlue,
+  );
+
+  static TextStyle poppinsRegularBlack_16 = GoogleFonts.poppins(
+    fontSize: 16,
+    fontWeight: FontWeight.w400,
+    color: const Color(0xff000000),
   );
   static TextStyle poppinsMedium_18 = GoogleFonts.poppins(
     fontSize: 18,
     fontWeight: FontWeight.w500,
+  );
+  static TextStyle poppinsRegularGray_14 = GoogleFonts.poppins(
+    fontSize: 14,
+    fontWeight: FontWeight.w500,
+    color: const Color(0xffA5A5A5),
+  );
+  static TextStyle poppinsBoldGray_14 = GoogleFonts.poppins(
+    fontSize: 14,
+    fontWeight: FontWeight.w700,
+    color: const Color(0xffA5A5A5),
   );
 }

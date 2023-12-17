@@ -29,14 +29,19 @@ environment:
 # versions available, run `flutter pub outdated`.
 dependencies:
   cupertino_icons: ^1.0.2
+  delightful_toast: ^1.1.0
+  firebase_auth: ^4.15.3
+  firebase_core: ^2.24.2
   flutter:
     sdk: flutter
+  flutter_bloc: ^8.1.3
   flutter_native_splash: ^2.3.6
   flutter_onboarding_slider: ^1.0.11
   flutter_screenutil: ^5.9.0
   gap: ^3.0.1
   go_router: ^12.1.1
   google_fonts: ^6.1.0
+  pinput: ^3.0.1
   shared_preferences: ^2.2.2
 
 dev_dependencies:
