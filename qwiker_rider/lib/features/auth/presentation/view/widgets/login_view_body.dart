@@ -41,15 +41,15 @@ class LogInViewBody extends StatelessWidget {
             child: const LoginTFieldWithButtonSecction(),
           ),
           Gap(160.h),
-          DontORHaveAccountSecction(
-            onPressed: () {
-              GoRouter.of(context).pushReplacement(ViewsName.signUpView);
-            },
-            text: 'Don\'t have an account?',
-            textStyle: AppFonts.poppinsRegularBlack_16,
-            textButtonTitle: 'Sign Up',
-            textButtonTitleStyle: AppFonts.poppinsBoldBlue_16,
-          ),
+          // DontORHaveAccountSecction(
+          //   onPressed: () {
+          //     GoRouter.of(context).pushReplacement(ViewsName.completeProfileInfoView);
+          //   },
+          //   text: 'Don\'t have an account?',
+          //   textStyle: AppFonts.poppinsRegularBlack_16,
+          //   textButtonTitle: 'Sign Up',
+          //   textButtonTitleStyle: AppFonts.poppinsBoldBlue_16,
+          // ),
         ],
       ),
     );

@@ -39,7 +39,7 @@ class CustomTextFormField extends StatelessWidget {
       onChanged: onChanged,
       onSaved: onSave,
       controller: textController,
-      keyboardType: TextInputType.phone,
+      keyboardType: keyboardType,
       decoration: InputDecoration(
         fillColor: fillColor,
         filled: true,
