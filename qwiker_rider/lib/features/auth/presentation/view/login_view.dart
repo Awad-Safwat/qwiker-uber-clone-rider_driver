@@ -1,11 +1,9 @@
-import 'package:delightful_toast/delight_toast.dart';
-import 'package:delightful_toast/toast/components/toast_card.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:qwiker_rider/core/di/dependency_injection.dart';
 import 'package:qwiker_rider/core/routing/views_name.dart';
-import 'package:qwiker_rider/core/theaming/app_colors.dart';
 import 'package:qwiker_rider/core/widgets/custom_toast.dart';
 import 'package:qwiker_rider/features/auth/presentation/manager/auth_cubit/auth_cubit.dart';
 
