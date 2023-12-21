@@ -2,11 +2,17 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:meta/meta.dart';
+import 'package:qwiker_rider/core/exptions/error_handeler.dart';
+import 'package:qwiker_rider/features/auth/data/auth_repo_imple.dart';
 
 part 'auth_state.dart';
 
 class AuthCubit extends Cubit<AuthState> {
-  AuthCubit() : super(AuthInitial());
+  AuthCubit({required authRepoImple})
+      : _authRepoImple = authRepoImple,
+        super(AuthInitial());
+
+  final AuthRepoImple _authRepoImple;
 
   late String verificationId;
   String? phoneNumber;
@@ -23,6 +29,21 @@ class AuthCubit extends Cubit<AuthState> {
       codeSent: codeSent,
       codeAutoRetrievalTimeout: codeAutoRetrievalTimeout,
     );
+  }
+
+  void checkUserExistans(String userId) async {
+    emit(AuthLoading());
+    var result = _authRepoImple.checkUserExistans(userId);
+
+    result.fold((falure) {
+      emit(AuthFailer(message: falure.errorMessage));
+    }, (bool) async {
+      if (await bool) {
+        emit(AuthUserExiste());
+      } else {
+        emit(AuthUserNotExiste());
+      }
+    });
   }
 
   void verificationCompleted(PhoneAuthCredential credential) async {
