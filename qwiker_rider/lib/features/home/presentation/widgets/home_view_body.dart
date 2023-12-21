@@ -11,6 +11,7 @@ class _HomeViewBodyState extends State<HomeViewBody> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      body: _widgetOptions[0],
       drawer: Drawer(
         child: ListView(
           // Important: Remove any padding from the ListView.
@@ -38,3 +39,9 @@ class _HomeViewBodyState extends State<HomeViewBody> {
     );
   }
 }
+
+const List<Widget> _widgetOptions = <Widget>[
+  Text(
+    'Index 0: Home',
+  ),
+];
