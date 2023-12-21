@@ -15,6 +15,7 @@ class PinCodeInputView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var blocProvider = BlocProvider.of<AuthCubit>(context);
     return BlocProvider.value(
       value: getIt<AuthCubit>(),
       child: SafeArea(
@@ -24,13 +25,19 @@ class PinCodeInputView extends StatelessWidget {
               if (state is AuthSendingCode) {
                 showProgressIndicator(context);
               } else if (state is AuthSuccess) {
-                savePhoneLocal(
-                    BlocProvider.of<AuthCubit>(context).phoneNumber!);
-                GoRouter.of(context)
-                    .pushReplacement(ViewsName.completeProfileInfoView);
+                savePhoneLocal(blocProvider.phoneNumber!);
+
+                BlocProvider.of<AuthCubit>(context)
+                    .checkUserExistans(blocProvider.phoneNumber!);
               } else if (state is AuthFailer) {
                 GoRouter.of(context).pop();
                 CustomToast(message: 'Pin Code not correct !!').show(context);
+              } else if (state is AuthUserNotExiste) {
+                GoRouter.of(context)
+                    .pushReplacement(ViewsName.completeProfileInfoView);
+              } else if (state is AuthUserExiste) {
+                GoRouter.of(context)
+                    .pushReplacement(ViewsName.completeProfileInfoView);
               }
             },
             child: const PinCodeInputViewBody(),
