@@ -24,3 +24,7 @@ final class AuthSendingCodeFalier extends AuthState {
 
   AuthSendingCodeFalier({required this.message});
 }
+
+final class AuthUserExiste extends AuthState {}
+
+final class AuthUserNotExiste extends AuthState {}

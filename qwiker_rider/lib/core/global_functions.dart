@@ -31,9 +31,6 @@ Future<String> getPhoneNumber() async {
   return prefs.getString('phoneNumber').toString();
 }
 
-
-
-
 // loading progress indicator
 showProgressIndicator(BuildContext context) {
   AlertDialog alertDialog = const AlertDialog(

@@ -1,15 +1,8 @@
-import 'dart:js';
-
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:qwiker_rider/core/di/dependency_injection.dart';
 import 'package:qwiker_rider/core/global_functions.dart';
 import 'package:qwiker_rider/core/routing/views_name.dart';
 import 'package:qwiker_rider/features/home/presentation/view/home_view.dart';
-import 'package:qwiker_rider/features/profile/data/user_repo_imple.dart';
-import 'package:qwiker_rider/features/profile/presentation/manager/user_data/user_data_cubit.dart';
 import 'package:qwiker_rider/features/profile/presentation/view/complete_profile_data.dart';
 import 'package:qwiker_rider/features/auth/presentation/view/login_view.dart';
 import 'package:qwiker_rider/features/auth/presentation/view/pin_code_input_view.dart';
