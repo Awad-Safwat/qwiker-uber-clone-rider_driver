@@ -1,3 +1,5 @@
+import 'dart:js';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -5,6 +7,7 @@ import 'package:go_router/go_router.dart';
 import 'package:qwiker_rider/core/di/dependency_injection.dart';
 import 'package:qwiker_rider/core/global_functions.dart';
 import 'package:qwiker_rider/core/routing/views_name.dart';
+import 'package:qwiker_rider/features/home/presentation/view/home_view.dart';
 import 'package:qwiker_rider/features/profile/data/user_repo_imple.dart';
 import 'package:qwiker_rider/features/profile/presentation/manager/user_data/user_data_cubit.dart';
 import 'package:qwiker_rider/features/profile/presentation/view/complete_profile_data.dart';
@@ -38,6 +41,10 @@ class AppRouter {
     GoRoute(
       path: ViewsName.pinCodeInputView,
       builder: (context, state) => const PinCodeInputView(),
+    ),
+    GoRoute(
+      path: ViewsName.homeView,
+      builder: (context, state) => const HomeView(),
     ),
   ]);
 }
