@@ -16,4 +16,14 @@ class RemoteUsersData {
         );
     await docRef.set(user);
   }
+
+  Future<bool> checkUserExistans({required String userId}) async {
+    final docRef = await _firestoreUsersCollection.doc(userId).get();
+
+    if (docRef.exists) {
+      return true;
+    } else {
+      return false;
+    }
+  }
 }
