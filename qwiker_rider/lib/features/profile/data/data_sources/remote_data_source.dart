@@ -17,13 +17,31 @@ class RemoteUsersData {
     await docRef.set(user);
   }
 
-  Future<bool> checkUserExistans({required String userId}) async {
-    final docRef = await _firestoreUsersCollection.doc(userId).get();
+  Future<UserModel> getUserProfileData(String userId) async {
+    final docRef = _firestoreUsersCollection
+        .withConverter(
+          fromFirestore: UserModel.fromFirestore,
+          toFirestore: (UserModel user, options) => user.toFirestore(user),
+        )
+        .doc(
+          userId,
+        );
 
-    if (docRef.exists) {
-      return true;
-    } else {
-      return false;
-    }
+    final docSnap = await docRef.get();
+    final userData = docSnap.data();
+    return userData!;
+  }
+
+  Future<void> updateUserProfileData(UserModel user) async {
+    final docRef = _firestoreUsersCollection
+        .withConverter(
+          fromFirestore: UserModel.fromFirestore,
+          toFirestore: (UserModel user, options) => user.toFirestore(user),
+        )
+        .doc(
+          user.userId,
+        );
+    final updates = user.toFirestore(user);
+    await docRef.update(updates);
   }
 }

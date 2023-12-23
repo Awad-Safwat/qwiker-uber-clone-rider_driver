@@ -10,7 +10,7 @@ class UserRepoImple extends UserRepo {
   UserRepoImple({required RemoteUsersData remoteUsersData})
       : _remoteUsersData = remoteUsersData;
   @override
-  Future<Either<Falure, Future<void>>> addNewUser(UserModel user) async {
+  Either<Falure, Future<void>> addNewUser(UserModel user) {
     try {
       return right(_remoteUsersData.addNewUser(user));
     } catch (error) {
@@ -23,17 +23,28 @@ class UserRepoImple extends UserRepo {
   }
 
   @override
-  Future<UserModel> getUserData(String userId) {
-    // TODO: implement getUserData
-    throw UnimplementedError();
+  Either<Falure, Future<UserModel>> getUserProfileData(String userId) {
+    try {
+      return right(_remoteUsersData.getUserProfileData(userId));
+    } catch (error) {
+      return left(
+        Falure(
+          errorMessage: error.toString(),
+        ),
+      );
+    }
   }
 
   @override
-  Either<Falure, Future<bool>> checkUserExistans(String userId) {
+  Either<Falure, Future<void>> updateUserProfileData(UserModel user) {
     try {
-      return right(_remoteUsersData.checkUserExistans(userId: userId));
+      return right(_remoteUsersData.updateUserProfileData(user));
     } catch (error) {
-      return left(Falure(errorMessage: error.toString()));
+      return left(
+        Falure(
+          errorMessage: error.toString(),
+        ),
+      );
     }
   }
 }

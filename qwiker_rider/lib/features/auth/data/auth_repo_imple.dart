@@ -1,37 +1,18 @@
 import 'package:dartz/dartz.dart';
 import 'package:qwiker_rider/core/exptions/error_handeler.dart';
-import 'package:qwiker_rider/features/profile/data/data_sources/remote_data_source.dart';
-import 'package:qwiker_rider/features/profile/data/user_model/user_model.dart';
-import 'package:qwiker_rider/features/profile/domain/user_repo.dart';
+import 'package:qwiker_rider/features/auth/data/data_sources/remote_data_source.dart';
+import 'package:qwiker_rider/features/auth/domain/auth_repo.dart';
 
-class UserRepoImple extends UserRepo {
-  final RemoteUsersData _remoteUsersData;
+class AuthRepoImple extends AuthRepo {
+  final AuthUsersData _authUsersData;
 
-  UserRepoImple({required RemoteUsersData remoteUsersData})
-      : _remoteUsersData = remoteUsersData;
-  @override
-  Future<Either<Falure, Future<void>>> addNewUser(UserModel user) async {
-    try {
-      return right(_remoteUsersData.addNewUser(user));
-    } catch (error) {
-      return left(
-        Falure(
-          errorMessage: error.toString(),
-        ),
-      );
-    }
-  }
-
-  @override
-  Future<UserModel> getUserData(String userId) {
-    // TODO: implement getUserData
-    throw UnimplementedError();
-  }
+  AuthRepoImple({required AuthUsersData authUsersData})
+      : _authUsersData = authUsersData;
 
   @override
   Either<Falure, Future<bool>> checkUserExistans(String userId) {
     try {
-      return right(_remoteUsersData.checkUserExistans(userId: userId));
+      return right(_authUsersData.checkUserExistans(userId: userId));
     } catch (error) {
       return left(Falure(errorMessage: error.toString()));
     }

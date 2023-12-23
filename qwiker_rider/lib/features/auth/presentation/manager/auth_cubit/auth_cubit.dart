@@ -4,6 +4,7 @@ import 'package:get_it/get_it.dart';
 import 'package:meta/meta.dart';
 import 'package:qwiker_rider/core/exptions/error_handeler.dart';
 import 'package:qwiker_rider/features/auth/data/auth_repo_imple.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 part 'auth_state.dart';
 
@@ -39,6 +40,8 @@ class AuthCubit extends Cubit<AuthState> {
       emit(AuthFailer(message: falure.errorMessage));
     }, (bool) async {
       if (await bool) {
+        SharedPreferences prefs = await SharedPreferences.getInstance();
+        prefs.setBool('hasProfile', true);
         emit(AuthUserExiste());
       } else {
         emit(AuthUserNotExiste());

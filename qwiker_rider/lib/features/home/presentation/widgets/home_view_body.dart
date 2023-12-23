@@ -1,39 +1,68 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_advanced_drawer/flutter_advanced_drawer.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:qwiker_rider/core/theaming/app_colors.dart';
+import 'package:qwiker_rider/core/theaming/app_fonts.dart';
+import 'package:qwiker_rider/features/home/presentation/manager/drawer_cubit/drawer_cubit.dart';
+import 'package:qwiker_rider/features/home/presentation/widgets/drawer_view_body_items.dart';
 
-class HomeViewBody extends StatefulWidget {
-  const HomeViewBody({super.key});
+class HomeViewBody2 extends StatelessWidget {
+  const HomeViewBody2({super.key});
 
-  @override
-  State<HomeViewBody> createState() => _HomeViewBodyState();
-}
-
-class _HomeViewBodyState extends State<HomeViewBody> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      drawer: Drawer(
-        child: ListView(
-          // Important: Remove any padding from the ListView.
-          padding: EdgeInsets.zero,
-          children: [
-            const DrawerHeader(
-              decoration: BoxDecoration(
-                color: Colors.blue,
-              ),
-              child: Text('Drawer Header'),
-            ),
-            ListTile(
-              title: const Text('Home'),
-              // selected: _selectedIndex == 0,
-              onTap: () {
-                // Update the state of the app
-                //  _onItemTapped(0);
-                // Then close the drawer
-                Navigator.pop(context);
+    return AdvancedDrawer(
+      backdrop: Container(
+        width: double.infinity,
+        height: double.infinity,
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [AppColors.mainBlue, AppColors.mainBlue.withOpacity(0.5)],
+          ),
+        ),
+      ),
+      controller:
+          BlocProvider.of<DrawerCubit>(context).advancedDrawerController,
+      animationCurve: Curves.easeInOut,
+      animationDuration: const Duration(milliseconds: 300),
+      animateChildDecoration: true,
+      rtlOpening: false,
+      openScale: 0.8,
+      disabledGestures: true,
+      childDecoration: const BoxDecoration(
+        borderRadius: BorderRadius.all(Radius.circular(18)),
+      ),
+      drawer: const DrawerItems(),
+      child: Scaffold(
+        appBar: AppBar(
+          centerTitle: true,
+          title: Text(
+            BlocProvider.of<DrawerCubit>(context).drawerViewsNames[0],
+            style: AppFonts.medel_28,
+          ),
+          backgroundColor: Colors.transparent,
+          leading: IconButton(
+            onPressed:
+                BlocProvider.of<DrawerCubit>(context).handleMenuButtonPressed,
+            icon: ValueListenableBuilder<AdvancedDrawerValue>(
+              valueListenable: BlocProvider.of<DrawerCubit>(context)
+                  .advancedDrawerController,
+              builder: (_, value, __) {
+                return AnimatedSwitcher(
+                  duration: const Duration(milliseconds: 250),
+                  child: Icon(
+                    value.visible ? Icons.arrow_back : Icons.menu,
+                    key: ValueKey<bool>(value.visible),
+                  ),
+                );
               },
             ),
-          ],
+          ),
         ),
+        body: BlocProvider.of<DrawerCubit>(context)
+            .drawerViews[BlocProvider.of<DrawerCubit>(context).selectedView],
       ),
     );
   }

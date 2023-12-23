@@ -7,7 +7,7 @@ final class UserDataInitial extends UserDataState {}
 
 final class UserDataLoading extends UserDataState {}
 
-final class UserDataSuccess extends UserDataState {}
+final class UserDataAddedSuccess extends UserDataState {}
 
 final class UserDataFalure extends UserDataState {
   final String errorMessage;

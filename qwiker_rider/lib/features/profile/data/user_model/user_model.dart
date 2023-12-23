@@ -1,21 +1,27 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:json_annotation/json_annotation.dart';
-import 'package:qwiker_rider/features/profile/domain/user_entity.dart';
+import 'package:qwiker_rider/features/profile/domain/user_profile_data_entity.dart';
 
-class UserModel {
+class UserModel extends UserProfileDataEntity {
   // userId is the user phoneNumber which he signed in with
+  @override
   final String userId;
+  @override
   final String userName;
   final String email;
+  @override
   String? extraPhoneNumber;
-  List<Map<String, dynamic>>? trips;
 
-  UserModel(
-      {required this.userId,
-      required this.email,
-      required this.userName,
-      this.extraPhoneNumber,
-      this.trips});
+  UserModel({
+    required this.userId,
+    required this.email,
+    required this.userName,
+    this.extraPhoneNumber,
+  }) : super(
+          userId: userId,
+          userName: userName,
+          extraPhoneNumber: extraPhoneNumber,
+        );
   //todo image url
 
   factory UserModel.fromFirestore(
@@ -28,7 +34,6 @@ class UserModel {
       userId: user['userId'],
       userName: user["userName"],
       extraPhoneNumber: user['extraPhoneNumber'],
-      trips: user['trips'],
     );
   }
 
@@ -38,7 +43,6 @@ class UserModel {
       'userId': user.userId,
       'userName': user.userName,
       'extraPhoneNumber': user.extraPhoneNumber,
-      'trips': user.trips,
     };
   }
 }

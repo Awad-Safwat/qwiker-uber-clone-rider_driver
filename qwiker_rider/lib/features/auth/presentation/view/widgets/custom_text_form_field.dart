@@ -18,9 +18,11 @@ class CustomTextFormField extends StatelessWidget {
     this.borderRadius,
     this.enabledBorderColor,
     this.focusBorderColor,
+    this.prefixIcon,
   });
 
   final TextEditingController textController;
+  final Icon? prefixIcon;
   final String hintText;
   final TextStyle? hintStyle;
   final Color? fillColor;
@@ -41,6 +43,7 @@ class CustomTextFormField extends StatelessWidget {
       controller: textController,
       keyboardType: keyboardType,
       decoration: InputDecoration(
+        prefixIcon: prefixIcon,
         fillColor: fillColor,
         filled: true,
         hintText: hintText,
