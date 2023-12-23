@@ -7,6 +7,7 @@ import 'package:qwiker_rider/features/auth/presentation/manager/auth_cubit/auth_
 
 import 'package:qwiker_rider/core/di/dependency_injection.dart';
 import 'package:qwiker_rider/features/auth/presentation/view/widgets/pin_code_input_view_body.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../../core/widgets/custom_toast.dart';
 

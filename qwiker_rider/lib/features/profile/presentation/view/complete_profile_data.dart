@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:qwiker_rider/core/global_functions.dart';
+import 'package:qwiker_rider/core/routing/views_name.dart';
 import 'package:qwiker_rider/core/widgets/custom_toast.dart';
 import 'package:qwiker_rider/features/auth/presentation/manager/auth_cubit/auth_cubit.dart';
 import 'package:qwiker_rider/features/profile/presentation/manager/user_data/user_data_cubit.dart';
@@ -24,14 +26,15 @@ class CompleteProfileDataView extends StatelessWidget {
               if (state is UserDataLoading) {
                 showProgressIndicator(context);
               }
-              if (state is UserDataSuccess) {
+              if (state is UserDataAddedSuccess) {
                 Navigator.pop(context);
-                CustomToast(message: 'User added successfully');
+                CustomToast(message: 'User added successfully').show(context);
+                GoRouter.of(context).pushReplacement(ViewsName.homeView);
               }
               if (state is UserDataFalure) {
                 Navigator.pop(context);
                 print(state.errorMessage);
-                CustomToast(message: state.errorMessage);
+                CustomToast(message: state.errorMessage).show(context);
               }
             },
             child: const CompleteProfileDataViewBody()),

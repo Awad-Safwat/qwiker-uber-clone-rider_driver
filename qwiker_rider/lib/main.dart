@@ -13,5 +13,6 @@ void main() async {
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   Bloc.observer = AppBlocObserver();
   isFirstTime = await checkFirstSeen();
+  hasProfile = await checkUserProfile();
   runApp(const RiderApp());
 }

@@ -18,6 +18,8 @@ class AppRouter {
           return const OnBoardingView();
         } else if (FirebaseAuth.instance.currentUser == null) {
           return const LogInView();
+        } else if (hasProfile ?? false) {
+          return const HomeView();
         } else {
           return const CompleteProfileDataView();
         }

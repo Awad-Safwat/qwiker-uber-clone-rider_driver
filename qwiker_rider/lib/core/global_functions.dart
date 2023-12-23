@@ -19,6 +19,13 @@ Future<bool>? checkFirstSeen() async {
 
 bool? isFirstTime;
 
+// check the user profile
+bool? hasProfile;
+Future<bool>? checkUserProfile() async {
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  return prefs.getBool('hasProfile') ?? false;
+}
+
 // save phone number localy
 
 void savePhoneLocal(String phoneNumber) async {

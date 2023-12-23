@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-class RemoteUsersData {
+class AuthUsersData {
   final CollectionReference<Map<String, dynamic>> _firestoreUsersCollection =
       FirebaseFirestore.instance.collection('riders');
 

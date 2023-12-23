@@ -26,7 +26,7 @@ class OnBoardingView extends StatelessWidget {
             ),
           ),
         ),
-        onFinish: () => GoRouter.of(context).push('/LogInView'),
+        onFinish: () => GoRouter.of(context).pushReplacement('/LogInView'),
         background: const [
           BackGroundOnboarding1(),
           BackGroundOnboarding2(),
