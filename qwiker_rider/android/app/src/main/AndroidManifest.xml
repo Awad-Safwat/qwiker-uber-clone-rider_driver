@@ -2,7 +2,7 @@
     <application
         android:label="qwiker_rider"
         android:name="${applicationName}"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/qwiker_icon"
         android:enableOnBackInvokedCallback="true">
         <activity
             android:name=".MainActivity"
