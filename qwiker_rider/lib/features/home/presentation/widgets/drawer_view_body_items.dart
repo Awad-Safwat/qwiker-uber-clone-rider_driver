@@ -13,6 +13,7 @@ class DrawerItems extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    DrawerCubit provider = BlocProvider.of<DrawerCubit>(context);
     return SafeArea(
       child: Container(
         child: ListTileTheme(
@@ -44,7 +45,7 @@ class DrawerItems extends StatelessWidget {
               Gap(50.h),
               ListTile(
                 onTap: () {
-                  //  BlocProvider.of<DrawerCubit>(context).selectedView = 1;
+                  provider.changSelectedScreen(0);
                 },
                 leading: const Icon(Icons.home),
                 title: Text(
@@ -54,7 +55,7 @@ class DrawerItems extends StatelessWidget {
               ),
               ListTile(
                 onTap: () {
-                  BlocProvider.of<DrawerCubit>(context).selectedView = 0;
+                  provider.changSelectedScreen(1);
                 },
                 leading: const Icon(Icons.account_circle_rounded),
                 title: Text(

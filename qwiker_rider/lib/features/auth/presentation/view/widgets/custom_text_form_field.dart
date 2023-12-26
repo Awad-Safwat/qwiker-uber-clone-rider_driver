@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:qwiker_rider/core/theaming/app_colors.dart';
 
-import '../../../../../core/theaming/app_fonts.dart';
-
 class CustomTextFormField extends StatelessWidget {
   const CustomTextFormField({
     super.key,
@@ -19,6 +17,7 @@ class CustomTextFormField extends StatelessWidget {
     this.enabledBorderColor,
     this.focusBorderColor,
     this.prefixIcon,
+    this.autoFoucus,
   });
 
   final TextEditingController textController;
@@ -33,6 +32,7 @@ class CustomTextFormField extends StatelessWidget {
   final double? borderRadius;
   final Color? enabledBorderColor;
   final Color? focusBorderColor;
+  final bool? autoFoucus;
 
   @override
   Widget build(BuildContext context) {
@@ -42,9 +42,10 @@ class CustomTextFormField extends StatelessWidget {
       onSaved: onSave,
       controller: textController,
       keyboardType: keyboardType,
+      autofocus: autoFoucus ?? false,
       decoration: InputDecoration(
         prefixIcon: prefixIcon,
-        fillColor: fillColor,
+        fillColor: fillColor ?? AppColors.whaite,
         filled: true,
         hintText: hintText,
         hintStyle: hintStyle,

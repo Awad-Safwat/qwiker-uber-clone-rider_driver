@@ -32,7 +32,7 @@ class PinCodeInputView extends StatelessWidget {
                     BlocProvider.of<AuthCubit>(context).phoneNumber!);
               } else if (state is AuthFailer) {
                 GoRouter.of(context).pop();
-                CustomToast(message: state.message).show(context);
+                customToast(message: state.message).show(context);
               } else if (state is AuthUserNotExiste) {
                 GoRouter.of(context)
                     .pushReplacement(ViewsName.completeProfileInfoView);

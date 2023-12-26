@@ -7,22 +7,23 @@ import 'package:qwiker_rider/features/profile/presentation/view/complete_profile
 import 'package:qwiker_rider/features/auth/presentation/view/login_view.dart';
 import 'package:qwiker_rider/features/auth/presentation/view/pin_code_input_view.dart';
 import 'package:qwiker_rider/features/onpoarding/view/onpoarding_view.dart';
+import 'package:qwiker_rider/features/request_ride/presentation/view/search_view.dart';
 
 class AppRouter {
   final router = GoRouter(routes: [
     GoRoute(
       path: '/',
       builder: (context, state) {
-        // return const PinCodeInputView();
-        if (isFirstTime ?? false) {
-          return const OnBoardingView();
-        } else if (FirebaseAuth.instance.currentUser == null) {
-          return const LogInView();
-        } else if (hasProfile ?? false) {
-          return const HomeView();
-        } else {
-          return const CompleteProfileDataView();
-        }
+        return const SearchView();
+        // if (isFirstTime ?? false) {
+        //   return const OnBoardingView();
+        // } else if (FirebaseAuth.instance.currentUser == null) {
+        //   return const LogInView();
+        // } else if (hasProfile ?? false) {
+        //   return const HomeView();
+        // } else {
+        //   return const CompleteProfileDataView();
+        // }
       },
     ),
     GoRoute(
@@ -41,5 +42,9 @@ class AppRouter {
       path: ViewsName.homeView,
       builder: (context, state) => const HomeView(),
     ),
+    GoRoute(
+      path: ViewsName.searchView,
+      builder: (context, state) => const SearchView(),
+    )
   ]);
 }

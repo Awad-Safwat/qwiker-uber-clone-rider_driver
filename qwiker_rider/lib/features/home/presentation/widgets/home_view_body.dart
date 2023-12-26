@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:qwiker_rider/core/theaming/app_colors.dart';
 import 'package:qwiker_rider/core/theaming/app_fonts.dart';
 import 'package:qwiker_rider/features/home/presentation/manager/drawer_cubit/drawer_cubit.dart';
+import 'package:qwiker_rider/features/home/presentation/widgets/custom_app_bar.dart';
 import 'package:qwiker_rider/features/home/presentation/widgets/drawer_view_body_items.dart';
 
 class HomeViewBody2 extends StatelessWidget {
@@ -11,6 +12,7 @@ class HomeViewBody2 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    DrawerCubit provider = BlocProvider.of<DrawerCubit>(context);
     return AdvancedDrawer(
       backdrop: Container(
         width: double.infinity,
@@ -23,8 +25,7 @@ class HomeViewBody2 extends StatelessWidget {
           ),
         ),
       ),
-      controller:
-          BlocProvider.of<DrawerCubit>(context).advancedDrawerController,
+      controller: provider.advancedDrawerController,
       animationCurve: Curves.easeInOut,
       animationDuration: const Duration(milliseconds: 300),
       animateChildDecoration: true,
@@ -36,33 +37,15 @@ class HomeViewBody2 extends StatelessWidget {
       ),
       drawer: const DrawerItems(),
       child: Scaffold(
-        appBar: AppBar(
-          centerTitle: true,
-          title: Text(
-            BlocProvider.of<DrawerCubit>(context).drawerViewsNames[0],
-            style: AppFonts.medel_28,
-          ),
-          backgroundColor: Colors.transparent,
-          leading: IconButton(
-            onPressed:
-                BlocProvider.of<DrawerCubit>(context).handleMenuButtonPressed,
-            icon: ValueListenableBuilder<AdvancedDrawerValue>(
-              valueListenable: BlocProvider.of<DrawerCubit>(context)
-                  .advancedDrawerController,
-              builder: (_, value, __) {
-                return AnimatedSwitcher(
-                  duration: const Duration(milliseconds: 250),
-                  child: Icon(
-                    value.visible ? Icons.arrow_back : Icons.menu,
-                    key: ValueKey<bool>(value.visible),
-                  ),
-                );
+        body: Stack(
+          children: [
+            BlocBuilder<DrawerCubit, DrawerState>(
+              builder: (context, state) {
+                return provider.drawerViews[provider.selectedView];
               },
             ),
-          ),
+          ],
         ),
-        body: BlocProvider.of<DrawerCubit>(context)
-            .drawerViews[BlocProvider.of<DrawerCubit>(context).selectedView],
       ),
     );
   }

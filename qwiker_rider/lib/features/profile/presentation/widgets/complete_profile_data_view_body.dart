@@ -13,7 +13,7 @@ class CompleteProfileDataViewBody extends StatelessWidget {
   const CompleteProfileDataViewBody({super.key});
 
   @override
-  build(BuildContext context) async {
+  build(BuildContext context) {
     var provider = BlocProvider.of<UserDataCubit>(context);
     return SingleChildScrollView(
       child: Column(
