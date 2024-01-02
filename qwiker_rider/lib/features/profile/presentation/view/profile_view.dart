@@ -22,12 +22,12 @@ class ProfileView extends StatelessWidget {
             }
             if (state is UserDataAddedSuccess) {
               Navigator.pop(context);
-              CustomToast(message: 'Task Done successfully').show(context);
+              showCustomToast(message: 'Task Done successfully').show(context);
             }
             if (state is UserDataFalure) {
               Navigator.pop(context);
               print(state.errorMessage);
-              CustomToast(message: state.errorMessage).show(context);
+              showCustomToast(message: state.errorMessage).show(context);
             }
           },
           child: const ProfileViewBody(),
