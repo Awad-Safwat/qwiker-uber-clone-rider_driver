@@ -42,7 +42,7 @@ class ButtomLocationMenu extends StatelessWidget {
               ListTile(
                 leading: const CustomBickUpIcon(),
                 title: Text(
-                  'Neemuch RD. Gopalbari, Bari Sad',
+                  'start from your current location',
                   style: AppFonts.poppinsRegularBlack_12,
                 ),
                 onTap: () {
@@ -63,6 +63,9 @@ class ButtomLocationMenu extends StatelessWidget {
                   'Search Destination',
                   style: AppFonts.poppinsRegularGray_12,
                 ),
+                onTap: () {
+                  GoRouter.of(context).push(ViewsName.searchView);
+                },
               )
             ],
           ),

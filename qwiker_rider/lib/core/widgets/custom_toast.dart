@@ -3,7 +3,7 @@ import 'package:delightful_toast/toast/components/toast_card.dart';
 import 'package:flutter/material.dart';
 import 'package:qwiker_rider/core/theaming/app_fonts.dart';
 
-DelightToastBar customToast({
+DelightToastBar showCustomToast({
   required String message,
 }) {
   return DelightToastBar(

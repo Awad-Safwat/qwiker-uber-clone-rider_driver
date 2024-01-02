@@ -28,13 +28,14 @@ class CompleteProfileDataView extends StatelessWidget {
               }
               if (state is UserDataAddedSuccess) {
                 Navigator.pop(context);
-                customToast(message: 'User added successfully').show(context);
+                showCustomToast(message: 'User added successfully')
+                    .show(context);
                 GoRouter.of(context).pushReplacement(ViewsName.homeView);
               }
               if (state is UserDataFalure) {
                 Navigator.pop(context);
                 print(state.errorMessage);
-                customToast(message: state.errorMessage).show(context);
+                showCustomToast(message: state.errorMessage).show(context);
               }
             },
             child: const CompleteProfileDataViewBody()),

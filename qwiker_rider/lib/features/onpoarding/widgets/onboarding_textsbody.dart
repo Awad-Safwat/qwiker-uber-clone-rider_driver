@@ -56,7 +56,7 @@ class Onboarding1Text extends StatelessWidget {
     return Column(
       children: [
         const Text(
-          'Register Vehicle',
+          'Request A Vehicle',
           style: AppFonts.medel_36,
         ),
         Gap(20.h),

@@ -4,4 +4,7 @@ class ViewsName {
   static const String pinCodeInputView = '/PinCodeInputView';
   static const String homeView = '/homeView';
   static const String searchView = '/SearchView';
+  static const String confirmRideView = '/confirmRideView';
+
+  static const String testUiView = '/testUiView';
 }

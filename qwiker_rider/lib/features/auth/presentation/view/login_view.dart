@@ -27,7 +27,7 @@ class LogInView extends StatelessWidget {
               GoRouter.of(context).push(ViewsName.pinCodeInputView);
             } else if (state is AuthSendingCodeFalier) {
               GoRouter.of(context).pop();
-              customToast(message: state.message);
+              showCustomToast(message: state.message);
             }
           },
           child: const LogInViewBody(),

@@ -5,9 +5,9 @@ import 'package:gap/gap.dart';
 import 'package:qwiker_rider/core/global_functions.dart';
 import 'package:qwiker_rider/features/profile/data/user_model/user_model.dart';
 import 'package:qwiker_rider/features/profile/presentation/manager/user_data/user_data_cubit.dart';
+import 'package:qwiker_rider/features/profile/presentation/widgets/user_data_input_fields_complete.dart';
 
 import '../../../../../core/theaming/app_fonts.dart';
-import 'user_data_input_fields.dart';
 
 class CompleteProfileDataViewBody extends StatelessWidget {
   const CompleteProfileDataViewBody({super.key});
@@ -41,7 +41,7 @@ class CompleteProfileDataViewBody extends StatelessWidget {
           Gap(50.h),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 35.w),
-            child: UserDataInputFields(
+            child: UserDataInputFieldsCompleate(
               emailHint: 'Email (optional)',
               nameHint: 'Full Name (required)',
               phoneHint: '***********',
@@ -51,7 +51,7 @@ class CompleteProfileDataViewBody extends StatelessWidget {
                 provider.addNewUser(UserModel(
                   userId: await getPhoneNumber(),
                   userName: provider.nameController.text,
-                  extraPhoneNumber: provider.phoneController.text,
+                  extraPhoneNumber: provider.extraPhoneController.text,
                   email: provider.emailController.text,
                 ));
               },
