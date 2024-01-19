@@ -5,7 +5,7 @@ import 'package:meta/meta.dart';
 part 'auth_state.dart';
 
 class AuthCubit extends Cubit<AuthState> {
-  AuthCubit() : super(AuthInitial());
+  AuthCubit({required authRepoImple}) : super(AuthInitial());
 
   late String verificationId;
   String? phoneNumber;

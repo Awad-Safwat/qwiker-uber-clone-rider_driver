@@ -28,19 +28,31 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
+  build_runner: ^2.4.7
+  cloud_firestore: ^4.13.6
   cupertino_icons: ^1.0.2
+  dartz: ^0.10.1
   delightful_toast: ^1.1.0
+  dio: ^5.4.0
+  firebase_analytics: ^10.7.4
   firebase_auth: ^4.15.3
   firebase_core: ^2.24.2
+  firebase_messaging: ^14.7.9
   flutter:
     sdk: flutter
+  flutter_advanced_drawer: ^1.3.5
   flutter_bloc: ^8.1.3
   flutter_native_splash: ^2.3.6
   flutter_onboarding_slider: ^1.0.11
+  flutter_polyline_points: ^2.0.0
   flutter_screenutil: ^5.9.0
   gap: ^3.0.1
+  geolocator: ^10.1.0
+  get_it: ^7.6.4
   go_router: ^12.1.1
   google_fonts: ^6.1.0
+  google_maps_flutter: ^2.5.0
+  json_serializable: ^6.7.1
   pinput: ^3.0.1
   shared_preferences: ^2.2.2
 

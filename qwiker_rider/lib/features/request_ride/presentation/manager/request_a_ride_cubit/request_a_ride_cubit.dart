@@ -78,7 +78,7 @@ class RequestARideCubit extends Cubit<RequestARideState> {
       }
     }
 
-    createStartPointIcon();
+    createStartPointMarkr();
     //polulineCoordinates is the List of longitute and latidtude.
     await calculateTotalDistance();
 
@@ -103,7 +103,7 @@ class RequestARideCubit extends Cubit<RequestARideState> {
     }
   }
 
-  createStartPointIcon() {
+  createStartPointMarkr() {
     return BitmapDescriptor.fromAssetImage(
       const ImageConfiguration(size: Size(10, 10)),
       'assets/images/start_point_icon.png',

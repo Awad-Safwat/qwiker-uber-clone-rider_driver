@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:qwiker_rider/core/global_functions.dart';
 import 'package:qwiker_rider/core/theaming/app_colors.dart';
 
 import 'package:qwiker_rider/features/request_ride/presentation/manager/confirm_a_ride_cubit/confirm_ride_cubit.dart';
@@ -12,6 +13,7 @@ import 'package:qwiker_rider/features/request_ride/presentation/widgets/availabl
 
 import 'package:qwiker_rider/features/request_ride/presentation/widgets/custom_map.dart';
 import 'package:qwiker_rider/features/request_ride/presentation/widgets/waiting_for_driver_widget.dart';
+import 'package:qwiker_rider/test_ui_view.dart';
 
 class ConfirmRideViewBody extends StatelessWidget {
   const ConfirmRideViewBody({super.key});
@@ -75,10 +77,18 @@ class ConfirmRideViewBody extends StatelessWidget {
                 left: 0,
                 right: 0,
                 top: 500.h,
-                child: BlocBuilder<ConfirmRideCubit, ConfirmRideState>(
+                child: BlocConsumer<ConfirmRideCubit, ConfirmRideState>(
+                  listener: (context, state) {
+                    if (state is ConfirmRideWaitingDriver) {
+                      getPhoneNumber().then((riderPhone) =>
+                          confirmCubit.listnToDriver(riderPhone));
+                    }
+                  },
                   builder: (context, state) {
                     if (state is ConfirmRideWaitingDriver) {
                       return const WaitingForDriverWidget();
+                    } else if (state is DriverAccebted) {
+                      return const TestUiView();
                     } else {
                       return const AvailableRidesWidget();
                     }

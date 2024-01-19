@@ -21,4 +21,13 @@ class PlaceModel {
       geometry: Geometry.fromJson(place["geometry"]),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    return {
+      "geometry": geometry.toJson(),
+      "name": shortName,
+      "place_id": placeId,
+      "formatted_address": longName,
+    };
+  }
 }

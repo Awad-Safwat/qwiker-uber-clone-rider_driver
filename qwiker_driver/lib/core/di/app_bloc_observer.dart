@@ -8,4 +8,16 @@ class AppBlocObserver extends BlocObserver {
     log(change.toString());
     super.onChange(bloc, change);
   }
+
+  @override
+  void onCreate(BlocBase bloc) {
+    super.onCreate(bloc);
+    log("created ${bloc.runtimeType.toString()}");
+  }
+
+  @override
+  void onClose(BlocBase bloc) {
+    super.onClose(bloc);
+    log("Closed ${bloc.runtimeType.toString()}");
+  }
 }

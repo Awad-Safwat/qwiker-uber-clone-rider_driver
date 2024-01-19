@@ -1,27 +1,27 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:qwiker_rider/features/profile/data/user_model/user_model.dart';
+import 'package:qwiker_rider/features/profile/data/user_model/rider_model.dart';
 
 class RemoteUsersData {
   final CollectionReference<Map<String, dynamic>> _firestoreUsersCollection =
       FirebaseFirestore.instance.collection('riders');
 
-  Future<void> addNewUser(UserModel user) async {
+  Future<void> addNewUser(RiderModel user) async {
     final docRef = _firestoreUsersCollection
         .withConverter(
-          fromFirestore: UserModel.fromFirestore,
-          toFirestore: (UserModel user, options) => user.toFirestore(user),
+          fromFirestore: RiderModel.fromFirestore,
+          toFirestore: (RiderModel user, options) => user.toFirestore(),
         )
         .doc(
-          user.userId,
+          user.riderPhone,
         );
     await docRef.set(user);
   }
 
-  Future<UserModel> getUserProfileData(String userId) async {
+  Future<RiderModel> getUserProfileData(String userId) async {
     final docRef = _firestoreUsersCollection
         .withConverter(
-          fromFirestore: UserModel.fromFirestore,
-          toFirestore: (UserModel user, options) => user.toFirestore(user),
+          fromFirestore: RiderModel.fromFirestore,
+          toFirestore: (RiderModel user, options) => user.toFirestore(),
         )
         .doc(
           userId,
@@ -32,16 +32,16 @@ class RemoteUsersData {
     return userData!;
   }
 
-  Future<void> updateUserProfileData(UserModel user) async {
+  Future<void> updateUserProfileData(RiderModel user) async {
     final docRef = _firestoreUsersCollection
         .withConverter(
-          fromFirestore: UserModel.fromFirestore,
-          toFirestore: (UserModel user, options) => user.toFirestore(user),
+          fromFirestore: RiderModel.fromFirestore,
+          toFirestore: (RiderModel user, options) => user.toFirestore(),
         )
         .doc(
-          user.userId,
+          user.riderPhone,
         );
-    final updates = user.toFirestore(user);
+    final updates = user.toFirestore();
     await docRef.update(updates);
   }
 }

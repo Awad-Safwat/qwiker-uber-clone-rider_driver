@@ -18,3 +18,5 @@ final class ConfirmRideConfirmed extends ConfirmRideState {}
 final class ConfirmRideCanceled extends ConfirmRideState {}
 
 final class ConfirmRideWaitingDriver extends ConfirmRideState {}
+
+final class DriverAccebted extends ConfirmRideState {}

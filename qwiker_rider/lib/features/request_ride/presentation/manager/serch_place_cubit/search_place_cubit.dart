@@ -29,6 +29,7 @@ class SearchPlaceCubit extends Cubit<SearchPlaceState> {
       emit(SearchPlaceFaluer(message: error.errorMessage));
     }, (places) {
       placesFounded = places;
+      print(places);
       emit(SearchPlaceLoadedSuccess());
     });
   }

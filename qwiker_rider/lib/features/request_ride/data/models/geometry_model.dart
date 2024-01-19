@@ -14,4 +14,10 @@ class Geometry {
       ),
     );
   }
+
+  Map<String, dynamic> toJson() {
+    return {
+      "location": location.toJson(),
+    };
+  }
 }
