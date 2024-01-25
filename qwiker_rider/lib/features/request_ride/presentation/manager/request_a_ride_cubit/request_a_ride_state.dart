@@ -18,3 +18,15 @@ final class GetCurrentPositionFaluer extends RequestARideState {
 
   GetCurrentPositionFaluer({required this.message});
 }
+
+final class TripRequested extends RequestARideState {}
+
+final class DriverAccebted extends RequestARideState {}
+
+final class DriverOnStart extends RequestARideState {}
+
+final class TripStarted extends RequestARideState {}
+
+final class OnDestination extends RequestARideState {}
+
+final class TripEnded extends RequestARideState {}

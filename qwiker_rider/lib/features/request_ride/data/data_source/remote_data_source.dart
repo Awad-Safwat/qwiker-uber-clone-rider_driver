@@ -10,8 +10,11 @@ class RequestRideRemoteDataSource {
 
   RequestRideRemoteDataSource({required apiService}) : _apiService = apiService;
 
-  final CollectionReference<Map<String, dynamic>> _firestoreUsersCollection =
+  final CollectionReference<Map<String, dynamic>>
+      _firestoreRequestedTripsCollection =
       FirebaseFirestore.instance.collection('requestedTrips');
+  final CollectionReference<Map<String, dynamic>> _firestoreRidersCollection =
+      FirebaseFirestore.instance.collection('riders');
 
   Future<List<PlaceModel>> searchForPlace(String? searchText) async {
     String apiKey = AppStrings.apiKey;
@@ -25,7 +28,7 @@ class RequestRideRemoteDataSource {
   }
 
   Future<void> bookATrip(TripModel trip) async {
-    final docRef = _firestoreUsersCollection
+    final docRef = _firestoreRequestedTripsCollection
         .withConverter(
           fromFirestore: TripModel.fromFirestore,
           toFirestore: (TripModel user, options) => user.toFirestore(),
@@ -34,5 +37,19 @@ class RequestRideRemoteDataSource {
           trip.riderData!.riderPhone,
         );
     await docRef.set(trip);
+  }
+
+  Future<void> addTripToHistory(TripModel trip) async {
+    final docRef = _firestoreRidersCollection
+        .withConverter(
+          fromFirestore: TripModel.fromFirestore,
+          toFirestore: (TripModel user, options) => user.toFirestore(),
+        )
+        .doc(
+          trip.riderData!.riderPhone,
+        );
+    await docRef.update({
+      'history': FieldValue.arrayUnion([trip.toFirestore()])
+    });
   }
 }

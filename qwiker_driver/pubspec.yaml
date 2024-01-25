@@ -55,6 +55,7 @@ dependencies:
   json_serializable: ^6.7.1
   pinput: ^3.0.1
   shared_preferences: ^2.2.2
+  url_launcher: ^6.2.3
 
 dev_dependencies:
   flutter_lints: ^2.0.0

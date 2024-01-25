@@ -19,9 +19,9 @@ class DriverModel {
     DocumentSnapshot<Map<String, dynamic>> snapshot,
     SnapshotOptions? options,
   ) {
-    final user = snapshot.data();
+    final user = snapshot.data()!['driverData'];
     return DriverModel(
-      driverLocationLat: user!['driverLocationLat'],
+      driverLocationLat: user['driverLocationLat'],
       driverLocationLong: user['driverLocationLong'],
       email: user['email'],
       driverPhoneNumber: user['driverPhoneNumber'],

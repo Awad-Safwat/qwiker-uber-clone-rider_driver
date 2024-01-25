@@ -9,6 +9,7 @@ import 'package:qwiker_driver/features/accepte_a_trip/presentation/widgets/custo
 import 'package:qwiker_driver/features/accepte_a_trip/presentation/widgets/driver_on_start_point_view.dart';
 import 'package:qwiker_driver/features/accepte_a_trip/presentation/widgets/goingto_rider_location_view.dart';
 import 'package:qwiker_driver/features/accepte_a_trip/presentation/widgets/trip_details_section.dart';
+import 'package:qwiker_driver/features/accepte_a_trip/presentation/widgets/trip_on_going_view.dart';
 
 class CurrentTripViewBody extends StatelessWidget {
   const CurrentTripViewBody({super.key});
@@ -26,6 +27,8 @@ class CurrentTripViewBody extends StatelessWidget {
         return const DriverOnStartPointView();
       } else if (state is GoingToRiderLocation) {
         return const GoingToRiderLocationView();
+      } else if (state is TripIsStarted) {
+        return const TripOnGoingView();
       } else {
         return Stack(
           children: [

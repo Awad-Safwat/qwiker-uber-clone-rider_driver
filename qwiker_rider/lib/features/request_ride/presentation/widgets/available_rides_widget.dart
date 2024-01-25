@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:qwiker_rider/core/di/dependency_injection.dart';
 import 'package:qwiker_rider/core/global_functions.dart';
 import 'package:qwiker_rider/core/theaming/app_colors.dart';
 import 'package:qwiker_rider/core/theaming/app_fonts.dart';
@@ -10,7 +11,6 @@ import 'package:qwiker_rider/features/request_ride/data/models/geometry_model.da
 import 'package:qwiker_rider/features/request_ride/data/models/lat_long_model.dart';
 import 'package:qwiker_rider/features/request_ride/data/models/place_model.dart';
 import 'package:qwiker_rider/features/request_ride/data/models/trip_model.dart';
-import 'package:qwiker_rider/features/request_ride/presentation/manager/confirm_a_ride_cubit/confirm_ride_cubit.dart';
 import 'package:qwiker_rider/features/request_ride/presentation/manager/request_a_ride_cubit/request_a_ride_cubit.dart';
 
 class AvailableRidesWidget extends StatefulWidget {
@@ -24,8 +24,7 @@ class _AvailableRidesWidgetState extends State<AvailableRidesWidget> {
   String isSelected = '';
   @override
   Widget build(BuildContext context) {
-    var requestARideCubit = BlocProvider.of<RequestARideCubit>(context);
-    var confirmRideCubit = BlocProvider.of<ConfirmRideCubit>(context);
+    var requestARideCubit = getIt<RequestARideCubit>();
 
     return Container(
       decoration: BoxDecoration(
@@ -163,7 +162,7 @@ class _AvailableRidesWidgetState extends State<AvailableRidesWidget> {
                 height: 55.h,
                 onPressed: () async {
                   getPhoneNumber().then(
-                    (value) => confirmRideCubit.bookRide(
+                    (phoneNumber) => requestARideCubit.bookRide(
                       TripModel(
                         tripTotalDestance: requestARideCubit.totalDistance,
                         startPointdata: PlaceModel(
@@ -193,7 +192,7 @@ class _AvailableRidesWidgetState extends State<AvailableRidesWidget> {
                           ),
                         ),
                         riderData: RiderModel(
-                            riderPhone: value,
+                            riderPhone: phoneNumber,
                             email: 'doaa.safwat1999@gmail.com',
                             riderName: 'Doaa Safwat'),
                       ),

@@ -3,7 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:qwiker_driver/core/di/dependency_injection.dart';
 import 'package:qwiker_driver/core/theaming/app_colors.dart';
+import 'package:qwiker_driver/core/theaming/app_fonts.dart';
 import 'package:qwiker_driver/features/accepte_a_trip/presentation/manager/accepte_a_trip/accepte_a_trip_cubit.dart';
 import 'package:qwiker_driver/features/accepte_a_trip/presentation/widgets/custom_map.dart';
 import 'package:qwiker_driver/features/accepte_a_trip/presentation/widgets/trip_details_section.dart';
@@ -13,7 +15,7 @@ class GoingToRiderLocationView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var accepteATripCubit = BlocProvider.of<AccepteATripCubit>(context);
+    var accepteATripCubit = getIt<AccepteATripCubit>();
     return Stack(
       children: [
         CustomMap(
@@ -46,6 +48,19 @@ class GoingToRiderLocationView extends StatelessWidget {
                 color: AppColors.mainBlue,
                 width: 4),
           },
+        ),
+        Positioned(
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 800.h,
+          child: AppBar(
+            centerTitle: true,
+            title: const Text(
+              'Go to start point',
+              style: AppFonts.medel_28,
+            ),
+          ),
         ),
         Positioned(
           top: 25.h,

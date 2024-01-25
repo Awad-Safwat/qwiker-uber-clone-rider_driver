@@ -17,7 +17,7 @@ class AppRouter {
     GoRoute(
       path: '/',
       builder: (context, state) {
-        // return const TestUiView();
+        //  return const TestUiView();
         if (isFirstTime ?? false) {
           return const OnBoardingView();
         } else if (FirebaseAuth.instance.currentUser == null) {

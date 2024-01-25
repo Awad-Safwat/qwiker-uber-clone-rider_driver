@@ -12,7 +12,7 @@ class UserRepoImple extends UserRepo {
   @override
   Either<Falure, Future<void>> addNewUser(RiderModel user) {
     try {
-      return right(_remoteUsersData.addNewUser(user));
+      return right(_remoteUsersData.addNewRider(user));
     } catch (error) {
       return left(
         Falure(
@@ -25,7 +25,7 @@ class UserRepoImple extends UserRepo {
   @override
   Either<Falure, Future<RiderModel>> getUserProfileData(String userId) {
     try {
-      return right(_remoteUsersData.getUserProfileData(userId));
+      return right(_remoteUsersData.getRiderProfileData(userId));
     } catch (error) {
       return left(
         Falure(
@@ -38,7 +38,7 @@ class UserRepoImple extends UserRepo {
   @override
   Either<Falure, Future<void>> updateUserProfileData(RiderModel user) {
     try {
-      return right(_remoteUsersData.updateUserProfileData(user));
+      return right(_remoteUsersData.updateRiderProfileData(user));
     } catch (error) {
       return left(
         Falure(

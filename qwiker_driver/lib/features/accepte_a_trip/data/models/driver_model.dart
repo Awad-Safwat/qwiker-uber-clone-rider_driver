@@ -16,16 +16,16 @@ class DriverModel {
   //TODO image url
 
   factory DriverModel.fromFirestore(
-    Map<String, dynamic> user,
+    Map<String, dynamic> driver,
     SnapshotOptions? options,
   ) {
     // final user = snapshot.data();
     return DriverModel(
-      driverLocationLat: user['driverLocationLat'],
-      driverLocationLong: user['driverLocationLong'],
-      email: user['email'],
-      driverPhoneNumber: user['driverPhoneNumber'],
-      driverName: user["driverName"],
+      driverLocationLat: driver['driverLocationLat'],
+      driverLocationLong: driver['driverLocationLong'],
+      email: driver['email'],
+      driverPhoneNumber: driver['driverPhoneNumber'],
+      driverName: driver["driverName"],
     );
   }
 

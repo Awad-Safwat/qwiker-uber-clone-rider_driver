@@ -70,4 +70,13 @@ class RequestRideRepoImple extends RequestRideRepo {
       );
     }
   }
+
+  @override
+  Future<Either<Falure, Future<void>>> endAtrip(TripModel trip) async {
+    try {
+      return right(_requestRideRemoteDataSource.addTripToHistory(trip));
+    } catch (e) {
+      return left(Falure(errorMessage: e.toString()));
+    }
+  }
 }

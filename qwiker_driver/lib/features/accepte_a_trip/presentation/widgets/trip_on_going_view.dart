@@ -6,10 +6,10 @@ import 'package:qwiker_driver/core/theaming/app_colors.dart';
 import 'package:qwiker_driver/core/theaming/app_fonts.dart';
 import 'package:qwiker_driver/features/accepte_a_trip/presentation/manager/accepte_a_trip/accepte_a_trip_cubit.dart';
 import 'package:qwiker_driver/features/accepte_a_trip/presentation/widgets/custom_map.dart';
-import 'package:qwiker_driver/features/accepte_a_trip/presentation/widgets/trip_details_section.dart';
+import 'package:qwiker_driver/features/accepte_a_trip/presentation/widgets/trip_on_going_bottom_section.dart';
 
-class DriverOnStartPointView extends StatelessWidget {
-  const DriverOnStartPointView({super.key});
+class TripOnGoingView extends StatelessWidget {
+  const TripOnGoingView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -59,7 +59,7 @@ class DriverOnStartPointView extends StatelessWidget {
           child: AppBar(
             centerTitle: true,
             title: const Text(
-              'Wait The Rider',
+              'Trip is ongoing',
               style: AppFonts.medel_28,
             ),
           ),
@@ -68,20 +68,8 @@ class DriverOnStartPointView extends StatelessWidget {
           left: 0,
           right: 0,
           bottom: 0,
-          top: 590.h,
-          child: TripDetailsSection(
-            buttonOnPressed: () {
-              accepteATripCubit.startTrip(
-                  accepteATripCubit.acceptedTripe!.riderData!.riderPhone);
-            },
-            buttonTitle: 'Start The Trip',
-            riderName: accepteATripCubit.acceptedTripe!.riderData!.riderName,
-            startLocationName:
-                accepteATripCubit.acceptedTripe!.startPointdata.shortName,
-            destinationName:
-                accepteATripCubit.acceptedTripe!.endPointdata.shortName,
-            fullDistance: accepteATripCubit.acceptedTripe!.tripTotalDestance!,
-          ),
+          top: 680.h,
+          child: const TripOnGoingBottomSection(),
         ),
       ],
     );

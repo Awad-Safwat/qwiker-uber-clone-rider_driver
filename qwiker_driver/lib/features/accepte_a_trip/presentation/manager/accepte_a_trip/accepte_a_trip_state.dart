@@ -22,3 +22,5 @@ final class LoadingRoutes extends AccepteATripState {}
 final class LoadedRoutes extends AccepteATripState {}
 
 final class GoingToRiderLocation extends AccepteATripState {}
+
+final class TripIsStarted extends AccepteATripState {}

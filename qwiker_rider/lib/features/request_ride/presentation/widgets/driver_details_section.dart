@@ -2,26 +2,25 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
-import 'package:qwiker_driver/core/global_functions.dart';
-import 'package:qwiker_driver/core/routing/views_name.dart';
-import 'package:qwiker_driver/core/theaming/app_colors.dart';
-import 'package:qwiker_driver/core/theaming/app_fonts.dart';
-import 'package:qwiker_driver/core/widgets/custom_bickup_icon.dart';
-import 'package:qwiker_driver/core/widgets/custom_button.dart';
-import 'package:qwiker_driver/core/widgets/custom_destination_icon.dart';
+import 'package:qwiker_rider/core/global_functions.dart';
+import 'package:qwiker_rider/core/theaming/app_colors.dart';
+import 'package:qwiker_rider/core/theaming/app_fonts.dart';
+import 'package:qwiker_rider/core/widgets/custom_button.dart';
+import 'package:qwiker_rider/features/request_ride/presentation/widgets/custom_bickup_icon.dart';
+import 'package:qwiker_rider/features/request_ride/presentation/widgets/custom_destination_icon.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class TripDetailsSection extends StatelessWidget {
-  const TripDetailsSection({
+class DriverDetailsSection extends StatelessWidget {
+  const DriverDetailsSection({
     super.key,
-    required this.riderName,
+    required this.driverName,
     required this.startLocationName,
     required this.destinationName,
     required this.buttonTitle,
     required this.fullDistance,
     required this.buttonOnPressed,
   });
-  final String riderName, startLocationName, destinationName, buttonTitle;
+  final String driverName, startLocationName, destinationName, buttonTitle;
   final double fullDistance;
   final void Function()? buttonOnPressed;
 
@@ -31,8 +30,8 @@ class TripDetailsSection extends StatelessWidget {
       decoration: BoxDecoration(
         color: AppColors.whaite,
         borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(30.r),
-          topRight: Radius.circular(30.r),
+          topLeft: Radius.circular(35.r),
+          topRight: Radius.circular(35.r),
         ),
       ),
       height: 201.h,
@@ -44,8 +43,8 @@ class TripDetailsSection extends StatelessWidget {
             children: [
               ListTile(
                 leading: Container(
-                  height: 60.h,
-                  width: 60.w,
+                  height: 80.h,
+                  width: 40.w,
                   clipBehavior: Clip.hardEdge,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(360),
@@ -60,7 +59,7 @@ class TripDetailsSection extends StatelessWidget {
                     minWidth: 270.w,
                   ),
                   child: Text(
-                    riderName,
+                    driverName,
                     style: AppFonts.poppinsSemiBold_16,
                     maxLines: 1,
                   ),

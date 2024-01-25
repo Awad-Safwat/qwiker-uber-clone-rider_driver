@@ -53,7 +53,9 @@ class SearchVeiwSearchPartSection extends StatelessWidget {
                     hintStyle: AppFonts.poppinsRegularGray_12,
                     onChanged: (text) {
                       provider.isDestination = false;
-                      provider.searchForPlace(text);
+                    },
+                    onSave: (text) {
+                      provider.searchForPlace(text ?? '');
                     },
                   ),
                 ),
@@ -87,7 +89,9 @@ class SearchVeiwSearchPartSection extends StatelessWidget {
                     autoFoucus: true,
                     onChanged: (text) {
                       provider.isDestination = true;
-                      provider.searchForPlace(text);
+                    },
+                    onSave: (text) {
+                      provider.searchForPlace(text ?? '');
                     },
                   ),
                 ),

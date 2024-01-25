@@ -7,4 +7,5 @@ class ViewsName {
   static const String confirmRideView = '/confirmRideView';
 
   static const String testUiView = '/testUiView';
+  static const String onGoingTrip = '/onGoingTrip';
 }

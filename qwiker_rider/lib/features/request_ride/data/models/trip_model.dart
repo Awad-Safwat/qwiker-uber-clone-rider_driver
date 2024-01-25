@@ -10,6 +10,7 @@ class TripModel {
   //will need driverData
   DriverModel? driverData;
   final double? tripTotalDestance;
+  String? tripStates;
 
   TripModel({
     required this.startPointdata,
@@ -17,19 +18,21 @@ class TripModel {
     required this.riderData,
     this.driverData,
     required this.tripTotalDestance,
+    this.tripStates,
   });
 
   factory TripModel.fromFirestore(
-    DocumentSnapshot<dynamic> snapshot,
+    DocumentSnapshot<Map<String, dynamic>> snapshot,
     SnapshotOptions? options,
   ) {
-    final trip = snapshot.data();
+    final trip = snapshot.data()!;
     return TripModel(
-      startPointdata: trip['startPointdata'],
-      endPointdata: trip['endPointdata'],
-      riderData: trip['riderData'],
-      driverData: trip['driverData'],
+      startPointdata: PlaceModel.fromJson(trip['startPointdata']),
+      endPointdata: PlaceModel.fromJson(trip['endPointdata']),
+      riderData: RiderModel.fromJson(snapshot, null),
+      driverData: DriverModel.fromFirestore(snapshot, options),
       tripTotalDestance: trip['tripTotalDestance'],
+      tripStates: trip['tripStates'],
     );
   }
 
@@ -40,6 +43,7 @@ class TripModel {
       'startPointdata': startPointdata.toJson(),
       'endPointdata': endPointdata.toJson(),
       'tripTotalDestance': tripTotalDestance,
+      'tripStates': tripStates,
     };
   }
 }

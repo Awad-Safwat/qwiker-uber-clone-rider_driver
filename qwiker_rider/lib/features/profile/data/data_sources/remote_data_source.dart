@@ -2,46 +2,46 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:qwiker_rider/features/profile/data/user_model/rider_model.dart';
 
 class RemoteUsersData {
-  final CollectionReference<Map<String, dynamic>> _firestoreUsersCollection =
+  final CollectionReference<Map<String, dynamic>> _firestoreRidersCollection =
       FirebaseFirestore.instance.collection('riders');
 
-  Future<void> addNewUser(RiderModel user) async {
-    final docRef = _firestoreUsersCollection
+  Future<void> addNewRider(RiderModel rider) async {
+    final docRef = _firestoreRidersCollection
         .withConverter(
           fromFirestore: RiderModel.fromFirestore,
-          toFirestore: (RiderModel user, options) => user.toFirestore(),
+          toFirestore: (RiderModel rider, options) => rider.toFirestore(),
         )
         .doc(
-          user.riderPhone,
+          rider.riderPhone,
         );
-    await docRef.set(user);
+    await docRef.set(rider);
   }
 
-  Future<RiderModel> getUserProfileData(String userId) async {
-    final docRef = _firestoreUsersCollection
+  Future<RiderModel> getRiderProfileData(String riderPhone) async {
+    final docRef = _firestoreRidersCollection
         .withConverter(
           fromFirestore: RiderModel.fromFirestore,
-          toFirestore: (RiderModel user, options) => user.toFirestore(),
+          toFirestore: (RiderModel rider, options) => rider.toFirestore(),
         )
         .doc(
-          userId,
+          riderPhone,
         );
 
     final docSnap = await docRef.get();
-    final userData = docSnap.data();
-    return userData!;
+    final riderData = docSnap.data();
+    return riderData!;
   }
 
-  Future<void> updateUserProfileData(RiderModel user) async {
-    final docRef = _firestoreUsersCollection
+  Future<void> updateRiderProfileData(RiderModel rider) async {
+    final docRef = _firestoreRidersCollection
         .withConverter(
           fromFirestore: RiderModel.fromFirestore,
-          toFirestore: (RiderModel user, options) => user.toFirestore(),
+          toFirestore: (RiderModel rider, options) => rider.toFirestore(),
         )
         .doc(
-          user.riderPhone,
+          rider.riderPhone,
         );
-    final updates = user.toFirestore();
+    final updates = rider.toFirestore();
     await docRef.update(updates);
   }
 }

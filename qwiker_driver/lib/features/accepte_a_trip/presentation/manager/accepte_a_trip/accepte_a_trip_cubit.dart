@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_polyline_points/flutter_polyline_points.dart';
@@ -33,16 +34,16 @@ class AccepteATripCubit extends Cubit<AccepteATripState> {
   Future<void> acceptATrip(TripModel trip) async {
     emit(AccepteATripLoading());
     await getPhoneNumber().then((phoneNumber) {
-      driverPhone = phoneNumber;
+      print('driver phone $phoneNumber');
+      driverPhone = '01113743069';
+      trip.driverData = DriverModel(
+          driverLocationLat: driverLocationLat,
+          driverLocationLong: driverLocationLong,
+          driverPhoneNumber: driverPhone!,
+          driverName: 'Driver Awad');
     });
 
-    trip.driverData = DriverModel(
-        driverLocationLat: driverLocationLat,
-        driverLocationLong: driverLocationLong,
-        driverPhoneNumber: driverPhone!,
-        driverName: 'Driver Awad');
-
-    var result = _accepteAtripReposImple.accepteAtrip(trip);
+    var result = await _accepteAtripReposImple.accepteAtrip(trip);
     result.fold((falure) {
       emit(AcceptATripFailure(message: falure.errorMessage));
     }, (success) {
@@ -111,7 +112,8 @@ class AccepteATripCubit extends Cubit<AccepteATripState> {
             destinationLat: acceptedTripe!.endPointdata.geometry.location.lat!,
             destinationLong:
                 acceptedTripe!.endPointdata.geometry.location.long!)
-        .then((value) {
+        .then((_) {
+      changeTripStateToOnStart(acceptedTripe!.riderData!.riderPhone);
       emit(DriverOnStartPoint());
     });
   }
@@ -123,9 +125,33 @@ class AccepteATripCubit extends Cubit<AccepteATripState> {
       startLong: driverLocationLong,
       destinationLat: acceptedTripe!.startPointdata.geometry.location.lat!,
       destinationLong: acceptedTripe!.startPointdata.geometry.location.long!,
-    ).then((value) {
-      emit(GoingToRiderLocation());
-    });
+    ).then((value) => emit(GoingToRiderLocation()));
+  }
+
+  void startTrip(String riderPhone) {
+    FirebaseFirestore.instance
+        .collection('onGoingTrips')
+        .doc(riderPhone)
+        .update({'tripStates': 'TripIsStarted'});
+    emit(TripIsStarted());
+  }
+
+  Future<void> notifyOnDestinaionPoint(String riderPhone) async {
+    return FirebaseFirestore.instance
+        .collection('onGoingTrips')
+        .doc(riderPhone)
+        .update({'tripStates': 'On destination'});
+  }
+
+  Future<void> changeTripStateToOnStart(String riderPhone) async {
+    return FirebaseFirestore.instance
+        .collection('onGoingTrips')
+        .doc(riderPhone)
+        .update({'tripStates': 'On Start point'});
+  }
+
+  Future<void> endATrip(TripModel trip) async {
+    await _accepteAtripReposImple.endAtrip(trip);
   }
 
   Future<void> getPolyPoints(
@@ -148,7 +174,7 @@ class AccepteATripCubit extends Cubit<AccepteATripState> {
       }
     }
 
-    createStartPointMarkr();
+    await createStartPointMarkr();
     //polulineCoordinates is the List of longitute and latidtude.
     await calculateTotalDistance();
 

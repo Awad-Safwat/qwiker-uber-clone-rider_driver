@@ -12,6 +12,7 @@ import 'package:qwiker_rider/features/onpoarding/view/onpoarding_view.dart';
 import 'package:qwiker_rider/features/request_ride/presentation/manager/request_a_ride_cubit/request_a_ride_cubit.dart';
 import 'package:qwiker_rider/features/request_ride/presentation/view/confirm_ride_view.dart';
 import 'package:qwiker_rider/features/request_ride/presentation/view/search_view.dart';
+import 'package:qwiker_rider/features/request_ride/presentation/widgets/on_going_tirp_view.dart';
 import 'package:qwiker_rider/test_ui_view.dart';
 
 class AppRouter {
@@ -53,14 +54,14 @@ class AppRouter {
     ),
     GoRoute(
       path: ViewsName.confirmRideView,
-      builder: (context, state) => BlocProvider.value(
-        value: getIt<RequestARideCubit>(),
-        child: const ConfirmRideView(),
-      ),
+      builder: (context, state) => const ConfirmRideView(),
     ),
     GoRoute(
       path: ViewsName.testUiView,
       builder: (context, state) => const TestUiView(),
     ),
+    GoRoute(
+        path: ViewsName.onGoingTrip,
+        builder: (context, state) => const OnGoingTripView()),
   ]);
 }

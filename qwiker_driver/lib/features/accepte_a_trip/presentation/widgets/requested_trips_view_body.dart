@@ -14,15 +14,15 @@ class RequestedTripsViewBody extends StatelessWidget {
   const RequestedTripsViewBody({
     required this.trips,
     super.key,
+    required this.findTripCubit,
   });
   final List<QueryDocumentSnapshot<Object?>> trips;
+  final findTripCubit;
 
   @override
   Widget build(BuildContext context) {
-    BlocProvider.of<AccepteATripCubit>(context).getCurrentDriverPosition();
     return Column(
       children: [
-        const CustomAppBar(),
         const Gap(30),
         Expanded(
           child: ListView.builder(
@@ -32,6 +32,7 @@ class RequestedTripsViewBody extends StatelessWidget {
                 return Padding(
                   padding: const EdgeInsets.symmetric(vertical: 5),
                   child: TripItem(
+                    findTripCubit: findTripCubit,
                     trip: TripModel.fromFirestore(trips[index], null),
                   ),
                 );

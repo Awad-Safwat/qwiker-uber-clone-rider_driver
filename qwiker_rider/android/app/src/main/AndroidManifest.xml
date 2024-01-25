@@ -2,6 +2,30 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
+    <queries>
+        <!-- If your app checks for SMS support -->
+        <intent>
+          <action android:name="android.intent.action.VIEW" />
+          <data android:scheme="sms" />
+        </intent>
+        <!-- If your app checks for call support -->
+        <intent>
+          <action android:name="android.intent.action.VIEW" />
+          <data android:scheme="tel" />
+        </intent>
+        <!-- If your application checks for inAppBrowserView launch mode support -->
+        <intent>
+          <action android:name="android.support.customtabs.action.CustomTabsService" />
+        </intent>
+        <!--#enddocregion android-queries-->
+        <!-- The "https" scheme is only required for integration tests of this package.
+             It shouldn't be needed in most actual apps, or show up in the README! -->
+        <intent>
+          <action android:name="android.intent.action.VIEW" />
+          <data android:scheme="https" />
+        </intent>
+        <!--#docregion android-queries-->
+      </queries>
     <application
         android:label="qwiker_rider"
         android:name="${applicationName}"
@@ -34,7 +58,7 @@
             android:name="flutterEmbedding"
             android:value="2" />
         <meta-data android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyCmxU2kB15GrRl30VBuH9H5X_2ra9jp0Kg" />
+            android:value="'your google maps api key'" />
         <meta-data
             android:name="firebase_messaging_auto_init_enabled"
             android:value="false" />

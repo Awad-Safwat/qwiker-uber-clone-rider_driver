@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:qwiker_rider/core/di/dependency_injection.dart';
 import 'package:qwiker_rider/core/theaming/app_colors.dart';
 import 'package:qwiker_rider/core/widgets/custom_progress_indicator.dart';
 import 'package:qwiker_rider/core/widgets/custom_toast.dart';
@@ -17,7 +18,7 @@ class RequestARideViewBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var provider = BlocProvider.of<RequestARideCubit>(context);
+    var provider = getIt<RequestARideCubit>();
     return Stack(
       children: [
         BlocConsumer<RequestARideCubit, RequestARideState>(

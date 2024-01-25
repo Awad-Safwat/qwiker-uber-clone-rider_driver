@@ -18,23 +18,24 @@ class AccepteAtripReposImple extends AccepteAtripRepos {
   late TripModel? currentTrip;
 
   @override
-  Either<Falure, Future<void>> accepteAtrip(TripModel trip) {
+  Future<Either<Falure, Future<void>>> accepteAtrip(TripModel trip) async {
     try {
-      // _accepteAtripRemoteDataSource
-      //     .deleteTripFromRequested(trip.riderData!.riderPhone);
-      // Geolocator.getCurrentPosition(
-      //   desiredAccuracy: LocationAccuracy.high,
-      // ).then((position) {
-      //   print(position.toString());
-      //   driverLocationLat = position.altitude;
-      //   driverLocationLong = position.longitude;
-      //   print(driverLocationLat);
-      // });
+      await _accepteAtripRemoteDataSource
+          .deleteTripFromRequested(trip.riderData!.riderPhone);
+      trip.tripStates = 'DriverOnTheWay';
+      return right(_accepteAtripRemoteDataSource.addTripToOnGoing(trip));
+    } catch (e) {
+      return left(Falure(errorMessage: e.toString()));
+    }
+  }
 
-      _accepteAtripRemoteDataSource.addTripToOnGoing(trip);
-
-      return right(_accepteAtripRemoteDataSource
-          .notifyTheRider(trip.riderData!.riderPhone));
+  @override
+  Future<Either<Falure, Future<void>>> endAtrip(TripModel trip) async {
+    try {
+      await _accepteAtripRemoteDataSource
+          .deleteTripFromOnGoing(trip.riderData!.riderPhone);
+      return right(
+          _accepteAtripRemoteDataSource.addTripToOnDriverHistory(trip));
     } catch (e) {
       return left(Falure(errorMessage: e.toString()));
     }

@@ -77,4 +77,9 @@ class AppFonts {
     fontSize: 20,
     fontWeight: FontWeight.w700,
   );
+  static TextStyle poppinsBoldBlue_30 = GoogleFonts.poppins(
+    fontSize: 30,
+    fontWeight: FontWeight.w700,
+    color: AppColors.mainBlue,
+  );
 }

@@ -11,14 +11,18 @@ import 'package:qwiker_driver/core/widgets/custom_button.dart';
 import 'package:qwiker_driver/core/widgets/custom_destination_icon.dart';
 import 'package:qwiker_driver/features/accepte_a_trip/data/models/trip_model.dart';
 import 'package:qwiker_driver/features/accepte_a_trip/presentation/manager/accepte_a_trip/accepte_a_trip_cubit.dart';
+import 'package:qwiker_driver/features/accepte_a_trip/presentation/manager/find_trips_cubit/find_trips_cubit.dart';
+import 'package:qwiker_driver/features/auth/presentation/view/login_view.dart';
 
 class TripItem extends StatelessWidget {
   const TripItem({
     super.key,
     required this.trip,
+    required this.findTripCubit,
   });
 
   final TripModel trip;
+  final findTripCubit;
 
   @override
   Widget build(BuildContext context) {
@@ -85,11 +89,10 @@ class TripItem extends StatelessWidget {
               Center(
                 child: CustomButton(
                   onPressed: () {
-                    print(trip.toFirestore());
+                    showProgressIndicator(context);
                     BlocProvider.of<AccepteATripCubit>(context)
                         .acceptATrip(trip)
-                        .then((_) =>
-                            GoRouter.of(context).push(ViewsName.currentTrip))
+                        .then((_) => findTripCubit.emitTripAccipted())
                         .onError((error, stackTrace) => {});
                   },
                   title: 'Accepte',

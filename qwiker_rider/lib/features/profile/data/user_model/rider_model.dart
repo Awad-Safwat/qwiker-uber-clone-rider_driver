@@ -22,12 +22,25 @@ class RiderModel {
     DocumentSnapshot<Map<String, dynamic>> snapshot,
     SnapshotOptions? options,
   ) {
-    final user = snapshot.data();
+    final rider = snapshot.data()!;
     return RiderModel(
-      email: user!['email'],
-      riderPhone: user['riderPhone'],
-      riderName: user["riderName"],
-      extraPhoneNumber: user['extraPhoneNumber'],
+      email: rider['email'],
+      riderPhone: rider['riderPhone'],
+      riderName: rider["riderName"],
+      extraPhoneNumber: rider['extraPhoneNumber'],
+    );
+  }
+
+  factory RiderModel.fromJson(
+    DocumentSnapshot<Map<String, dynamic>> snapshot,
+    SnapshotOptions? options,
+  ) {
+    final rider = snapshot.data()!['riderData'];
+    return RiderModel(
+      email: rider['email'],
+      riderPhone: rider['riderPhone'],
+      riderName: rider["riderName"],
+      extraPhoneNumber: rider['extraPhoneNumber'],
     );
   }
 
