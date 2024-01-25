@@ -13,8 +13,6 @@ import 'package:qwiker_rider/features/request_ride/presentation/manager/request_
 final getIt = GetIt.instance;
 
 Future<void> setupGetIt() async {
-  // Login
-
   // profile data
   getIt.registerLazySingleton<UserRepoImple>(
       () => UserRepoImple(remoteUsersData: RemoteUsersData()));
@@ -37,4 +35,7 @@ Future<void> setupGetIt() async {
     () =>
         RequestARideCubit(requestRideRepoImple: getIt<RequestRideRepoImple>()),
   );
+  // getIt.registerLazySingleton(
+  //   () => OnGoingTripCubit(requestRideRepoImple: getIt<RequestRideRepoImple>()),
+  // );
 }

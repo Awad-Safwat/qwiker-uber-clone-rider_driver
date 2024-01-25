@@ -4,6 +4,7 @@ import 'package:geolocator_platform_interface/src/models/position.dart';
 import 'package:qwiker_rider/core/exptions/error_handeler.dart';
 import 'package:qwiker_rider/features/request_ride/data/data_source/remote_data_source.dart';
 import 'package:qwiker_rider/features/request_ride/data/models/place_model.dart';
+import 'package:qwiker_rider/features/request_ride/data/models/trip_model.dart';
 import 'package:qwiker_rider/features/request_ride/domain/request_ride_repo.dart';
 
 class RequestRideRepoImple extends RequestRideRepo {
@@ -54,6 +55,28 @@ class RequestRideRepoImple extends RequestRideRepo {
       return right(places);
     } catch (error) {
       return left(Falure(errorMessage: error.toString()));
+    }
+  }
+
+  @override
+  Either<Falure, Future<void>> bookATrip(TripModel? trip) {
+    try {
+      return right(_requestRideRemoteDataSource.bookATrip(trip!));
+    } catch (error) {
+      return left(
+        Falure(
+          errorMessage: error.toString(),
+        ),
+      );
+    }
+  }
+
+  @override
+  Future<Either<Falure, Future<void>>> endAtrip(TripModel trip) async {
+    try {
+      return right(_requestRideRemoteDataSource.addTripToHistory(trip));
+    } catch (e) {
+      return left(Falure(errorMessage: e.toString()));
     }
   }
 }

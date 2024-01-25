@@ -4,11 +4,9 @@ import 'package:go_router/go_router.dart';
 import 'package:qwiker_rider/core/global_functions.dart';
 import 'package:qwiker_rider/core/routing/views_name.dart';
 import 'package:qwiker_rider/features/auth/presentation/manager/auth_cubit/auth_cubit.dart';
-
 import 'package:qwiker_rider/core/di/dependency_injection.dart';
 import 'package:qwiker_rider/features/auth/presentation/view/widgets/pin_code_input_view_body.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
 import '../../../../core/widgets/custom_toast.dart';
 
 class PinCodeInputView extends StatelessWidget {

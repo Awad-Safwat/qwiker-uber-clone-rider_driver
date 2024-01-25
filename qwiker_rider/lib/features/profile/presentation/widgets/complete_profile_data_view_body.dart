@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 import 'package:qwiker_rider/core/global_functions.dart';
-import 'package:qwiker_rider/features/profile/data/user_model/user_model.dart';
+import 'package:qwiker_rider/features/profile/data/user_model/rider_model.dart';
 import 'package:qwiker_rider/features/profile/presentation/manager/user_data/user_data_cubit.dart';
 import 'package:qwiker_rider/features/profile/presentation/widgets/user_data_input_fields_complete.dart';
 
@@ -48,9 +48,9 @@ class CompleteProfileDataViewBody extends StatelessWidget {
               extraPhoneHint: 'extra phone Number (optional)',
               buttonText: 'Save Data',
               buttonOnPressd: () async {
-                provider.addNewUser(UserModel(
-                  userId: await getPhoneNumber(),
-                  userName: provider.nameController.text,
+                provider.addNewUser(RiderModel(
+                  riderPhone: await getPhoneNumber(),
+                  riderName: provider.nameController.text,
                   extraPhoneNumber: provider.extraPhoneController.text,
                   email: provider.emailController.text,
                 ));

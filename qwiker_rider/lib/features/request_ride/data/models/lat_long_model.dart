@@ -7,4 +7,11 @@ class LatLongModel {
   factory LatLongModel.fromJson(Map<String, dynamic> latLong) {
     return LatLongModel(latLong["lat"], latLong["lng"]);
   }
+
+  Map<String, dynamic> toJson() {
+    return {
+      "lat": lat,
+      "long": long,
+    };
+  }
 }

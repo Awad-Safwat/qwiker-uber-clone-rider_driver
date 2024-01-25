@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:qwiker_rider/core/di/dependency_injection.dart';
 import 'package:qwiker_rider/core/theaming/app_colors.dart';
 import 'package:qwiker_rider/core/theaming/app_fonts.dart';
 import 'package:qwiker_rider/features/request_ride/presentation/manager/request_a_ride_cubit/request_a_ride_cubit.dart';
@@ -15,7 +16,7 @@ class PlacesListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var requestRideProvider = BlocProvider.of<RequestARideCubit>(context);
+    var requestRideProvider = getIt<RequestARideCubit>();
     return Expanded(
       child: Padding(
         padding: const EdgeInsets.all(15.0),

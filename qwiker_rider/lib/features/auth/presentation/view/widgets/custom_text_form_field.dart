@@ -39,7 +39,7 @@ class CustomTextFormField extends StatelessWidget {
     return TextFormField(
       validator: validator,
       onChanged: onChanged,
-      onSaved: onSave,
+      onFieldSubmitted: onSave,
       controller: textController,
       keyboardType: keyboardType,
       autofocus: autoFoucus ?? false,

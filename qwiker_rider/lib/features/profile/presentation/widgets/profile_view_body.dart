@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 import 'package:qwiker_rider/features/home/presentation/widgets/custom_app_bar.dart';
-import 'package:qwiker_rider/features/profile/data/user_model/user_model.dart';
+import 'package:qwiker_rider/features/profile/data/user_model/rider_model.dart';
 import 'package:qwiker_rider/features/profile/presentation/manager/user_data/user_data_cubit.dart';
 import 'package:qwiker_rider/features/profile/presentation/widgets/user_data_input_fields.dart';
 
@@ -41,10 +41,10 @@ class ProfileViewBody extends StatelessWidget {
                 extraPhoneHint: 'Extra Phone Number',
                 buttonOnPressd: () {
                   BlocProvider.of<UserDataCubit>(context).updateUserProfileData(
-                      UserModel(
-                          userId: provider.phoneController.text,
+                      RiderModel(
+                          riderPhone: provider.phoneController.text,
                           email: provider.emailController.text,
-                          userName: provider.nameController.text,
+                          riderName: provider.nameController.text,
                           extraPhoneNumber:
                               provider.extraPhoneController.text));
                 },

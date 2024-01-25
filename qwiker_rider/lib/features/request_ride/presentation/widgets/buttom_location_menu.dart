@@ -31,43 +31,45 @@ class ButtomLocationMenu extends StatelessWidget {
         height: 201.h,
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 24.h),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                'Where do you want to go ?',
-                style: AppFonts.poppinsMedium_20,
-              ),
-              Gap(20.h),
-              ListTile(
-                leading: const CustomBickUpIcon(),
-                title: Text(
-                  'start from your current location',
-                  style: AppFonts.poppinsRegularBlack_12,
+          child: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'Where do you want to go ?',
+                  style: AppFonts.poppinsMedium_20,
                 ),
-                onTap: () {
-                  GoRouter.of(context).push(ViewsName.searchView);
-                },
-              ),
-              Gap(13.h),
-              Divider(
-                height: 1.h,
-                color: AppColors.liteGray,
-                indent: 68.w,
-                endIndent: 24.w,
-              ),
-              Gap(10.h),
-              ListTile(
-                leading: const CustomDestinationIcon(),
-                title: Text(
-                  'Search Destination',
-                  style: AppFonts.poppinsRegularGray_12,
+                Gap(20.h),
+                ListTile(
+                  leading: const CustomBickUpIcon(),
+                  title: Text(
+                    'start from your current location',
+                    style: AppFonts.poppinsRegularBlack_12,
+                  ),
+                  onTap: () {
+                    GoRouter.of(context).push(ViewsName.searchView);
+                  },
                 ),
-                onTap: () {
-                  GoRouter.of(context).push(ViewsName.searchView);
-                },
-              )
-            ],
+                Gap(13.h),
+                Divider(
+                  height: 1.h,
+                  color: AppColors.liteGray,
+                  indent: 68.w,
+                  endIndent: 24.w,
+                ),
+                Gap(10.h),
+                ListTile(
+                  leading: const CustomDestinationIcon(),
+                  title: Text(
+                    'Search Destination',
+                    style: AppFonts.poppinsRegularGray_12,
+                  ),
+                  onTap: () {
+                    GoRouter.of(context).push(ViewsName.searchView);
+                  },
+                )
+              ],
+            ),
           ),
         ),
       ),
