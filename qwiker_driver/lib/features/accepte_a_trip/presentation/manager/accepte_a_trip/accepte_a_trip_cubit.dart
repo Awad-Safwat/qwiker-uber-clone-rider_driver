@@ -48,6 +48,7 @@ class AccepteATripCubit extends Cubit<AccepteATripState> {
       emit(AcceptATripFailure(message: falure.errorMessage));
     }, (success) {
       acceptedTripe = trip;
+      listnToTripChanges();
       emit(AcceptedTripSuccess());
     });
   }
@@ -204,5 +205,25 @@ class AccepteATripCubit extends Cubit<AccepteATripState> {
       const ImageConfiguration(),
       'assets/images/driver_icon.png',
     ).then((value) => startPointIcon = value);
+  }
+
+  Future<void> listnToTripChanges() async {
+    CollectionReference<Map<String, dynamic>> firestoreOnGoingCollection =
+        FirebaseFirestore.instance.collection('onGoingTrips');
+
+    firestoreOnGoingCollection
+        .doc(acceptedTripe!.riderData!.riderPhone)
+        .snapshots()
+        .listen((snapShot) async {
+      print('Listining result ${snapShot.data()}');
+      if (snapShot.data() != null &&
+          !snapShot.metadata.isFromCache &&
+          snapShot.data()!.isNotEmpty &&
+          snapShot.exists) {
+        if (snapShot.data()!['tripStates'] == 'canceld') {
+          emit(TripIsCanceld());
+        }
+      }
+    });
   }
 }

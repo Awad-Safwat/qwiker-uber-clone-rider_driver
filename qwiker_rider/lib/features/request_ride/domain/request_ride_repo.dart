@@ -9,4 +9,5 @@ abstract class RequestRideRepo {
   Future<Either<Falure, List<PlaceModel>>> searchForPlace(String? searchText);
   Either<Falure, Future<void>> bookATrip(TripModel? trip);
   Future<Either<Falure, Future<void>>> endAtrip(TripModel trip);
+  Future<Either<Falure, Future<void>>> cancelTrip(String riderPhone);
 }

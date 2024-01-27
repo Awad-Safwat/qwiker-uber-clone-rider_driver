@@ -28,6 +28,7 @@ class RequestARideCubit extends Cubit<RequestARideState> {
 
   PlaceModel? startPoint;
   PlaceModel? destinationPoint;
+  int? tripCoast;
 
   List<LatLng> polylineCoordinates = [];
   double totalDistance = 0;
@@ -138,6 +139,17 @@ class RequestARideCubit extends Cubit<RequestARideState> {
         print('Booked A Trip Wait for Driver');
         await listnToTripChanges();
         emit(TripRequested());
+      },
+    );
+  }
+
+  Future<void> cancelTrip(String riderPhone) async {
+    var result = await _requestRideRepoImple.cancelTrip(riderPhone);
+
+    result.fold(
+      (error) => print(error.errorMessage),
+      (success) async {
+        print('trip canceled');
       },
     );
   }

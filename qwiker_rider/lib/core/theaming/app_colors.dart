@@ -10,4 +10,5 @@ class AppColors {
   static const Color whaite = Color(0xffFFFFFF);
   static const Color mediumGray = Color(0xff93969f);
   static const Color liteBlue = Color.fromARGB(255, 161, 225, 255);
+  static const Color red = Color(0xffFF0C0C);
 }

@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:qwiker_rider/core/di/dependency_injection.dart';
+import 'package:qwiker_rider/core/routing/views_name.dart';
 import 'package:qwiker_rider/core/theaming/app_colors.dart';
 import 'package:qwiker_rider/core/theaming/app_fonts.dart';
 import 'package:qwiker_rider/features/request_ride/presentation/manager/request_a_ride_cubit/request_a_ride_cubit.dart';
 import 'package:qwiker_rider/features/request_ride/presentation/widgets/custom_map.dart';
-import 'package:qwiker_rider/features/request_ride/presentation/widgets/driver_details_section.dart';
+import 'package:qwiker_rider/features/request_ride/presentation/widgets/trip_details_section.dart';
 
 class DriverOnStartView extends StatelessWidget {
   const DriverOnStartView({super.key});
@@ -64,13 +66,22 @@ class DriverOnStartView extends StatelessWidget {
         left: 0,
         right: 0,
         top: 590.h,
-        child: DriverDetailsSection(
+        child: TripDetailsSection(
           driverName: requestARideCubit.currentTrip!.driverData!.driverName,
-          buttonOnPressed: () {},
-          buttonTitle: 'Cancle',
+          buttonOnPressed: () {
+            requestARideCubit
+                .cancelTrip(
+                    requestARideCubit.currentTrip!.riderData!.riderPhone)
+                .then((_) {
+              getIt.resetLazySingleton<RequestARideCubit>();
+
+              GoRouter.of(context).pushReplacement(ViewsName.homeView);
+            });
+          },
           destinationName: requestARideCubit.destinationPoint!.shortName,
           fullDistance: requestARideCubit.totalDistance,
           startLocationName: requestARideCubit.startPoint!.shortName,
+          tripCoast: 30,
         ),
       ),
     ]);

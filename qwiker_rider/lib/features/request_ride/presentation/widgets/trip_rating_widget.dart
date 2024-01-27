@@ -47,21 +47,28 @@ class TripRatingWidget extends StatelessWidget {
                 color: Colors.amber,
               ),
               onRatingUpdate: (rating) {
-                print(rating);
+                requestARideCubit.currentTrip!.tripReview?.rate =
+                    rating.toInt();
               },
             ),
             const Gap(5),
-            const TextField(
+            TextField(
               maxLines: 5,
               minLines: 5,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.all(
                       Radius.circular(20),
                     ),
                   ),
                   hintStyle: TextStyle(),
-                  hintText: 'Write A Review'),
+                  hintText: 'Write A Comment here'),
+              onChanged: (comment) {
+                requestARideCubit.currentTrip!.tripReview?.comment = comment;
+              },
+              onSubmitted: (comment) {
+                requestARideCubit.currentTrip!.tripReview?.comment = comment;
+              },
             ),
             const Gap(5),
             CustomButton(

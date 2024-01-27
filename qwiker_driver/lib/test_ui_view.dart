@@ -21,13 +21,26 @@ class _TestUiViewState extends State<TestUiView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Padding(
-      padding: EdgeInsets.symmetric(horizontal: 30.w, vertical: 50.h),
-      child: Container(
-          decoration: BoxDecoration(borderRadius: BorderRadius.circular(15)),
-          clipBehavior: Clip.hardEdge,
-          child: const TripCostWidget()),
-    ));
+      body: Stack(children: [
+        Image.asset(
+          'assets/images/map.png',
+          fit: BoxFit.fill,
+        ),
+        Positioned(
+            bottom: 0,
+            left: 0,
+            right: 0,
+            top: 580.h,
+            child: TripDetailsSection(
+              buttonOnPressed: () {},
+              destinationName: 'al minia',
+              fullDistance: 24,
+              startLocationName: 'bini mazar',
+              riderName: 'awaf',
+              buttonTitle: 'fasdf',
+            )),
+      ]),
+    );
   }
 }
 

@@ -1,27 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
-import 'package:go_router/go_router.dart';
 import 'package:qwiker_rider/core/global_functions.dart';
 import 'package:qwiker_rider/core/theaming/app_colors.dart';
 import 'package:qwiker_rider/core/theaming/app_fonts.dart';
-import 'package:qwiker_rider/core/widgets/custom_button.dart';
+import 'package:qwiker_rider/core/widgets/cancel_button.dart';
+import 'package:qwiker_rider/features/auth/presentation/view/widgets/custom_list_tile.dart';
 import 'package:qwiker_rider/features/request_ride/presentation/widgets/custom_bickup_icon.dart';
 import 'package:qwiker_rider/features/request_ride/presentation/widgets/custom_destination_icon.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class DriverDetailsSection extends StatelessWidget {
-  const DriverDetailsSection({
+class TripDetailsSection extends StatelessWidget {
+  const TripDetailsSection({
     super.key,
     required this.driverName,
     required this.startLocationName,
     required this.destinationName,
-    required this.buttonTitle,
     required this.fullDistance,
     required this.buttonOnPressed,
+    required this.tripCoast,
   });
-  final String driverName, startLocationName, destinationName, buttonTitle;
+  final String driverName, startLocationName, destinationName;
   final double fullDistance;
+  final int? tripCoast;
   final void Function()? buttonOnPressed;
 
   @override
@@ -36,23 +37,30 @@ class DriverDetailsSection extends StatelessWidget {
       ),
       height: 201.h,
       child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 15.w, vertical: 15.h),
+        padding: EdgeInsets.symmetric(horizontal: 15.w, vertical: 10.h),
         child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              ListTile(
+              CustomListTile(
+                tileColor: Colors.transparent,
+                height: 80.h,
                 leading: Container(
-                  height: 80.h,
-                  width: 40.w,
+                  height: 60.h,
+                  width: 60.w,
                   clipBehavior: Clip.hardEdge,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(360),
+                  decoration: const BoxDecoration(
+                    shape: BoxShape.circle,
+                    image: DecorationImage(
+                        fit: BoxFit.fill,
+                        image: AssetImage(
+                          'assets/images/my_photo.jpg',
+                        )),
                   ),
-                  child: Image.asset(
-                    'assets/images/my_photo.jpg',
-                    fit: BoxFit.cover,
-                  ),
+                  // child: Image.asset(
+                  //   'assets/images/my_photo.jpg',
+                  //   fit: BoxFit.cover,
+                  // ),
                 ),
                 title: ConstrainedBox(
                   constraints: BoxConstraints(
@@ -64,22 +72,25 @@ class DriverDetailsSection extends StatelessWidget {
                     maxLines: 1,
                   ),
                 ),
-                subtitle: Row(
-                  children: [
-                    const Icon(
-                      Icons.watch_later_outlined,
-                      color: AppColors.mainBlue,
-                    ),
-                    Gap(5.w),
-                    const Text('15 Min'),
-                  ],
+                subTitle: RichText(
+                  text: TextSpan(
+                    children: [
+                      TextSpan(
+                          text: 'Volkswagen' '-',
+                          style: AppFonts.poppinsRegularGray_14),
+                      TextSpan(
+                          text: 'HG5045',
+                          style: AppFonts.poppinsRegularBlack_16),
+                    ],
+                  ),
                 ),
                 trailing: Row(
                   mainAxisSize: MainAxisSize.min,
+                  mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     CircleAvatar(
                       backgroundColor: AppColors.mainBlue,
-                      radius: 20.r,
+                      radius: 24.r,
                       child: IconButton(
                         onPressed: () async {
                           getPhoneNumber().then(
@@ -100,7 +111,7 @@ class DriverDetailsSection extends StatelessWidget {
                     Gap(8.w),
                     CircleAvatar(
                       backgroundColor: AppColors.mainBlue,
-                      radius: 20.r,
+                      radius: 24.r,
                       child: const Icon(
                         Icons.message,
                         color: AppColors.whaite,
@@ -160,12 +171,21 @@ class DriverDetailsSection extends StatelessWidget {
                 ),
               ),
               Gap(8.h),
-              Center(
-                child: CustomButton(
-                  onPressed: buttonOnPressed,
-                  title: buttonTitle,
-                  height: 50.h,
-                ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    r'$' '$tripCoast',
+                    style: AppFonts.poppinsMedium_26.copyWith(
+                        color: AppColors.mainBlue, fontWeight: FontWeight.w700),
+                  ),
+                  Gap(20.w),
+                  CancelButton(
+                    onPressed: buttonOnPressed,
+                    height: 50.h,
+                    minwidth: 280.w,
+                  ),
+                ],
               ),
             ],
           ),

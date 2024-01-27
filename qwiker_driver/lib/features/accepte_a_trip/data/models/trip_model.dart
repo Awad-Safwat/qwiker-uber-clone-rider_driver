@@ -11,6 +11,7 @@ class TripModel {
   DriverModel? driverData;
   final double? tripTotalDestance;
   String? tripStates;
+  int? tripCoast;
 
   TripModel({
     required this.startPointdata,
@@ -19,6 +20,7 @@ class TripModel {
     this.driverData,
     required this.tripTotalDestance,
     this.tripStates,
+    this.tripCoast,
   });
 
   factory TripModel.fromFirestore(
@@ -33,6 +35,7 @@ class TripModel {
       driverData: null,
       tripTotalDestance: trip['tripTotalDestance'],
       tripStates: trip['tripStates'],
+      tripCoast: trip['tripCoast'],
     );
   }
 

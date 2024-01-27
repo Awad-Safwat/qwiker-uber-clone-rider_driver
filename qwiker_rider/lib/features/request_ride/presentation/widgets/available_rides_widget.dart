@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:qwiker_rider/core/di/dependency_injection.dart';
 import 'package:qwiker_rider/core/global_functions.dart';
 import 'package:qwiker_rider/core/theaming/app_colors.dart';
 import 'package:qwiker_rider/core/theaming/app_fonts.dart';
 import 'package:qwiker_rider/core/widgets/custom_button.dart';
+import 'package:qwiker_rider/core/widgets/custom_toast.dart';
 import 'package:qwiker_rider/features/profile/data/user_model/rider_model.dart';
 import 'package:qwiker_rider/features/request_ride/data/models/geometry_model.dart';
 import 'package:qwiker_rider/features/request_ride/data/models/lat_long_model.dart';
@@ -21,7 +21,7 @@ class AvailableRidesWidget extends StatefulWidget {
 }
 
 class _AvailableRidesWidgetState extends State<AvailableRidesWidget> {
-  String isSelected = '';
+  String selectedRide = '';
   @override
   Widget build(BuildContext context) {
     var requestARideCubit = getIt<RequestARideCubit>();
@@ -66,7 +66,7 @@ class _AvailableRidesWidgetState extends State<AvailableRidesWidget> {
                       ),
                       trailing: Text(
                         r'$'
-                        '${(requestARideCubit.totalDistance * 25).toStringAsFixed(2)}',
+                        '${(requestARideCubit.totalDistance * 7).toStringAsFixed(2)}',
                         style: AppFonts.poppinsMedium_16,
                       ),
                       subtitle: Text(
@@ -78,12 +78,14 @@ class _AvailableRidesWidgetState extends State<AvailableRidesWidget> {
                           width: 65.w,
                           child:
                               Image.asset('assets/images/small_car_image.png')),
-                      selected: isSelected == "Car" ? true : false,
+                      selected: selectedRide == "Car" ? true : false,
                       selectedColor: AppColors.mainBlue,
                       selectedTileColor: AppColors.liteBlue,
                       onTap: () {
                         setState(() {
-                          isSelected = 'Car';
+                          selectedRide = 'Car';
+                          requestARideCubit.tripCoast =
+                              (requestARideCubit.totalDistance * 10).toInt();
                         });
                       },
                     ),
@@ -100,7 +102,7 @@ class _AvailableRidesWidgetState extends State<AvailableRidesWidget> {
                       ),
                       trailing: Text(
                         r'$'
-                        '${(requestARideCubit.totalDistance * 15).toStringAsFixed(2)}',
+                        '${(requestARideCubit.totalDistance * 5).toStringAsFixed(2)}',
                         style: AppFonts.poppinsMedium_16,
                       ),
                       subtitle: Text(
@@ -111,12 +113,14 @@ class _AvailableRidesWidgetState extends State<AvailableRidesWidget> {
                           height: 45.h,
                           width: 65.w,
                           child: Image.asset('assets/images/toktok_image.png')),
-                      selected: isSelected == "TokTok" ? true : false,
+                      selected: selectedRide == "TokTok" ? true : false,
                       selectedColor: AppColors.mainBlue,
                       selectedTileColor: AppColors.liteBlue,
                       onTap: () {
                         setState(() {
-                          isSelected = 'TokTok';
+                          selectedRide = 'TokTok';
+                          requestARideCubit.tripCoast =
+                              (requestARideCubit.totalDistance * 7).toInt();
                         });
                       },
                     ),
@@ -133,7 +137,7 @@ class _AvailableRidesWidgetState extends State<AvailableRidesWidget> {
                       ),
                       trailing: Text(
                         r'$'
-                        '${(requestARideCubit.totalDistance * 10).toStringAsFixed(2)}',
+                        '${(requestARideCubit.totalDistance * 3).toStringAsFixed(2)}',
                         style: AppFonts.poppinsMedium_16,
                       ),
                       subtitle: Text(
@@ -144,12 +148,14 @@ class _AvailableRidesWidgetState extends State<AvailableRidesWidget> {
                           height: 45.h,
                           width: 65.w,
                           child: Image.asset('assets/images/bike_image.png')),
-                      selected: isSelected == "Bike" ? true : false,
+                      selected: selectedRide == "Bike" ? true : false,
                       selectedColor: AppColors.mainBlue,
                       selectedTileColor: AppColors.liteBlue,
                       onTap: () {
                         setState(() {
-                          isSelected = 'Bike';
+                          selectedRide = 'Bike';
+                          requestARideCubit.tripCoast =
+                              (requestARideCubit.totalDistance * 4).toInt();
                         });
                       },
                     ),
@@ -161,43 +167,49 @@ class _AvailableRidesWidgetState extends State<AvailableRidesWidget> {
               child: CustomButton(
                 height: 55.h,
                 onPressed: () async {
-                  getPhoneNumber().then(
-                    (phoneNumber) => requestARideCubit.bookRide(
-                      TripModel(
-                        tripTotalDestance: requestARideCubit.totalDistance,
-                        startPointdata: PlaceModel(
-                          placeId: '',
-                          shortName: requestARideCubit.startPoint!.longName ??
-                              'Current Location',
-                          geometry: Geometry(
-                            LatLongModel(
-                              requestARideCubit
-                                  .startPoint!.geometry.location.lat!,
-                              requestARideCubit
-                                  .startPoint!.geometry.location.long!,
+                  if (requestARideCubit.tripCoast != null) {
+                    getPhoneNumber().then(
+                      (phoneNumber) => requestARideCubit.bookRide(
+                        TripModel(
+                          tripTotalDestance: requestARideCubit.totalDistance,
+                          tripCoast: requestARideCubit.tripCoast,
+                          startPointdata: PlaceModel(
+                            placeId: '',
+                            shortName: requestARideCubit.startPoint!.longName ??
+                                'Current Location',
+                            geometry: Geometry(
+                              LatLongModel(
+                                requestARideCubit
+                                    .startPoint!.geometry.location.lat!,
+                                requestARideCubit
+                                    .startPoint!.geometry.location.long!,
+                              ),
                             ),
                           ),
-                        ),
-                        endPointdata: PlaceModel(
-                          placeId: '',
-                          shortName:
-                              requestARideCubit.destinationPoint!.longName!,
-                          geometry: Geometry(
-                            LatLongModel(
-                              requestARideCubit
-                                  .destinationPoint!.geometry.location.lat!,
-                              requestARideCubit
-                                  .destinationPoint!.geometry.location.long!,
+                          endPointdata: PlaceModel(
+                            placeId: '',
+                            shortName:
+                                requestARideCubit.destinationPoint!.longName!,
+                            geometry: Geometry(
+                              LatLongModel(
+                                requestARideCubit
+                                    .destinationPoint!.geometry.location.lat!,
+                                requestARideCubit
+                                    .destinationPoint!.geometry.location.long!,
+                              ),
                             ),
                           ),
+                          riderData: RiderModel(
+                              riderPhone: phoneNumber,
+                              email: 'doaa.safwat1999@gmail.com',
+                              riderName: 'Doaa Safwat'),
                         ),
-                        riderData: RiderModel(
-                            riderPhone: phoneNumber,
-                            email: 'doaa.safwat1999@gmail.com',
-                            riderName: 'Doaa Safwat'),
                       ),
-                    ),
-                  );
+                    );
+                  } else {
+                    showCustomToast(message: "Please select A Ride")
+                        .show(context);
+                  }
                 },
                 title: "Book Ride",
               ),

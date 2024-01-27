@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:qwiker_rider/core/routing/app_router.dart';
 import 'package:qwiker_rider/core/theaming/app_colors.dart';
+import 'package:qwiker_rider/core/theaming/app_fonts.dart';
 
 class RiderApp extends StatelessWidget {
   const RiderApp({super.key});
@@ -17,6 +18,14 @@ class RiderApp extends StatelessWidget {
         title: 'Qwiker Rider',
         theme: ThemeData(
           scaffoldBackgroundColor: AppColors.whaiteBlue,
+          appBarTheme: AppBarTheme(
+            backgroundColor: Colors.transparent,
+            elevation: 0,
+            centerTitle: true,
+            titleTextStyle: AppFonts.medel_28.copyWith(
+              color: AppColors.black,
+            ),
+          ),
         ),
       ),
     );
