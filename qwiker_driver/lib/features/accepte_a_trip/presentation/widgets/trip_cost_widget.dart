@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
 import 'package:qwiker_driver/core/di/dependency_injection.dart';
@@ -32,7 +31,7 @@ class TripCostWidget extends StatelessWidget {
         ],
       ),
       title: Text(
-        r'$ 25',
+        r'$' '${accepteATripCubit.acceptedTripe!.tripCoast}',
         style: AppFonts.poppinsBoldBlue_30,
       ),
       content: CustomButton(

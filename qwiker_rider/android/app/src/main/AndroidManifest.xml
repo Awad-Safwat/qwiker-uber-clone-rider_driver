@@ -58,7 +58,7 @@
             android:name="flutterEmbedding"
             android:value="2" />
         <meta-data android:name="com.google.android.geo.API_KEY"
-            android:value="'your google maps api key'" />
+            android:value="google maps api key" />
         <meta-data
             android:name="firebase_messaging_auto_init_enabled"
             android:value="false" />

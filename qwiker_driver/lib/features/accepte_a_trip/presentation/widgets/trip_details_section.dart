@@ -9,6 +9,7 @@ import 'package:qwiker_driver/core/theaming/app_fonts.dart';
 import 'package:qwiker_driver/core/widgets/custom_bickup_icon.dart';
 import 'package:qwiker_driver/core/widgets/custom_button.dart';
 import 'package:qwiker_driver/core/widgets/custom_destination_icon.dart';
+import 'package:qwiker_driver/core/widgets/custom_list_tile.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class TripDetailsSection extends StatelessWidget {
@@ -42,17 +43,20 @@ class TripDetailsSection extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              ListTile(
+              CustomListTile(
+                tileColor: Colors.transparent,
+                height: 80.h,
                 leading: Container(
                   height: 60.h,
                   width: 60.w,
                   clipBehavior: Clip.hardEdge,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(360),
-                  ),
-                  child: Image.asset(
-                    'assets/images/my_photo.jpg',
-                    fit: BoxFit.cover,
+                  decoration: const BoxDecoration(
+                    shape: BoxShape.circle,
+                    image: DecorationImage(
+                        fit: BoxFit.fill,
+                        image: AssetImage(
+                          'assets/images/my_photo.jpg',
+                        )),
                   ),
                 ),
                 title: ConstrainedBox(
@@ -65,7 +69,7 @@ class TripDetailsSection extends StatelessWidget {
                     maxLines: 1,
                   ),
                 ),
-                subtitle: Row(
+                subTitle: Row(
                   children: [
                     const Icon(
                       Icons.watch_later_outlined,

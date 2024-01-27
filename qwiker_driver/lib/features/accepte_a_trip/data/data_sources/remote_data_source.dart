@@ -19,7 +19,7 @@ class AccepteAtripRemoteDataSource {
 
   // after accepting the trip will delet it from the OnGoing collection
   Future<void> deleteTripFromOnGoing(String riderPhone) async {
-    final docRef = _firestoreRequestedTripsCollection.doc(riderPhone);
+    final docRef = _firestoreOnGoingTripsCollection.doc(riderPhone);
     await docRef.delete();
   }
 

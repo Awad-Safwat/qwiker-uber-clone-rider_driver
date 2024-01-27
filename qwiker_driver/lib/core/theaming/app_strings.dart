@@ -1,3 +1,3 @@
 class AppStrings {
-  static const String apiKey = 'your google maps api key';
+  static const String apiKey = 'google maps api key';
 }

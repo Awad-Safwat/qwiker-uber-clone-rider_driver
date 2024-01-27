@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:qwiker_rider/features/profile/data/user_model/rider_model.dart';
 import 'package:qwiker_rider/features/request_ride/data/models/driver_model.dart';
 import 'package:qwiker_rider/features/request_ride/data/models/place_model.dart';
+import 'package:qwiker_rider/features/request_ride/data/models/review_model.dart';
 
 class TripModel {
   PlaceModel startPointdata;
@@ -11,6 +12,8 @@ class TripModel {
   DriverModel? driverData;
   final double? tripTotalDestance;
   String? tripStates;
+  int? tripCoast;
+  ReviewModel? tripReview;
 
   TripModel({
     required this.startPointdata,
@@ -19,6 +22,8 @@ class TripModel {
     this.driverData,
     required this.tripTotalDestance,
     this.tripStates,
+    this.tripCoast,
+    this.tripReview,
   });
 
   factory TripModel.fromFirestore(
@@ -33,6 +38,8 @@ class TripModel {
       driverData: DriverModel.fromFirestore(snapshot, options),
       tripTotalDestance: trip['tripTotalDestance'],
       tripStates: trip['tripStates'],
+      tripCoast: trip['tripCoast'],
+      tripReview: ReviewModel.fromJson(trip['tripReview']),
     );
   }
 
@@ -44,6 +51,8 @@ class TripModel {
       'endPointdata': endPointdata.toJson(),
       'tripTotalDestance': tripTotalDestance,
       'tripStates': tripStates,
+      'tripCoast': tripCoast,
+      'tripReview': tripReview?.toJson(),
     };
   }
 }

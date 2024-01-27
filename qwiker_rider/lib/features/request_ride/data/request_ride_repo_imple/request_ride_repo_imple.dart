@@ -79,4 +79,13 @@ class RequestRideRepoImple extends RequestRideRepo {
       return left(Falure(errorMessage: e.toString()));
     }
   }
+
+  @override
+  Future<Either<Falure, Future<void>>> cancelTrip(String riderPhone) async {
+    try {
+      return right(_requestRideRemoteDataSource.cancelTrip(riderPhone));
+    } catch (e) {
+      return left(Falure(errorMessage: e.toString()));
+    }
+  }
 }

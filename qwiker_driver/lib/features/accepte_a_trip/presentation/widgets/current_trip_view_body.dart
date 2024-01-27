@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:qwiker_driver/core/theaming/app_colors.dart';
+import 'package:qwiker_driver/core/di/dependency_injection.dart';
+import 'package:qwiker_driver/core/routing/views_name.dart';
 import 'package:qwiker_driver/features/accepte_a_trip/presentation/manager/accepte_a_trip/accepte_a_trip_cubit.dart';
 import 'package:qwiker_driver/features/accepte_a_trip/presentation/widgets/custom_map.dart';
 import 'package:qwiker_driver/features/accepte_a_trip/presentation/widgets/driver_on_start_point_view.dart';
@@ -17,8 +17,13 @@ class CurrentTripViewBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var accepteATripCubit = BlocProvider.of<AccepteATripCubit>(context);
-    return BlocBuilder<AccepteATripCubit, AccepteATripState>(
-        builder: (context, state) {
+    return BlocConsumer<AccepteATripCubit, AccepteATripState>(
+        listener: (context, state) {
+      if (state is TripIsCanceld) {
+        getIt.resetLazySingleton<AccepteATripCubit>();
+        GoRouter.of(context).pushReplacement(ViewsName.homeView);
+      }
+    }, builder: (context, state) {
       if (state is AcceptATripFailure) {
         return const Center(
           child: Text('error'),
