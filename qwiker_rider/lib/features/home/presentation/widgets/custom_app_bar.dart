@@ -21,6 +21,7 @@ class CustomAppBar extends StatelessWidget {
         style: AppFonts.medel_28,
       ),
       backgroundColor: Colors.transparent,
+      elevation: 0,
       leading: IconButton(
         onPressed: provider.handleMenuButtonPressed,
         icon: ValueListenableBuilder<AdvancedDrawerValue>(

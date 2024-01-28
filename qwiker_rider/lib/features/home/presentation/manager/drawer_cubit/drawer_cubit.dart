@@ -4,6 +4,7 @@ import 'package:flutter_advanced_drawer/flutter_advanced_drawer.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:meta/meta.dart';
 import 'package:qwiker_rider/core/di/dependency_injection.dart';
+import 'package:qwiker_rider/features/history/presentation/view/history_view.dart';
 import 'package:qwiker_rider/features/profile/presentation/view/profile_view.dart';
 import 'package:qwiker_rider/features/request_ride/data/request_ride_repo_imple/request_ride_repo_imple.dart';
 import 'package:qwiker_rider/features/request_ride/presentation/manager/request_a_ride_cubit/request_a_ride_cubit.dart';
@@ -22,7 +23,7 @@ class DrawerCubit extends Cubit<DrawerState> {
     advancedDrawerController.showDrawer();
   }
 
-  int selectedView = 0;
+  int selectedView = 2;
 
   List<Widget> drawerViews = [
     BlocProvider(
@@ -31,9 +32,10 @@ class DrawerCubit extends Cubit<DrawerState> {
       child: const RequestARideView(),
     ),
     const ProfileView(),
+    const HistoryView(),
   ];
 
-  List<String> drawerViewsNames = ['', 'Edit Profile'];
+  List<String> drawerViewsNames = ['Request Ride', 'Edit Profile', 'History'];
 
   void changSelectedScreen(int selectedScreenNum) {
     getIt.resetLazySingleton<RequestARideCubit>();

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
+import 'package:qwiker_rider/features/history/presentation/view/history_view.dart';
 import 'package:qwiker_rider/features/request_ride/presentation/widgets/trip_details_section.dart';
 
 import 'package:qwiker_rider/features/request_ride/presentation/widgets/trip_rating_widget.dart';
@@ -16,27 +17,28 @@ class TestUiView extends StatefulWidget {
 class _TestUiViewState extends State<TestUiView> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Stack(children: [
-        Image.asset(
-          'assets/images/map.png',
-          fit: BoxFit.fill,
-        ),
-        Positioned(
-            bottom: 0,
-            left: 0,
-            right: 0,
-            top: 580.h,
-            child: TripDetailsSection(
-              buttonOnPressed: () {},
-              destinationName: 'al minia',
-              driverName: 'Awad',
-              fullDistance: 24,
-              startLocationName: 'bini mazar',
-              tripCoast: 30,
-            )),
-      ]),
-    );
+    return const HistoryView();
+    // Scaffold(
+    //   body: Stack(children: [
+    //     Image.asset(
+    //       'assets/images/map.png',
+    //       fit: BoxFit.fill,
+    //     ),
+    //     Positioned(
+    //         bottom: 0,
+    //         left: 0,
+    //         right: 0,
+    //         top: 580.h,
+    //         child: TripDetailsSection(
+    //           buttonOnPressed: () {},
+    //           destinationName: 'al minia',
+    //           driverName: 'Awad',
+    //           fullDistance: 24,
+    //           startLocationName: 'bini mazar',
+    //           tripCoast: 30,
+    //         )),
+    //   ]),
+    // );
   }
 }
 
