@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:qwiker_driver/features/accepte_a_trip/presentation/manager/accepte_a_trip/accepte_a_trip_cubit.dart';
@@ -48,6 +46,3 @@ class CustomMap extends StatelessWidget {
   }
 }
 
-_displayDialog() {
-  Completer<GoogleMapController> controller = Completer();
-}

@@ -10,6 +10,7 @@ import 'package:qwiker_driver/features/auth/presentation/view/login_view.dart';
 import 'package:qwiker_driver/features/auth/presentation/view/pin_code_input_view.dart';
 import 'package:qwiker_driver/features/home/presentation/view/home_view.dart';
 import 'package:qwiker_driver/features/onpoarding/view/onpoarding_view.dart';
+import 'package:qwiker_driver/features/profile/presentation/view/complete_profile_data.dart';
 import 'package:qwiker_driver/test_ui_view.dart';
 
 class AppRouter {
@@ -22,8 +23,10 @@ class AppRouter {
           return const OnBoardingView();
         } else if (FirebaseAuth.instance.currentUser == null) {
           return const LogInView();
-        } else {
+        } else if (hasProfile ?? false) {
           return const HomeView();
+        } else {
+          return const CompleteProfileDataView();
         }
       },
     ),

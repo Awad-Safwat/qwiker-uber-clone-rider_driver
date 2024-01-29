@@ -1,14 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
-import 'package:qwiker_driver/core/di/dependency_injection.dart';
-
 import 'package:qwiker_driver/features/accepte_a_trip/data/models/trip_model.dart';
-import 'package:qwiker_driver/features/accepte_a_trip/data/repos_imple/accepte_a_trip_repos_imple.dart';
-import 'package:qwiker_driver/features/accepte_a_trip/presentation/manager/accepte_a_trip/accepte_a_trip_cubit.dart';
 import 'package:qwiker_driver/features/accepte_a_trip/presentation/widgets/trip_item.dart';
-import 'package:qwiker_driver/features/home/presentation/widgets/custom_app_bar.dart';
 
 class RequestedTripsViewBody extends StatelessWidget {
   const RequestedTripsViewBody({

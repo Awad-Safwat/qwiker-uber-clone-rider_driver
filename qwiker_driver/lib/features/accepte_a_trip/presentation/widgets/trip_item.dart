@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
-import 'package:go_router/go_router.dart';
-import 'package:qwiker_driver/core/routing/views_name.dart';
+import 'package:qwiker_driver/core/global_functions.dart';
 import 'package:qwiker_driver/core/theaming/app_colors.dart';
 import 'package:qwiker_driver/core/theaming/app_fonts.dart';
 import 'package:qwiker_driver/core/widgets/custom_bickup_icon.dart';
@@ -11,8 +10,6 @@ import 'package:qwiker_driver/core/widgets/custom_button.dart';
 import 'package:qwiker_driver/core/widgets/custom_destination_icon.dart';
 import 'package:qwiker_driver/features/accepte_a_trip/data/models/trip_model.dart';
 import 'package:qwiker_driver/features/accepte_a_trip/presentation/manager/accepte_a_trip/accepte_a_trip_cubit.dart';
-import 'package:qwiker_driver/features/accepte_a_trip/presentation/manager/find_trips_cubit/find_trips_cubit.dart';
-import 'package:qwiker_driver/features/auth/presentation/view/login_view.dart';
 
 class TripItem extends StatelessWidget {
   const TripItem({
@@ -28,7 +25,6 @@ class TripItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: Container(
-        height: 220.h,
         width: 380.w,
         decoration: BoxDecoration(
           color: AppColors.whaite,

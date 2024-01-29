@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:qwiker_rider/core/global_functions.dart';
 import 'package:qwiker_rider/features/profile/data/user_model/rider_model.dart';
 
 class RemoteUsersData {
@@ -6,6 +7,7 @@ class RemoteUsersData {
       FirebaseFirestore.instance.collection('riders');
 
   Future<void> addNewRider(RiderModel rider) async {
+    saveUserDataLocal(rider);
     final docRef = _firestoreRidersCollection
         .withConverter(
           fromFirestore: RiderModel.fromFirestore,
@@ -33,6 +35,7 @@ class RemoteUsersData {
   }
 
   Future<void> updateRiderProfileData(RiderModel rider) async {
+    saveUserDataLocal(rider);
     final docRef = _firestoreRidersCollection
         .withConverter(
           fromFirestore: RiderModel.fromFirestore,

@@ -2,13 +2,13 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 class DriverModel {
   final String driverPhoneNumber;
-  final double driverLocationLat, driverLocationLong;
+  double? driverLocationLat, driverLocationLong;
   final String driverName;
   String? email;
 
   DriverModel({
-    required this.driverLocationLat,
-    required this.driverLocationLong,
+    this.driverLocationLat,
+    this.driverLocationLong,
     required this.driverPhoneNumber,
     this.email,
     required this.driverName,
