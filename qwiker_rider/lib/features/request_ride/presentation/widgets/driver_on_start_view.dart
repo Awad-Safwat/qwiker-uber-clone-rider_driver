@@ -71,7 +71,8 @@ class DriverOnStartView extends StatelessWidget {
           buttonOnPressed: () {
             requestARideCubit
                 .cancelTrip(
-                    requestARideCubit.currentTrip!.riderData!.riderPhone)
+                    requestARideCubit.currentTrip!.riderData!.riderPhone,
+                    context)
                 .then((_) {
               getIt.resetLazySingleton<RequestARideCubit>();
 

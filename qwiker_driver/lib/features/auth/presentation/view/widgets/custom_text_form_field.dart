@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:qwiker_driver/core/theaming/app_colors.dart';
 
-import '../../../../../core/theaming/app_fonts.dart';
-
 class CustomTextFormField extends StatelessWidget {
   const CustomTextFormField({
     super.key,
@@ -18,9 +16,12 @@ class CustomTextFormField extends StatelessWidget {
     this.borderRadius,
     this.enabledBorderColor,
     this.focusBorderColor,
+    this.prefixIcon,
+    this.autoFoucus,
   });
 
   final TextEditingController textController;
+  final Icon? prefixIcon;
   final String hintText;
   final TextStyle? hintStyle;
   final Color? fillColor;
@@ -31,17 +32,20 @@ class CustomTextFormField extends StatelessWidget {
   final double? borderRadius;
   final Color? enabledBorderColor;
   final Color? focusBorderColor;
+  final bool? autoFoucus;
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
       validator: validator,
       onChanged: onChanged,
-      onSaved: onSave,
+      onFieldSubmitted: onSave,
       controller: textController,
-      keyboardType: TextInputType.phone,
+      keyboardType: keyboardType,
+      autofocus: autoFoucus ?? false,
       decoration: InputDecoration(
-        fillColor: fillColor,
+        prefixIcon: prefixIcon,
+        fillColor: fillColor ?? AppColors.whaite,
         filled: true,
         hintText: hintText,
         hintStyle: hintStyle,

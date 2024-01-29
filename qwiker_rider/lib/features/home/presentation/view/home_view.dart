@@ -10,7 +10,7 @@ class HomeView extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => DrawerCubit(),
-      child: const Scaffold(body: HomeViewBody2()),
+      child: const Scaffold(body: HomeViewBody()),
     );
   }
 }

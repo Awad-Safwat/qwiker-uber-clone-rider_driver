@@ -52,6 +52,7 @@ dependencies:
   go_router: ^12.1.1
   google_fonts: ^6.1.0
   google_maps_flutter: ^2.5.0
+  intl_phone_number_input: ^0.7.4
   json_serializable: ^6.7.1
   pinput: ^3.0.1
   shared_preferences: ^2.2.2

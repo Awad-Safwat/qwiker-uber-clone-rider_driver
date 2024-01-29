@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:qwiker_driver/core/di/dependency_injection.dart';
+import 'package:qwiker_driver/core/global_functions.dart';
 import 'package:qwiker_driver/core/routing/views_name.dart';
 import 'package:qwiker_driver/core/theaming/app_colors.dart';
 import 'package:qwiker_driver/features/auth/presentation/manager/auth_cubit/auth_cubit.dart';
@@ -53,23 +54,23 @@ class LogInView extends StatelessWidget {
   }
 }
 
-showProgressIndicator(BuildContext context) {
-  AlertDialog alertDialog = const AlertDialog(
-    backgroundColor: Colors.transparent,
-    elevation: 0,
-    content: Center(
-      child: CircularProgressIndicator(
-        valueColor: AlwaysStoppedAnimation<Color>(AppColors.mainBlue),
-      ),
-    ),
-  );
+// showProgressIndicator(BuildContext context) {
+//   AlertDialog alertDialog = const AlertDialog(
+//     backgroundColor: Colors.transparent,
+//     elevation: 0,
+//     content: Center(
+//       child: CircularProgressIndicator(
+//         valueColor: AlwaysStoppedAnimation<Color>(AppColors.mainBlue),
+//       ),
+//     ),
+//   );
 
-  showDialog(
-    barrierColor: Colors.white.withOpacity(0),
-    barrierDismissible: false,
-    context: context,
-    builder: (context) {
-      return alertDialog;
-    },
-  );
-}
+//   showDialog(
+//     barrierColor: Colors.white.withOpacity(0),
+//     barrierDismissible: false,
+//     context: context,
+//     builder: (context) {
+//       return alertDialog;
+//     },
+//   );
+//}

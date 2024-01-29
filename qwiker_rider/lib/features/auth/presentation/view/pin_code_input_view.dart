@@ -26,7 +26,7 @@ class PinCodeInputView extends StatelessWidget {
                 savePhoneLocal(
                     BlocProvider.of<AuthCubit>(context).phoneNumber!);
 
-                BlocProvider.of<AuthCubit>(context).checkUserExistans(
+                BlocProvider.of<AuthCubit>(context).getUserProfileData(
                     BlocProvider.of<AuthCubit>(context).phoneNumber!);
               } else if (state is AuthFailer) {
                 GoRouter.of(context).pop();

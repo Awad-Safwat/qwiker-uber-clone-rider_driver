@@ -34,7 +34,7 @@ class TripModel {
     return TripModel(
       startPointdata: PlaceModel.fromJson(trip['startPointdata']),
       endPointdata: PlaceModel.fromJson(trip['endPointdata']),
-      riderData: RiderModel.fromJson(snapshot, null),
+      riderData: RiderModel.fromJson(trip['riderData']),
       driverData: DriverModel.fromFirestore(snapshot, options),
       tripTotalDestance: trip['tripTotalDestance'],
       tripStates: trip['tripStates'],

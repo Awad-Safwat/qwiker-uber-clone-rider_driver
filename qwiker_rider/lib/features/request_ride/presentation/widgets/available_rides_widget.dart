@@ -168,42 +168,37 @@ class _AvailableRidesWidgetState extends State<AvailableRidesWidget> {
                 height: 55.h,
                 onPressed: () async {
                   if (requestARideCubit.tripCoast != null) {
-                    getPhoneNumber().then(
-                      (phoneNumber) => requestARideCubit.bookRide(
-                        TripModel(
-                          tripTotalDestance: requestARideCubit.totalDistance,
-                          tripCoast: requestARideCubit.tripCoast,
-                          startPointdata: PlaceModel(
-                            placeId: '',
-                            shortName: requestARideCubit.startPoint!.longName ??
-                                'Current Location',
-                            geometry: Geometry(
-                              LatLongModel(
-                                requestARideCubit
-                                    .startPoint!.geometry.location.lat!,
-                                requestARideCubit
-                                    .startPoint!.geometry.location.long!,
-                              ),
+                    requestARideCubit.bookRide(
+                      TripModel(
+                        tripTotalDestance: requestARideCubit.totalDistance,
+                        tripCoast: requestARideCubit.tripCoast,
+                        startPointdata: PlaceModel(
+                          placeId: '',
+                          shortName: requestARideCubit.startPoint!.shortName ??
+                              'Current Location',
+                          geometry: Geometry(
+                            LatLongModel(
+                              requestARideCubit
+                                  .startPoint!.geometry.location.lat!,
+                              requestARideCubit
+                                  .startPoint!.geometry.location.long!,
                             ),
                           ),
-                          endPointdata: PlaceModel(
-                            placeId: '',
-                            shortName:
-                                requestARideCubit.destinationPoint!.longName!,
-                            geometry: Geometry(
-                              LatLongModel(
-                                requestARideCubit
-                                    .destinationPoint!.geometry.location.lat!,
-                                requestARideCubit
-                                    .destinationPoint!.geometry.location.long!,
-                              ),
-                            ),
-                          ),
-                          riderData: RiderModel(
-                              riderPhone: phoneNumber,
-                              email: 'doaa.safwat1999@gmail.com',
-                              riderName: 'Doaa Safwat'),
                         ),
+                        endPointdata: PlaceModel(
+                          placeId: '',
+                          shortName:
+                              requestARideCubit.destinationPoint!.shortName,
+                          geometry: Geometry(
+                            LatLongModel(
+                              requestARideCubit
+                                  .destinationPoint!.geometry.location.lat!,
+                              requestARideCubit
+                                  .destinationPoint!.geometry.location.long!,
+                            ),
+                          ),
+                        ),
+                        riderData: getUserData(),
                       ),
                     );
                   } else {
