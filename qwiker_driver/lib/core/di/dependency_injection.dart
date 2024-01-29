@@ -7,6 +7,8 @@ import 'package:qwiker_driver/features/accepte_a_trip/presentation/manager/accep
 import 'package:qwiker_driver/features/auth/data/auth_repo_imple.dart';
 import 'package:qwiker_driver/features/auth/data/data_sources/remote_data_source.dart';
 import 'package:qwiker_driver/features/auth/presentation/manager/auth_cubit/auth_cubit.dart';
+import 'package:qwiker_driver/features/profile/data/data_sources/remote_data_source.dart';
+import 'package:qwiker_driver/features/profile/data/user_repo_imple.dart';
 
 final getIt = GetIt.instance;
 
@@ -14,8 +16,8 @@ Future<void> setupGetIt() async {
   // Login
 
   // profile data
-  // getIt.registerLazySingleton<UserRepoImple>(
-  //     () => UserRepoImple(remoteUsersData: RemoteUsersData()));
+  getIt.registerLazySingleton<UserRepoImple>(
+      () => UserRepoImple(remoteUsersData: RemoteUsersData()));
 
   getIt.registerLazySingleton<AuthRepoImple>(
       () => AuthRepoImple(authUsersData: AuthUsersData()));

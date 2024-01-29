@@ -1,10 +1,9 @@
 import 'package:delightful_toast/delight_toast.dart';
 import 'package:delightful_toast/toast/components/toast_card.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:qwiker_driver/core/theaming/app_fonts.dart';
 
-DelightToastBar CustomToast({
+DelightToastBar showCustomToast({
   required String message,
 }) {
   return DelightToastBar(

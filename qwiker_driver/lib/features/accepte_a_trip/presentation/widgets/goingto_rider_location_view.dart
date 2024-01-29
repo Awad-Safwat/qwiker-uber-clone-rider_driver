@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:go_router/go_router.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:qwiker_driver/core/di/dependency_injection.dart';
 import 'package:qwiker_driver/core/theaming/app_colors.dart';
@@ -60,18 +58,6 @@ class GoingToRiderLocationView extends StatelessWidget {
               'Go to start point',
               style: AppFonts.medel_28,
             ),
-          ),
-        ),
-        Positioned(
-          top: 25.h,
-          left: 20.w,
-          right: 365.w,
-          bottom: 800.h,
-          child: IconButton(
-            onPressed: () {
-              GoRouter.of(context).pop();
-            },
-            icon: const Icon(Icons.arrow_back),
           ),
         ),
         Positioned(

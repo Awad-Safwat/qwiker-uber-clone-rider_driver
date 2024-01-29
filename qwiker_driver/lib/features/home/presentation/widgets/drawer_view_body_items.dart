@@ -55,7 +55,7 @@ class DrawerItems extends StatelessWidget {
               ),
               ListTile(
                 onTap: () {
-                  //provider.changSelectedScreen(1);
+                  provider.changSelectedScreen(1);
                 },
                 leading: const Icon(Icons.account_circle_rounded),
                 title: Text(

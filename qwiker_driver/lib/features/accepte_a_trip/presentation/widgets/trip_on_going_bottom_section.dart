@@ -2,16 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:qwiker_driver/core/theaming/app_colors.dart';
 import 'package:qwiker_driver/core/theaming/app_fonts.dart';
 import 'package:qwiker_driver/core/widgets/custom_bickup_icon.dart';
 import 'package:qwiker_driver/core/widgets/custom_button.dart';
 import 'package:qwiker_driver/core/widgets/custom_destination_icon.dart';
 import 'package:qwiker_driver/features/accepte_a_trip/presentation/manager/accepte_a_trip/accepte_a_trip_cubit.dart';
-import 'package:qwiker_driver/features/accepte_a_trip/presentation/widgets/custom_map.dart';
 import 'package:qwiker_driver/features/accepte_a_trip/presentation/widgets/trip_cost_widget.dart';
-import 'package:qwiker_driver/features/accepte_a_trip/presentation/widgets/trip_details_section.dart';
 
 class TripOnGoingBottomSection extends StatelessWidget {
   const TripOnGoingBottomSection({super.key});

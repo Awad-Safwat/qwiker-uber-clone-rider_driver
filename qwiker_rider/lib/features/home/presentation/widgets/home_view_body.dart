@@ -7,8 +7,8 @@ import 'package:qwiker_rider/features/home/presentation/manager/drawer_cubit/dra
 import 'package:qwiker_rider/features/home/presentation/widgets/custom_app_bar.dart';
 import 'package:qwiker_rider/features/home/presentation/widgets/drawer_view_body_items.dart';
 
-class HomeViewBody2 extends StatelessWidget {
-  const HomeViewBody2({super.key});
+class HomeViewBody extends StatelessWidget {
+  const HomeViewBody({super.key});
 
   @override
   Widget build(BuildContext context) {

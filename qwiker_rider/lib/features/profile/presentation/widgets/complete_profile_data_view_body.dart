@@ -14,7 +14,7 @@ class CompleteProfileDataViewBody extends StatelessWidget {
 
   @override
   build(BuildContext context) {
-    var provider = BlocProvider.of<UserDataCubit>(context);
+    var userDataCubit = BlocProvider.of<UserDataCubit>(context);
     return SingleChildScrollView(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -44,16 +44,18 @@ class CompleteProfileDataViewBody extends StatelessWidget {
             child: UserDataInputFieldsCompleate(
               emailHint: 'Email (optional)',
               nameHint: 'Full Name (required)',
-              phoneHint: '***********',
+              phoneHint: getPhoneNumber(),
               extraPhoneHint: 'extra phone Number (optional)',
               buttonText: 'Save Data',
-              buttonOnPressd: () async {
-                provider.addNewUser(RiderModel(
-                  riderPhone: await getPhoneNumber(),
-                  riderName: provider.nameController.text,
-                  extraPhoneNumber: provider.extraPhoneController.text,
-                  email: provider.emailController.text,
-                ));
+              buttonOnPressd: () {
+                userDataCubit.addNewUser(
+                  RiderModel(
+                    riderPhone: getPhoneNumber(),
+                    riderName: userDataCubit.nameController.text,
+                    extraPhoneNumber: userDataCubit.extraPhoneController.text,
+                    email: userDataCubit.emailController.text,
+                  ),
+                );
               },
             ),
           ),

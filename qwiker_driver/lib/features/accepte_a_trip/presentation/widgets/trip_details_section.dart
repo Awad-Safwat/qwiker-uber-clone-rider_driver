@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
-import 'package:go_router/go_router.dart';
 import 'package:qwiker_driver/core/global_functions.dart';
-import 'package:qwiker_driver/core/routing/views_name.dart';
 import 'package:qwiker_driver/core/theaming/app_colors.dart';
 import 'package:qwiker_driver/core/theaming/app_fonts.dart';
 import 'package:qwiker_driver/core/widgets/custom_bickup_icon.dart';
@@ -87,14 +85,10 @@ class TripDetailsSection extends StatelessWidget {
                       radius: 20.r,
                       child: IconButton(
                         onPressed: () async {
-                          getPhoneNumber().then(
-                            (phone) {
-                              launchUrl(Uri(
-                                scheme: 'tel',
-                                path: phone,
-                              ));
-                            },
-                          );
+                          launchUrl(Uri(
+                            scheme: 'tel',
+                            path: getPhoneNumber(),
+                          ));
                         },
                         icon: const Icon(
                           Icons.phone,

@@ -1,7 +1,7 @@
-import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
-import 'package:meta/meta.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 import 'package:qwiker_rider/core/global_functions.dart';
 import 'package:qwiker_rider/features/profile/data/user_model/rider_model.dart';
 import 'package:qwiker_rider/features/profile/data/user_repo_imple.dart';
@@ -21,6 +21,9 @@ class UserDataCubit extends Cubit<UserDataState> {
   TextEditingController extraPhoneController = TextEditingController();
 
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  String countryIsoCode = 'GH';
+
+  PhoneNumber number = PhoneNumber(isoCode: 'GH');
 
   Future<void> addNewUser(RiderModel user) async {
     emit(UserDataLoading());
@@ -39,15 +42,17 @@ class UserDataCubit extends Cubit<UserDataState> {
 
   Future<void> getUserProfileData() async {
     emit(UserDataLoading());
-    final String userId = await getPhoneNumber();
     Either<Falure, Future<RiderModel>> result =
-        _userRepoImple.getUserProfileData(userId);
+        _userRepoImple.getUserProfileData(getPhoneNumber());
 
     result.fold(
         (faluer) => emit(
               UserDataFalure(errorMessage: faluer.errorMessage),
-            ), (success) async {
-      final RiderModel userData = await success;
+            ), (user) async {
+      final RiderModel userData = await user;
+      String phoneNumber = getPhoneNumber();
+      number = await PhoneNumber.getRegionInfoFromPhoneNumber(phoneNumber);
+
       emailController.text = userData.email;
       nameController.text = userData.riderName;
       phoneController.text = userData.riderPhone;
@@ -59,7 +64,8 @@ class UserDataCubit extends Cubit<UserDataState> {
   Future<void> updateUserProfileData(RiderModel user) async {
     emit(UserDataLoading());
 
-    Either<Falure, Future<void>> result = _userRepoImple.addNewUser(user);
+    Either<Falure, Future<void>> result =
+        _userRepoImple.updateUserProfileData(user);
 
     result.fold(
         (faluer) => emit(
