@@ -1,8 +1,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 import 'package:meta/meta.dart';
+import 'package:qwiker_rider/core/global_functions.dart';
 import 'package:qwiker_rider/features/auth/data/auth_repo_imple.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 part 'auth_state.dart';
 
@@ -16,12 +18,17 @@ class AuthCubit extends Cubit<AuthState> {
   late String verificationId;
   String? phoneNumber;
   String? userPinCode;
+  final TextEditingController controller = TextEditingController();
+
+  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  String initialCountry = 'EG';
+  PhoneNumber number = PhoneNumber(isoCode: 'EG');
 
   Future<void> submitPhoneNumber(String phoneNumber) async {
     emit(AuthLoading());
 
     await FirebaseAuth.instance.verifyPhoneNumber(
-      phoneNumber: '+2$phoneNumber',
+      phoneNumber: phoneNumber,
       timeout: const Duration(seconds: 14),
       verificationCompleted: verificationCompleted,
       verificationFailed: verificationFailed,
@@ -30,16 +37,17 @@ class AuthCubit extends Cubit<AuthState> {
     );
   }
 
-  void checkUserExistans(String userId) async {
+  void getUserProfileData(String userId) async {
     emit(AuthLoading());
-    var result = _authRepoImple.checkUserExistans(userId);
+    var result = _authRepoImple.getUserProfileData(userId);
 
     result.fold((falure) {
       emit(AuthFailer(message: falure.errorMessage));
-    }, (bool) async {
-      if (await bool) {
-        SharedPreferences prefs = await SharedPreferences.getInstance();
+    }, (riderData) async {
+      var rider = await riderData;
+      if (rider != null) {
         prefs.setBool('hasProfile', true);
+        saveUserDataLocal(rider);
         emit(AuthUserExiste());
       } else {
         emit(AuthUserNotExiste());

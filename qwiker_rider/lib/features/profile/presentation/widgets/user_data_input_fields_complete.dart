@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
+import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 import 'package:qwiker_rider/core/widgets/custom_button.dart';
 import 'package:qwiker_rider/features/profile/presentation/manager/user_data/user_data_cubit.dart';
 import '../../../../../core/theaming/app_colors.dart';
@@ -27,14 +28,14 @@ class UserDataInputFieldsCompleate extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var provider = BlocProvider.of<UserDataCubit>(context);
+    var userDataCubit = BlocProvider.of<UserDataCubit>(context);
     return Form(
       autovalidateMode: AutovalidateMode.onUserInteraction,
-      key: provider.formKey,
+      key: userDataCubit.formKey,
       child: Column(
         children: [
           CustomTextFormField(
-            textController: provider.nameController,
+            textController: userDataCubit.nameController,
             validator: (val) {
               if (val == null || val.isEmpty) {
                 return 'Please enter your full Name';
@@ -59,7 +60,7 @@ class UserDataInputFieldsCompleate extends StatelessWidget {
           ),
           Gap(30.h),
           CustomTextFormField(
-            textController: provider.emailController,
+            textController: userDataCubit.emailController,
             validator: (val) {
               if (val == null || val.isEmpty) {
                 return 'Please enter your email';
@@ -85,27 +86,30 @@ class UserDataInputFieldsCompleate extends StatelessWidget {
             ),
           ),
           Gap(30.h),
-          CustomTextFormField(
-            textController: provider.extraPhoneController,
-            validator: (val) {
-              if (val?.length != 11) {
-                return 'Phone Number need to be 11 numbers';
-              } else {
-                return null;
-              }
-            },
-            onChanged: (val) {},
-            onSave: (val) {},
-            keyboardType: TextInputType.phone,
-            fillColor: AppColors.whaite,
+          InternationalPhoneNumberInput(
             hintText: extraPhoneHint,
-            hintStyle: AppFonts.poppinsRegularGray_14,
-            borderRadius: 50.r,
-            enabledBorderColor: AppColors.liteGray,
-            focusBorderColor: AppColors.mainBlue,
-            prefixIcon: const Icon(
-              Icons.call,
+            onInputChanged: (PhoneNumber number) {
+              // print(number.phoneNumber);
+            },
+            onInputValidated: (bool value) {
+              print(value);
+            },
+            selectorConfig: const SelectorConfig(
+              selectorType: PhoneInputSelectorType.DROPDOWN,
+              useEmoji: true,
             ),
+            ignoreBlank: false,
+            spaceBetweenSelectorAndTextField: 5,
+            autoValidateMode: AutovalidateMode.onUserInteraction,
+            selectorTextStyle: const TextStyle(color: Colors.black),
+            initialValue: userDataCubit.number,
+            textFieldController: userDataCubit.extraPhoneController,
+            formatInput: true,
+            keyboardType: const TextInputType.numberWithOptions(
+                signed: true, decimal: true),
+            inputBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.all(Radius.circular(40.r))),
+            onSaved: (PhoneNumber number) {},
           ),
           Gap(30.h),
           CustomButton(

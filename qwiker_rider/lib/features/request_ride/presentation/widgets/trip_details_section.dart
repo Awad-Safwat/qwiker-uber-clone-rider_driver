@@ -92,15 +92,11 @@ class TripDetailsSection extends StatelessWidget {
                       backgroundColor: AppColors.mainBlue,
                       radius: 24.r,
                       child: IconButton(
-                        onPressed: () async {
-                          getPhoneNumber().then(
-                            (phone) {
-                              launchUrl(Uri(
-                                scheme: 'tel',
-                                path: phone,
-                              ));
-                            },
-                          );
+                        onPressed: () {
+                          launchUrl(Uri(
+                            scheme: 'tel',
+                            path: getPhoneNumber(),
+                          ));
                         },
                         icon: const Icon(
                           Icons.phone,

@@ -14,6 +14,7 @@ class BackGroundOnboarding3 extends StatelessWidget {
         Image.asset(
           'assets/images/onboarding3.gif',
           width: 450.w,
+          fit: BoxFit.fill,
         ),
       ],
     );
@@ -33,6 +34,7 @@ class BackGroundOnboarding2 extends StatelessWidget {
         Image.asset(
           'assets/images/onboarding2.png',
           width: 450.w,
+          fit: BoxFit.fill,
         ),
       ],
     );
@@ -52,6 +54,7 @@ class BackGroundOnboarding1 extends StatelessWidget {
         Image.asset(
           'assets/images/onboarding1.png',
           width: 450.w,
+          fit: BoxFit.fill,
         ),
       ],
     );

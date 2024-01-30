@@ -1,14 +1,21 @@
 // check first time or not to show onboarding screen
 import 'package:flutter/material.dart';
 import 'package:qwiker_rider/core/theaming/app_colors.dart';
+import 'package:qwiker_rider/features/profile/data/user_model/rider_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-Future<bool>? checkFirstSeen() async {
-  SharedPreferences prefs = await SharedPreferences.getInstance();
+late SharedPreferences prefs;
+bool? isFirstTime;
+
+// check the user profile
+bool? hasProfile;
+RiderModel localRiderData = getUserData();
+
+bool? checkFirstSeen() {
   bool isFirstT = (prefs.getBool('seen') ?? true);
 
   if (isFirstT) {
-    await prefs.setBool('seen', false);
+    prefs.setBool('seen', false);
     //is first time
     return true;
   } else {
@@ -17,24 +24,34 @@ Future<bool>? checkFirstSeen() async {
   }
 }
 
-bool? isFirstTime;
-
-// check the user profile
-bool? hasProfile;
-Future<bool>? checkUserProfile() async {
-  SharedPreferences prefs = await SharedPreferences.getInstance();
+bool? checkUserProfile() {
   return prefs.getBool('hasProfile') ?? false;
 }
 
 // save phone number localy
 
 void savePhoneLocal(String phoneNumber) async {
-  SharedPreferences prefs = await SharedPreferences.getInstance();
   prefs.setString('phoneNumber', phoneNumber);
 }
 
-Future<String> getPhoneNumber() async {
-  SharedPreferences prefs = await SharedPreferences.getInstance();
+void saveUserDataLocal(RiderModel rider) {
+  prefs.setString('riderName', rider.riderName);
+  prefs.setString('riderEmail', rider.email);
+  prefs.setString('extraPhoneNumber', rider.extraPhoneNumber ?? '');
+}
+
+RiderModel getUserData() {
+  RiderModel rider = RiderModel(
+    riderPhone: prefs.getString('phoneNumber').toString(),
+    email: prefs.getString('riderEmail').toString(),
+    riderName: prefs.getString('riderName').toString(),
+    extraPhoneNumber: prefs.getString('extraPhoneNumber').toString(),
+  );
+
+  return rider;
+}
+
+String getPhoneNumber() {
   return prefs.getString('phoneNumber').toString();
 }
 

@@ -33,15 +33,14 @@ class AccepteATripCubit extends Cubit<AccepteATripState> {
 
   Future<void> acceptATrip(TripModel trip) async {
     emit(AccepteATripLoading());
-    await getPhoneNumber().then((phoneNumber) {
-      print('driver phone $phoneNumber');
-      driverPhone = '01113743069';
-      trip.driverData = DriverModel(
-          driverLocationLat: driverLocationLat,
-          driverLocationLong: driverLocationLong,
-          driverPhoneNumber: driverPhone!,
-          driverName: 'Driver Awad');
-    });
+
+    print('driver phone ${getPhoneNumber()}');
+
+    trip.driverData = DriverModel(
+        driverLocationLat: driverLocationLat,
+        driverLocationLong: driverLocationLong,
+        driverPhoneNumber: getPhoneNumber(),
+        driverName: getUserData().driverName);
 
     var result = await _accepteAtripReposImple.accepteAtrip(trip);
     result.fold((falure) {

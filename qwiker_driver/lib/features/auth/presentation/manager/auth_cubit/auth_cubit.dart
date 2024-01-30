@@ -1,5 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 import 'package:meta/meta.dart';
 
 part 'auth_state.dart';
@@ -10,12 +12,16 @@ class AuthCubit extends Cubit<AuthState> {
   late String verificationId;
   String? phoneNumber;
   String? userPinCode;
+  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  String initialCountry = 'EG';
+  PhoneNumber number = PhoneNumber(isoCode: 'EG');
+  final TextEditingController controller = TextEditingController();
 
   Future<void> submitPhoneNumber(String phoneNumber) async {
     emit(AuthLoading());
 
     await FirebaseAuth.instance.verifyPhoneNumber(
-      phoneNumber: '+2$phoneNumber',
+      phoneNumber: phoneNumber,
       timeout: const Duration(seconds: 14),
       verificationCompleted: verificationCompleted,
       verificationFailed: verificationFailed,

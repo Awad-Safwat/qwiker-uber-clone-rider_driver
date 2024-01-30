@@ -1,9 +1,11 @@
 import 'dart:async';
+import 'dart:js';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:meta/meta.dart';
 import 'package:qwiker_rider/core/global_functions.dart';
+import 'package:qwiker_rider/core/widgets/custom_toast.dart';
 import 'package:qwiker_rider/features/request_ride/data/models/place_model.dart';
 import 'package:qwiker_rider/features/request_ride/data/models/trip_model.dart';
 import 'package:qwiker_rider/features/request_ride/data/request_ride_repo_imple/request_ride_repo_imple.dart';
@@ -63,71 +65,68 @@ class RequestARideCubit extends Cubit<RequestARideState> {
     });
   }
 
-  Future<void> listnToTripChanges() async {
+  void listnToTripChanges() {
     CollectionReference<Map<String, dynamic>> firestoreOnGoingCollection =
         FirebaseFirestore.instance.collection('onGoingTrips');
-    getPhoneNumber().then(
-      (riderPhone) => firestoreOnGoingCollection
-          .doc(riderPhone)
-          .snapshots()
-          .listen((snapShot) async {
-        print('Listining result ${snapShot.data()}');
-        if (snapShot.data() != null &&
-            !snapShot.metadata.isFromCache &&
-            snapShot.data()!.isNotEmpty &&
-            snapShot.exists) {
-          switch (snapShot.data()!['tripStates']) {
-            case 'DriverOnTheWay' || null:
-              {
-                currentTrip = TripModel.fromFirestore(snapShot, null);
-                print('data before emit driver accebted $currentTrip');
-                polylineCoordinates.clear();
-                await getPolyPoints(
-                  startLat: currentTrip!.driverData!.driverLocationLat,
-                  startLong: currentTrip!.driverData!.driverLocationLong,
-                  destinationLat: startPoint!.geometry.location.lat!,
-                  destinationLong: startPoint!.geometry.location.long!,
-                  isDriverIcon: true,
-                );
-                emit(DriverAccebted());
-              }
-            case 'TripIsStarted':
-              {
-                currentTrip = TripModel.fromFirestore(snapShot, null);
-                polylineCoordinates.clear();
-                //TODO change start point data to detect driver real time changes
-                await getPolyPoints(
-                  startLat: startPoint!.geometry.location.lat!,
-                  startLong: startPoint!.geometry.location.long!,
-                  destinationLat: destinationPoint!.geometry.location.lat!,
-                  destinationLong: destinationPoint!.geometry.location.long!,
-                  isDriverIcon: true,
-                );
-                emit(TripStarted());
-              }
-            case 'On Start point':
-              {
-                currentTrip = TripModel.fromFirestore(snapShot, null);
-                polylineCoordinates.clear();
-                //TODO change start point data to detect driver real time changes
-                await getPolyPoints(
-                  startLat: startPoint!.geometry.location.lat!,
-                  startLong: startPoint!.geometry.location.long!,
-                  destinationLat: startPoint!.geometry.location.lat!,
-                  destinationLong: startPoint!.geometry.location.long!,
-                  isDriverIcon: true,
-                );
-                emit(DriverOnStart());
-              }
-            case 'On destination':
-              {
-                currentTrip = TripModel.fromFirestore(snapShot, null);
-                emit(OnDestination());
-              }
-          }
-        } else {}
-      }),
-    );
+
+    firestoreOnGoingCollection
+        .doc(getPhoneNumber())
+        .snapshots()
+        .listen((snapShot) async {
+      if (snapShot.data() != null &&
+          !snapShot.metadata.isFromCache &&
+          snapShot.data()!.isNotEmpty &&
+          snapShot.exists) {
+        switch (snapShot.data()!['tripStates']) {
+          case 'DriverOnTheWay' || null:
+            {
+              currentTrip = TripModel.fromFirestore(snapShot, null);
+              polylineCoordinates.clear();
+              await getPolyPoints(
+                startLat: currentTrip!.driverData!.driverLocationLat,
+                startLong: currentTrip!.driverData!.driverLocationLong,
+                destinationLat: startPoint!.geometry.location.lat!,
+                destinationLong: startPoint!.geometry.location.long!,
+                isDriverIcon: true,
+              );
+              emit(DriverAccebted());
+            }
+          case 'TripIsStarted':
+            {
+              currentTrip = TripModel.fromFirestore(snapShot, null);
+              polylineCoordinates.clear();
+              //TODO change start point data to detect driver real time changes
+              await getPolyPoints(
+                startLat: startPoint!.geometry.location.lat!,
+                startLong: startPoint!.geometry.location.long!,
+                destinationLat: destinationPoint!.geometry.location.lat!,
+                destinationLong: destinationPoint!.geometry.location.long!,
+                isDriverIcon: true,
+              );
+              emit(TripStarted());
+            }
+          case 'On Start point':
+            {
+              currentTrip = TripModel.fromFirestore(snapShot, null);
+              polylineCoordinates.clear();
+              //TODO change start point data to detect driver real time changes
+              await getPolyPoints(
+                startLat: startPoint!.geometry.location.lat!,
+                startLong: startPoint!.geometry.location.long!,
+                destinationLat: startPoint!.geometry.location.lat!,
+                destinationLong: startPoint!.geometry.location.long!,
+                isDriverIcon: true,
+              );
+              emit(DriverOnStart());
+            }
+          case 'On destination':
+            {
+              currentTrip = TripModel.fromFirestore(snapShot, null);
+              emit(OnDestination());
+            }
+        }
+      } else {}
+    });
   }
 
   void bookRide(TripModel trip) {
@@ -137,19 +136,19 @@ class RequestARideCubit extends Cubit<RequestARideState> {
       (error) => print(error.errorMessage),
       (success) async {
         print('Booked A Trip Wait for Driver');
-        await listnToTripChanges();
+        listnToTripChanges();
         emit(TripRequested());
       },
     );
   }
 
-  Future<void> cancelTrip(String riderPhone) async {
+  Future<void> cancelTrip(String riderPhone, BuildContext context) async {
     var result = await _requestRideRepoImple.cancelTrip(riderPhone);
 
     result.fold(
       (error) => print(error.errorMessage),
       (success) async {
-        print('trip canceled');
+        showCustomToast(message: 'Trip Cancelled').show(context);
       },
     );
   }

@@ -12,8 +12,8 @@ class ProfileViewBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var provider = BlocProvider.of<UserDataCubit>(context);
-    provider.getUserProfileData();
+    var userDataCubit = BlocProvider.of<UserDataCubit>(context);
+    userDataCubit.getUserProfileData();
     return SingleChildScrollView(
       child: Center(
         child: Column(
@@ -40,13 +40,14 @@ class ProfileViewBody extends StatelessWidget {
                 buttonText: 'Update Profile',
                 extraPhoneHint: 'Extra Phone Number',
                 buttonOnPressd: () {
-                  BlocProvider.of<UserDataCubit>(context).updateUserProfileData(
-                      RiderModel(
-                          riderPhone: provider.phoneController.text,
-                          email: provider.emailController.text,
-                          riderName: provider.nameController.text,
-                          extraPhoneNumber:
-                              provider.extraPhoneController.text));
+                  if (userDataCubit.formKey.currentState!.validate()) {
+                    userDataCubit.updateUserProfileData(RiderModel(
+                        riderPhone: userDataCubit.phoneController.text,
+                        email: userDataCubit.emailController.text,
+                        riderName: userDataCubit.nameController.text,
+                        extraPhoneNumber:
+                            userDataCubit.extraPhoneController.text));
+                  }
                 },
               ),
             ),

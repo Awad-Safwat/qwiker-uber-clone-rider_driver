@@ -43,7 +43,8 @@ class LogInViewBody extends StatelessWidget {
           Gap(160.h),
           DontORHaveAccountSecction(
             onPressed: () {
-              GoRouter.of(context).pushReplacement(ViewsName.signUpView);
+              GoRouter.of(context)
+                  .pushReplacement(ViewsName.completeProfileInfoView);
             },
             text: 'Don\'t have an account?',
             textStyle: AppFonts.poppinsRegularBlack_16,
