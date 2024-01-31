@@ -11,6 +11,8 @@ import 'package:qwiker_driver/features/history/data/history_data_source.dart';
 import 'package:qwiker_driver/features/history/data/history_repo_imple.dart';
 import 'package:qwiker_driver/features/profile/data/data_sources/remote_data_source.dart';
 import 'package:qwiker_driver/features/profile/data/user_repo_imple.dart';
+import 'package:qwiker_driver/features/reviews/data/reviewes_repo_imple.dart';
+import 'package:qwiker_driver/features/reviews/data/reviews_data_source.dart';
 
 final getIt = GetIt.instance;
 
@@ -37,4 +39,6 @@ Future<void> setupGetIt() async {
 
   getIt.registerLazySingleton(
       () => HistoryRepoImple(historyDataSource: HistoryDataSource()));
+  getIt.registerLazySingleton(
+      () => ReviewesRepoImple(reviewesDataSource: ReviewesDataSource()));
 }

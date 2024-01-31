@@ -45,6 +45,7 @@ dependencies:
   flutter_native_splash: ^2.3.6
   flutter_onboarding_slider: ^1.0.11
   flutter_polyline_points: ^2.0.0
+  flutter_rating_bar: ^4.0.1
   flutter_screenutil: ^5.9.0
   gap: ^3.0.1
   geolocator: ^10.1.0
