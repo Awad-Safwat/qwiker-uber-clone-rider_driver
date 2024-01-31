@@ -6,6 +6,7 @@ import 'package:qwiker_driver/features/accepte_a_trip/presentation/manager/accep
 import 'package:qwiker_driver/features/accepte_a_trip/presentation/views/requested_trips_view.dart';
 import 'package:qwiker_driver/features/history/presentation/view/history_view.dart';
 import 'package:qwiker_driver/features/profile/presentation/view/profile_view.dart';
+import 'package:qwiker_driver/features/reviews/presentation/view/reviewes_view.dart';
 
 part 'drawer_state.dart';
 
@@ -29,12 +30,14 @@ class DrawerCubit extends Cubit<DrawerState> {
     ),
     const ProfileView(),
     const HistoryView(),
+    const ReviewesView(),
   ];
 
   List<String> drawerViewsNames = [
     'Requested Trips',
     'Edit Profile',
-    'History'
+    'History',
+    'Reviewes'
   ];
 
   void changSelectedScreen(int selectedScreenNum) {

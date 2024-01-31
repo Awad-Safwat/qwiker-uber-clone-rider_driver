@@ -75,6 +75,16 @@ class DrawerItems extends StatelessWidget {
               ),
               ListTile(
                 onTap: () {
+                  provider.changSelectedScreen(3);
+                },
+                leading: const Icon(Icons.rate_review_outlined),
+                title: Text(
+                  'Reviewes',
+                  style: AppFonts.poppinsMedium_16,
+                ),
+              ),
+              ListTile(
+                onTap: () {
                   // BlocProvider.of<DrawerCubit>(context).selectedView = 3;
                 },
                 leading: const Icon(Icons.settings),
