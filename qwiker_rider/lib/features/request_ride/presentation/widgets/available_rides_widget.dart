@@ -85,7 +85,7 @@ class _AvailableRidesWidgetState extends State<AvailableRidesWidget> {
                         setState(() {
                           selectedRide = 'Car';
                           requestARideCubit.tripCoast =
-                              (requestARideCubit.totalDistance * 10).toInt();
+                              (requestARideCubit.totalDistance * 7).toInt();
                         });
                       },
                     ),
@@ -120,7 +120,7 @@ class _AvailableRidesWidgetState extends State<AvailableRidesWidget> {
                         setState(() {
                           selectedRide = 'TokTok';
                           requestARideCubit.tripCoast =
-                              (requestARideCubit.totalDistance * 7).toInt();
+                              (requestARideCubit.totalDistance * 5).toInt();
                         });
                       },
                     ),
@@ -155,7 +155,7 @@ class _AvailableRidesWidgetState extends State<AvailableRidesWidget> {
                         setState(() {
                           selectedRide = 'Bike';
                           requestARideCubit.tripCoast =
-                              (requestARideCubit.totalDistance * 4).toInt();
+                              (requestARideCubit.totalDistance * 3).toInt();
                         });
                       },
                     ),

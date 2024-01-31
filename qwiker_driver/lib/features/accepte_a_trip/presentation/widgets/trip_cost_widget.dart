@@ -36,8 +36,12 @@ class TripCostWidget extends StatelessWidget {
       ),
       content: CustomButton(
         onPressed: () {
-          accepteATripCubit.endATrip(accepteATripCubit.acceptedTripe!).then(
-              (_) => GoRouter.of(context).pushReplacement(ViewsName.homeView));
+          accepteATripCubit
+              .endATrip(accepteATripCubit.acceptedTripe!)
+              .then((_) {
+            getIt.resetLazySingleton<AccepteATripCubit>();
+            GoRouter.of(context).pushReplacement(ViewsName.homeView);
+          });
         },
         title: 'Collect',
       ),

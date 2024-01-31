@@ -9,7 +9,9 @@ import 'package:qwiker_rider/features/profile/presentation/view/complete_profile
 import 'package:qwiker_rider/features/auth/presentation/view/login_view.dart';
 import 'package:qwiker_rider/features/auth/presentation/view/pin_code_input_view.dart';
 import 'package:qwiker_rider/features/onpoarding/view/onpoarding_view.dart';
+import 'package:qwiker_rider/features/request_ride/data/request_ride_repo_imple/request_ride_repo_imple.dart';
 import 'package:qwiker_rider/features/request_ride/presentation/manager/request_a_ride_cubit/request_a_ride_cubit.dart';
+import 'package:qwiker_rider/features/request_ride/presentation/manager/serch_place_cubit/search_place_cubit.dart';
 import 'package:qwiker_rider/features/request_ride/presentation/view/confirm_ride_view.dart';
 import 'package:qwiker_rider/features/request_ride/presentation/view/search_view.dart';
 import 'package:qwiker_rider/features/request_ride/presentation/widgets/on_going_tirp_view.dart';
@@ -50,7 +52,18 @@ class AppRouter {
     ),
     GoRoute(
       path: ViewsName.searchView,
-      builder: (context, state) => const SearchView(),
+      builder: (context, state) => MultiBlocProvider(
+        providers: [
+          BlocProvider(
+            create: (context) => SearchPlaceCubit(
+                requestRideRepoImple: getIt<RequestRideRepoImple>()),
+          ),
+          BlocProvider.value(
+            value: getIt<RequestARideCubit>(),
+          ),
+        ],
+        child: const SearchView(),
+      ),
     ),
     GoRoute(
       path: ViewsName.confirmRideView,

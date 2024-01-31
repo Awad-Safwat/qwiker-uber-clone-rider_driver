@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:qwiker_driver/features/accepte_a_trip/data/models/driver_model.dart';
 import 'package:qwiker_driver/features/accepte_a_trip/data/models/place_model.dart';
+import 'package:qwiker_driver/features/accepte_a_trip/data/models/review_model.dart';
 import 'package:qwiker_driver/features/accepte_a_trip/data/models/rider_model.dart';
 
 class TripModel {
@@ -12,6 +13,7 @@ class TripModel {
   final double? tripTotalDestance;
   String? tripStates;
   int? tripCoast;
+  ReviewModel? tripReview;
 
   TripModel({
     required this.startPointdata,
@@ -21,21 +23,39 @@ class TripModel {
     required this.tripTotalDestance,
     this.tripStates,
     this.tripCoast,
+    this.tripReview,
   });
 
   factory TripModel.fromFirestore(
-    DocumentSnapshot<dynamic> snapshot,
+    DocumentSnapshot<Map<String, dynamic>> snapshot,
     SnapshotOptions? options,
   ) {
-    final trip = snapshot.data();
+    final trip = snapshot.data()!;
     return TripModel(
       startPointdata: PlaceModel.fromJson(trip['startPointdata']),
       endPointdata: PlaceModel.fromJson(trip['endPointdata']),
-      riderData: RiderModel.fromFirestore(trip['riderData'], null),
+      riderData: RiderModel.fromJson(trip['riderData']),
       driverData: null,
       tripTotalDestance: trip['tripTotalDestance'],
       tripStates: trip['tripStates'],
       tripCoast: trip['tripCoast'],
+      tripReview: ReviewModel.fromJson(trip['tripReview']),
+    );
+  }
+
+  factory TripModel.fromJson(
+    Map<String, dynamic> trip,
+  ) {
+    // final trip = snapshot.data()!;
+    return TripModel(
+      startPointdata: PlaceModel.fromJson(trip['startPointdata']),
+      endPointdata: PlaceModel.fromJson(trip['endPointdata']),
+      riderData: RiderModel.fromJson(trip['riderData']),
+      driverData: DriverModel.fromJson(trip['driverData']),
+      tripTotalDestance: trip['tripTotalDestance'],
+      tripStates: trip['tripStates'],
+      tripCoast: trip['tripCoast'],
+      tripReview: ReviewModel.fromJson(trip['tripReview']),
     );
   }
 
@@ -47,6 +67,8 @@ class TripModel {
       'endPointdata': endPointdata.toJson(),
       'tripTotalDestance': tripTotalDestance,
       'tripStates': tripStates,
+      'tripCoast': tripCoast,
+      'tripReview': tripReview?.toJson(),
     };
   }
 }

@@ -18,7 +18,7 @@ class RequestedTripsView extends StatelessWidget {
     BlocProvider.of<AccepteATripCubit>(context).getCurrentDriverPosition();
     return BlocProvider(
       create: (BuildContext context) =>
-          FindTripsCubit(FindTripsInitial())..waitForNewTrips(),
+          FindTripsCubit(FindTripsInitial())..listenForNewTrips(),
       child: Scaffold(
         body: Column(
           children: [
@@ -34,7 +34,7 @@ class RequestedTripsView extends StatelessWidget {
                 return Expanded(
                     child: RequestedTripsViewBody(
                   trips: state.trips,
-                  findTripCubit: findTripsCubit,
+                  findTripsCubit: findTripsCubit,
                 ));
               } else if (state is FindTripsFalure) {
                 return Center(child: Text('Error: ${state.message}'));

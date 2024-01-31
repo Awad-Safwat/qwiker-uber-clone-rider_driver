@@ -1,18 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
-import 'package:qwiker_rider/core/theaming/app_colors.dart';
-import 'package:qwiker_rider/core/theaming/app_fonts.dart';
-import 'package:qwiker_rider/features/auth/presentation/view/widgets/custom_list_tile.dart';
-import 'package:qwiker_rider/features/history/presentation/manager/history_cubit/history_cubit.dart';
-import 'package:qwiker_rider/features/request_ride/data/models/trip_model.dart';
-import 'package:qwiker_rider/features/request_ride/presentation/widgets/custom_bickup_icon.dart';
-import 'package:qwiker_rider/features/request_ride/presentation/widgets/custom_destination_icon.dart';
+import 'package:qwiker_driver/core/theaming/app_colors.dart';
+import 'package:qwiker_driver/core/theaming/app_fonts.dart';
+import 'package:qwiker_driver/core/widgets/custom_bickup_icon.dart';
+import 'package:qwiker_driver/core/widgets/custom_destination_icon.dart';
+import 'package:qwiker_driver/core/widgets/custom_list_tile.dart';
+import 'package:qwiker_driver/features/accepte_a_trip/data/models/trip_model.dart';
 
-class TripItem extends StatelessWidget {
-  const TripItem({
+class HistoryTripItem extends StatelessWidget {
+  const HistoryTripItem({
     super.key,
     required this.trip,
   });
@@ -57,22 +55,9 @@ class TripItem extends StatelessWidget {
                     minWidth: 270.w,
                   ),
                   child: Text(
-                    trip.driverData!.driverName,
+                    trip.riderData!.riderName,
                     style: AppFonts.poppinsSemiBold_16,
                     maxLines: 1,
-                  ),
-                ),
-                subTitle: RichText(
-                  overflow: TextOverflow.ellipsis,
-                  text: TextSpan(
-                    children: [
-                      TextSpan(
-                          text: 'Volkswagen' '-',
-                          style: AppFonts.poppinsRegularGray_14),
-                      TextSpan(
-                          text: 'HG5045',
-                          style: AppFonts.poppinsRegularBlack_16),
-                    ],
                   ),
                 ),
                 trailing: Text(
@@ -126,29 +111,14 @@ class TripItem extends StatelessWidget {
                   ],
                 ),
               ),
-              Gap(2.h),
+              Gap(10.h),
               Center(
-                child: RatingBarIndicator(
-                  rating: trip.tripReview!.rate!.toDouble(),
-                  itemBuilder: (context, index) => const Icon(
-                    Icons.star,
-                    color: Colors.amber,
-                  ),
-                  itemCount: 5,
-                  itemSize: 30.0,
-                  direction: Axis.horizontal,
+                child: Text(
+                  r'$' '${trip.tripCoast}',
+                  style: AppFonts.poppinsMedium_26.copyWith(
+                      color: AppColors.mainBlue, fontWeight: FontWeight.w700),
                 ),
               ),
-              Gap(18.h),
-              RichText(
-                  text: TextSpan(
-                      text: 'Review: ',
-                      style: AppFonts.poppinsMediumBlue_20,
-                      children: [
-                    TextSpan(
-                        text: trip.tripReview!.comment ?? '',
-                        style: AppFonts.poppinsMediumGray_16),
-                  ])),
             ],
           ),
         ),

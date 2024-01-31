@@ -5,7 +5,7 @@ part 'find_trips_state.dart';
 class FindTripsCubit extends Cubit<FindTripsState> {
   FindTripsCubit(super.initialState);
 
-  void waitForNewTrips() {
+  void listenForNewTrips() {
     print('listening to trips');
     FirebaseFirestore.instance
         .collection("requestedTrips")

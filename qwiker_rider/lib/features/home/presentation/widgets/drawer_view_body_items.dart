@@ -65,7 +65,7 @@ class DrawerItems extends StatelessWidget {
               ),
               ListTile(
                 onTap: () {
-                  //  BlocProvider.of<DrawerCubit>(context).selectedView = 2;
+                  provider.changSelectedScreen(2);
                 },
                 leading: const Icon(Icons.history),
                 title: Text(

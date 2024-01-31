@@ -21,7 +21,7 @@ class RemoteUsersData {
 
     final docSnap = await docRef.get();
     final driverData = docSnap.data();
-    return DriverModel.fromFirestore(driverData!, null);
+    return DriverModel.fromJson(driverData!);
   }
 
   Future<void> updateDriverProfileData(DriverModel driver) async {

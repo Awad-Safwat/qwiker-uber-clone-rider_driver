@@ -28,6 +28,18 @@ class DriverModel {
       driverName: user["driverName"],
     );
   }
+  factory DriverModel.fromJson(
+    Map<String, dynamic> user,
+  ) {
+    // final user = snapshot.data()!['driverData'];
+    return DriverModel(
+      driverLocationLat: user['driverLocationLat'],
+      driverLocationLong: user['driverLocationLong'],
+      email: user['email'],
+      driverPhoneNumber: user['driverPhoneNumber'],
+      driverName: user["driverName"],
+    );
+  }
 
   Map<String, dynamic> toFirestore() {
     return {

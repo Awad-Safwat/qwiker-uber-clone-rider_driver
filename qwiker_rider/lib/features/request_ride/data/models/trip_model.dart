@@ -43,6 +43,22 @@ class TripModel {
     );
   }
 
+  factory TripModel.fromJson(
+    Map<String, dynamic> trip,
+  ) {
+    // final trip = snapshot.data()!;
+    return TripModel(
+      startPointdata: PlaceModel.fromJson(trip['startPointdata']),
+      endPointdata: PlaceModel.fromJson(trip['endPointdata']),
+      riderData: RiderModel.fromJson(trip['riderData']),
+      driverData: DriverModel.fromJson(trip['driverData']),
+      tripTotalDestance: trip['tripTotalDestance'],
+      tripStates: trip['tripStates'],
+      tripCoast: trip['tripCoast'],
+      tripReview: ReviewModel.fromJson(trip['tripReview']),
+    );
+  }
+
   Map<String, dynamic> toFirestore() {
     return {
       'driverData': driverData?.toFirestore(),

@@ -2,14 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
-import 'package:qwiker_rider/core/theaming/app_colors.dart';
-import 'package:qwiker_rider/core/theaming/app_fonts.dart';
-import 'package:qwiker_rider/core/widgets/custom_progress_indicator.dart';
-import 'package:qwiker_rider/core/widgets/custom_toast.dart';
-import 'package:qwiker_rider/features/history/presentation/manager/history_cubit/history_cubit.dart';
-import 'package:qwiker_rider/features/history/presentation/widgets/trip_item.dart';
-import 'package:qwiker_rider/features/home/presentation/widgets/custom_app_bar.dart';
-import 'package:qwiker_rider/features/request_ride/data/models/trip_model.dart';
+import 'package:qwiker_driver/core/theaming/app_colors.dart';
+import 'package:qwiker_driver/core/theaming/app_fonts.dart';
+import 'package:qwiker_driver/features/history/presentation/manager/history_cubit/history_cubit.dart';
+import 'package:qwiker_driver/features/history/presentation/widgets/history_trip_item.dart';
+import 'package:qwiker_driver/features/home/presentation/widgets/custom_app_bar.dart';
 
 class HistoryViewBody extends StatelessWidget {
   const HistoryViewBody({super.key});
@@ -48,7 +45,7 @@ class HistoryViewBody extends StatelessWidget {
                               return Padding(
                                 padding:
                                     const EdgeInsets.symmetric(vertical: 8),
-                                child: TripItem(
+                                child: HistoryTripItem(
                                   trip: historyCubit.history[index],
                                 ),
                               );

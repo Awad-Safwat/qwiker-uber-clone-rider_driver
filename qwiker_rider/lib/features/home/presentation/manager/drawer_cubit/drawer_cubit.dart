@@ -23,7 +23,7 @@ class DrawerCubit extends Cubit<DrawerState> {
     advancedDrawerController.showDrawer();
   }
 
-  int selectedView = 2;
+  int selectedView = 0;
 
   List<Widget> drawerViews = [
     BlocProvider(

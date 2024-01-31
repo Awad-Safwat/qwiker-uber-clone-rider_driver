@@ -82,7 +82,7 @@ class DriverOnStartView extends StatelessWidget {
           destinationName: requestARideCubit.destinationPoint!.shortName,
           fullDistance: requestARideCubit.totalDistance,
           startLocationName: requestARideCubit.startPoint!.shortName,
-          tripCoast: 30,
+          tripCoast: requestARideCubit.tripCoast,
         ),
       ),
     ]);
