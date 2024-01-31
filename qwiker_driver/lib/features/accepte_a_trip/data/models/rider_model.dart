@@ -31,6 +31,15 @@ class RiderModel {
     );
   }
 
+  factory RiderModel.fromJson(Map<String, dynamic> rider) {
+    return RiderModel(
+      email: rider['email'],
+      riderPhone: rider['riderPhone'],
+      riderName: rider["riderName"],
+      extraPhoneNumber: rider['extraPhoneNumber'],
+    );
+  }
+
   Map<String, dynamic> toFirestore() {
     return {
       'email': email,

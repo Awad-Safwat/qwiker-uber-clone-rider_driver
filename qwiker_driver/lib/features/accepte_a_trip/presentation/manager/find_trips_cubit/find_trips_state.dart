@@ -7,7 +7,7 @@ class FindTripsInitial extends FindTripsState {}
 final class FindTripsNoTripsFounded extends FindTripsState {}
 
 final class FindTripsNewTripsAdded extends FindTripsState {
-  final List<QueryDocumentSnapshot<Map<String, dynamic>>> trips;
+  final List<DocumentSnapshot<Map<String, dynamic>>?> trips;
 
   FindTripsNewTripsAdded({required this.trips});
 }

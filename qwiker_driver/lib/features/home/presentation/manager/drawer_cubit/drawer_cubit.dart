@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:qwiker_driver/core/di/dependency_injection.dart';
 import 'package:qwiker_driver/features/accepte_a_trip/presentation/manager/accepte_a_trip/accepte_a_trip_cubit.dart';
 import 'package:qwiker_driver/features/accepte_a_trip/presentation/views/requested_trips_view.dart';
+import 'package:qwiker_driver/features/history/presentation/view/history_view.dart';
 import 'package:qwiker_driver/features/profile/presentation/view/profile_view.dart';
 
 part 'drawer_state.dart';
@@ -27,9 +28,14 @@ class DrawerCubit extends Cubit<DrawerState> {
       child: const RequestedTripsView(),
     ),
     const ProfileView(),
+    const HistoryView(),
   ];
 
-  List<String> drawerViewsNames = ['Requested Trips', 'Edit Profile'];
+  List<String> drawerViewsNames = [
+    'Requested Trips',
+    'Edit Profile',
+    'History'
+  ];
 
   void changSelectedScreen(int selectedScreenNum) {
     getIt.resetLazySingleton<AccepteATripCubit>();

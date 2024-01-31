@@ -11,19 +11,8 @@ class SearchView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MultiBlocProvider(
-      providers: [
-        BlocProvider(
-          create: (context) => SearchPlaceCubit(
-              requestRideRepoImple: getIt<RequestRideRepoImple>()),
-        ),
-        BlocProvider.value(
-          value: getIt<RequestARideCubit>(),
-        ),
-      ],
-      child: const Scaffold(
-        body: SearchViewBody(),
-      ),
+    return const Scaffold(
+      body: SearchViewBody(),
     );
   }
 }

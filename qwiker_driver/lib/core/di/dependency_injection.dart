@@ -7,6 +7,8 @@ import 'package:qwiker_driver/features/accepte_a_trip/presentation/manager/accep
 import 'package:qwiker_driver/features/auth/data/auth_repo_imple.dart';
 import 'package:qwiker_driver/features/auth/data/data_sources/remote_data_source.dart';
 import 'package:qwiker_driver/features/auth/presentation/manager/auth_cubit/auth_cubit.dart';
+import 'package:qwiker_driver/features/history/data/history_data_source.dart';
+import 'package:qwiker_driver/features/history/data/history_repo_imple.dart';
 import 'package:qwiker_driver/features/profile/data/data_sources/remote_data_source.dart';
 import 'package:qwiker_driver/features/profile/data/user_repo_imple.dart';
 
@@ -32,4 +34,7 @@ Future<void> setupGetIt() async {
 
   getIt.registerLazySingleton(() => AccepteATripCubit(
       accepteAtripReposImple: getIt<AccepteAtripReposImple>()));
+
+  getIt.registerLazySingleton(
+      () => HistoryRepoImple(historyDataSource: HistoryDataSource()));
 }

@@ -43,7 +43,7 @@ class CustomListTile extends StatelessWidget {
             children: [
               Padding(
                 // Padding for the leading widget
-                padding: const EdgeInsets.only(left: 12.0, right: 12.0),
+                padding: const EdgeInsets.only(right: 12.0),
                 child: leading, // Display leading widget
               ),
               Expanded(
@@ -56,7 +56,7 @@ class CustomListTile extends StatelessWidget {
                   children: [
                     title ?? const SizedBox(), // Display title or empty space
                     const SizedBox(
-                        height: 10), // Spacing between title and subtitle
+                        height: 5), // Spacing between title and subtitle
                     subTitle ??
                         const SizedBox(), // Display subtitle or empty space
                   ],
@@ -64,7 +64,7 @@ class CustomListTile extends StatelessWidget {
               ),
               Padding(
                 // Padding for the trailing widget
-                padding: const EdgeInsets.all(12.0),
+                padding: const EdgeInsets.all(10.0),
                 child: trailing, // Display trailing widget
               )
             ],

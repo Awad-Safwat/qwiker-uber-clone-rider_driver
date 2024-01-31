@@ -18,6 +18,11 @@ class AppFonts {
     fontSize: 20,
     fontWeight: FontWeight.w500,
   );
+  static TextStyle poppinsMediumBlue_20 = GoogleFonts.poppins(
+    fontSize: 20,
+    fontWeight: FontWeight.w500,
+    color: AppColors.mainBlue,
+  );
   static TextStyle poppinsMedium_26 = GoogleFonts.poppins(
     fontSize: 26,
     fontWeight: FontWeight.w500,

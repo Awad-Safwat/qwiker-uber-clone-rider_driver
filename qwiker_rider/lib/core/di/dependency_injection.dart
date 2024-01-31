@@ -4,6 +4,8 @@ import 'package:qwiker_rider/core/networking/api_service.dart';
 import 'package:qwiker_rider/features/auth/data/auth_repo_imple.dart';
 import 'package:qwiker_rider/features/auth/data/data_sources/remote_data_source.dart';
 import 'package:qwiker_rider/features/auth/presentation/manager/auth_cubit/auth_cubit.dart';
+import 'package:qwiker_rider/features/history/data/history_data_source.dart';
+import 'package:qwiker_rider/features/history/data/history_repo_imple.dart';
 import 'package:qwiker_rider/features/profile/data/data_sources/remote_data_source.dart';
 import 'package:qwiker_rider/features/profile/data/user_repo_imple.dart';
 import 'package:qwiker_rider/features/request_ride/data/data_source/remote_data_source.dart';
@@ -34,6 +36,9 @@ Future<void> setupGetIt() async {
   getIt.registerLazySingleton(
     () =>
         RequestARideCubit(requestRideRepoImple: getIt<RequestRideRepoImple>()),
+  );
+  getIt.registerLazySingleton(
+    () => HistoryRepoImple(historyDataSource: HistoryDataSource()),
   );
   // getIt.registerLazySingleton(
   //   () => OnGoingTripCubit(requestRideRepoImple: getIt<RequestRideRepoImple>()),
