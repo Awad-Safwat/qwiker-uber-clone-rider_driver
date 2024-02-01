@@ -20,7 +20,7 @@ class UserDataCubit extends Cubit<UserDataState> {
   TextEditingController phoneController = TextEditingController();
   TextEditingController extraPhoneController = TextEditingController();
 
-  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  final GlobalKey<FormState> userDataFormKey = GlobalKey<FormState>();
   String countryIsoCode = 'GH';
 
   PhoneNumber number = PhoneNumber(isoCode: 'GH');

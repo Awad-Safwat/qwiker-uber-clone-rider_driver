@@ -8,8 +8,8 @@ import 'package:qwiker_driver/core/widgets/custom_button.dart';
 import 'package:qwiker_driver/features/auth/presentation/manager/auth_cubit/auth_cubit.dart';
 import '../../../../../core/theaming/app_fonts.dart';
 
-class LoginTFieldWithButtonSecction extends StatelessWidget {
-  const LoginTFieldWithButtonSecction({
+class LoginFieldWithButtonSecction extends StatelessWidget {
+  const LoginFieldWithButtonSecction({
     super.key,
   });
 
@@ -23,7 +23,6 @@ class LoginTFieldWithButtonSecction extends StatelessWidget {
         children: [
           InternationalPhoneNumberInput(
             onInputChanged: (PhoneNumber number) {
-              // print(number.phoneNumber);
               authCubit.number = number;
             },
             onInputValidated: (bool value) {

@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:qwiker_rider/core/di/dependency_injection.dart';
 import 'package:qwiker_rider/core/theaming/app_colors.dart';
+import 'package:qwiker_rider/features/messages/presentation/manager/messaging_cubit/messaging_cubit.dart';
 import 'package:qwiker_rider/features/request_ride/presentation/manager/request_a_ride_cubit/request_a_ride_cubit.dart';
 
 import 'package:qwiker_rider/features/request_ride/presentation/widgets/driver_on_start_view.dart';
@@ -16,8 +17,16 @@ class OnGoingTripView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: BlocProvider.value(
-        value: getIt<RequestARideCubit>(),
+      body: MultiBlocProvider(
+        providers: [
+          BlocProvider.value(
+            value: getIt<RequestARideCubit>(),
+          ),
+          BlocProvider(
+            create: (context) =>
+                getIt<MessagingCubit>()..startListeningToMessages(),
+          ),
+        ],
         child: BlocBuilder<RequestARideCubit, RequestARideState>(
           builder: (context, state) {
             if (state is DriverAccebted) {

@@ -27,9 +27,9 @@ class RequestARideViewBody extends StatelessWidget {
               print(state.message);
               showCustomToast(message: state.message).show(context);
             }
-            // if (state is GetCurrentPositionLoaded) {
-            //   provider.goToRiderCurrentLocation();
-            // }
+            if (state is GetCurrentPositionLoaded) {
+              GoRouter.of(context).refresh();
+            }
           },
           builder: (context, state) {
             if (state is GetCurrentPositionLoaded) {

@@ -15,7 +15,7 @@ class LogInView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider<AuthCubit>(
+    return BlocProvider(
       create: (context) => getIt<AuthCubit>(),
       child: Scaffold(
         body: BlocListener<AuthCubit, AuthState>(
@@ -27,7 +27,10 @@ class LogInView extends StatelessWidget {
               GoRouter.of(context).push(ViewsName.pinCodeInputView);
             } else if (state is AuthSendingCodeFalier) {
               GoRouter.of(context).pop();
-              showCustomToast(message: state.message);
+              showCustomToast(message: state.message).show(context);
+            } else if (state is AuthFailer) {
+              GoRouter.of(context).pop();
+              showCustomToast(message: state.message).show(context);
             }
           },
           child: const LogInViewBody(),

@@ -1,5 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:qwiker_driver/core/exptions/error_handeler.dart';
+import 'package:qwiker_driver/features/accepte_a_trip/data/models/driver_model.dart';
 import 'package:qwiker_driver/features/auth/data/data_sources/remote_data_source.dart';
 import 'package:qwiker_driver/features/auth/domain/auth_repo.dart';
 
@@ -10,9 +11,9 @@ class AuthRepoImple extends AuthRepo {
       : _authUsersData = authUsersData;
 
   @override
-  Either<Falure, Future<bool>> checkUserExistans(String userId) {
+  Either<Falure, Future<DriverModel?>> getUserProfileData(String userId) {
     try {
-      return right(_authUsersData.checkUserExistans(userId: userId));
+      return right(_authUsersData.getUserProfileData(riderPhone: userId));
     } catch (error) {
       return left(Falure(errorMessage: error.toString()));
     }

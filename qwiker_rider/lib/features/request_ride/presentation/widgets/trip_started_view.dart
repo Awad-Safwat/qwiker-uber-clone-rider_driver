@@ -5,6 +5,7 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:qwiker_rider/core/di/dependency_injection.dart';
 import 'package:qwiker_rider/core/theaming/app_colors.dart';
 import 'package:qwiker_rider/core/theaming/app_fonts.dart';
+import 'package:qwiker_rider/features/messages/presentation/manager/messaging_cubit/messaging_cubit.dart';
 import 'package:qwiker_rider/features/request_ride/presentation/manager/request_a_ride_cubit/request_a_ride_cubit.dart';
 import 'package:qwiker_rider/features/request_ride/presentation/widgets/custom_map.dart';
 import 'package:qwiker_rider/features/request_ride/presentation/widgets/trip_on_going_bottom_section.dart';
@@ -16,6 +17,7 @@ class TripIsStartedView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var requestARideCubit = getIt<RequestARideCubit>();
+    getIt<MessagingCubit>().stopListeningToMessages();
     return Stack(children: [
       CustomMap(
         provider: requestARideCubit,

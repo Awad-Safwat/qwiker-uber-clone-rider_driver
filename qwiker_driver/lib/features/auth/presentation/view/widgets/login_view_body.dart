@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
-import 'package:go_router/go_router.dart';
-import 'package:qwiker_driver/core/routing/views_name.dart';
 import '../../../../../core/theaming/app_fonts.dart';
-import 'dont_or_have_account_secction.dart';
 import 'login_field_with_button_secction.dart';
 
 class LogInViewBody extends StatelessWidget {
@@ -38,19 +35,18 @@ class LogInViewBody extends StatelessWidget {
           Gap(20.h),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 35.w),
-            child: const LoginTFieldWithButtonSecction(),
+            child: const LoginFieldWithButtonSecction(),
           ),
           Gap(160.h),
-          DontORHaveAccountSecction(
-            onPressed: () {
-              GoRouter.of(context)
-                  .pushReplacement(ViewsName.completeProfileInfoView);
-            },
-            text: 'Don\'t have an account?',
-            textStyle: AppFonts.poppinsRegularBlack_16,
-            textButtonTitle: 'Sign Up',
-            textButtonTitleStyle: AppFonts.poppinsBoldBlue_16,
-          ),
+          // DontORHaveAccountSecction(
+          //   onPressed: () {
+          //     GoRouter.of(context).pushReplacement(ViewsName.completeProfileInfoView);
+          //   },
+          //   text: 'Don\'t have an account?',
+          //   textStyle: AppFonts.poppinsRegularBlack_16,
+          //   textButtonTitle: 'Sign Up',
+          //   textButtonTitleStyle: AppFonts.poppinsBoldBlue_16,
+          // ),
         ],
       ),
     );

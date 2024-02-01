@@ -1,9 +1,14 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
+import 'package:go_router/go_router.dart';
+import 'package:qwiker_driver/core/di/dependency_injection.dart';
+import 'package:qwiker_driver/core/routing/views_name.dart';
 import 'package:qwiker_driver/core/theaming/app_colors.dart';
 import 'package:qwiker_driver/core/theaming/app_fonts.dart';
+import 'package:qwiker_driver/features/auth/presentation/manager/auth_cubit/auth_cubit.dart';
 import 'package:qwiker_driver/features/home/presentation/manager/drawer_cubit/drawer_cubit.dart';
 
 class DrawerItems extends StatelessWidget {
@@ -85,7 +90,7 @@ class DrawerItems extends StatelessWidget {
               ),
               ListTile(
                 onTap: () {
-                  // BlocProvider.of<DrawerCubit>(context).selectedView = 3;
+                  provider.changSelectedScreen(4);
                 },
                 leading: const Icon(Icons.settings),
                 title: Text(
@@ -97,7 +102,11 @@ class DrawerItems extends StatelessWidget {
                 flex: 5,
               ),
               ListTile(
-                onTap: () {},
+                onTap: () {
+                  getIt.resetLazySingleton<AuthCubit>();
+                  FirebaseAuth.instance.signOut();
+                  GoRouter.of(context).goNamed(ViewsName.logInView);
+                },
                 leading: const Icon(Icons.logout),
                 title: Text(
                   'Logout',

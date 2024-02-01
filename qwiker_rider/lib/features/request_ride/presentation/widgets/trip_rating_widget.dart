@@ -6,6 +6,7 @@ import 'package:qwiker_rider/core/di/dependency_injection.dart';
 import 'package:qwiker_rider/core/routing/views_name.dart';
 import 'package:qwiker_rider/core/theaming/app_fonts.dart';
 import 'package:qwiker_rider/core/widgets/custom_button.dart';
+import 'package:qwiker_rider/features/messages/presentation/manager/messaging_cubit/messaging_cubit.dart';
 import 'package:qwiker_rider/features/request_ride/presentation/manager/request_a_ride_cubit/request_a_ride_cubit.dart';
 
 class TripRatingWidget extends StatelessWidget {
@@ -77,6 +78,8 @@ class TripRatingWidget extends StatelessWidget {
                 requestARideCubit
                     .endAtrip(requestARideCubit.currentTrip!)
                     .then((_) {
+                  getIt.resetLazySingleton<RequestARideCubit>();
+                  getIt.resetLazySingleton<MessagingCubit>();
                   GoRouter.of(context).pushReplacement(ViewsName.homeView);
                 });
               },
