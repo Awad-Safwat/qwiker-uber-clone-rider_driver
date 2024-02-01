@@ -129,7 +129,7 @@ class TripItem extends StatelessWidget {
               Gap(2.h),
               Center(
                 child: RatingBarIndicator(
-                  rating: trip.tripReview!.rate!.toDouble(),
+                  rating: trip.tripReview!.rate?.toDouble() ?? 1,
                   itemBuilder: (context, index) => const Icon(
                     Icons.star,
                     color: Colors.amber,

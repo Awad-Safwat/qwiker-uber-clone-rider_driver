@@ -2,11 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:qwiker_driver/core/di/dependency_injection.dart';
 import 'package:qwiker_driver/core/theaming/app_colors.dart';
 import 'package:qwiker_driver/core/theaming/app_fonts.dart';
 import 'package:qwiker_driver/features/accepte_a_trip/presentation/manager/accepte_a_trip/accepte_a_trip_cubit.dart';
 import 'package:qwiker_driver/features/accepte_a_trip/presentation/widgets/custom_map.dart';
 import 'package:qwiker_driver/features/accepte_a_trip/presentation/widgets/trip_details_section.dart';
+import 'package:qwiker_driver/features/messages/presentation/manager/messaging_cubit/messaging_cubit.dart';
 
 class DriverOnStartPointView extends StatelessWidget {
   const DriverOnStartPointView({super.key});
@@ -73,6 +75,7 @@ class DriverOnStartPointView extends StatelessWidget {
             buttonOnPressed: () {
               accepteATripCubit.startTrip(
                   accepteATripCubit.acceptedTripe!.riderData!.riderPhone);
+              getIt<MessagingCubit>().stopListeningToMessages();
             },
             buttonTitle: 'Start The Trip',
             riderName: accepteATripCubit.acceptedTripe!.riderData!.riderName,

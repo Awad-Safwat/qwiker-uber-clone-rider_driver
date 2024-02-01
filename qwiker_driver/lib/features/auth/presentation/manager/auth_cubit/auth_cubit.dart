@@ -3,19 +3,26 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 import 'package:meta/meta.dart';
+import 'package:qwiker_driver/core/global_functions.dart';
+import 'package:qwiker_driver/features/auth/data/auth_repo_imple.dart';
 
 part 'auth_state.dart';
 
 class AuthCubit extends Cubit<AuthState> {
-  AuthCubit({required authRepoImple}) : super(AuthInitial());
+  AuthCubit({required authRepoImple})
+      : _authRepoImple = authRepoImple,
+        super(AuthInitial());
+
+  final AuthRepoImple _authRepoImple;
 
   late String verificationId;
   String? phoneNumber;
   String? userPinCode;
+  final TextEditingController controller = TextEditingController();
+
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   String initialCountry = 'EG';
   PhoneNumber number = PhoneNumber(isoCode: 'EG');
-  final TextEditingController controller = TextEditingController();
 
   Future<void> submitPhoneNumber(String phoneNumber) async {
     emit(AuthLoading());
@@ -28,6 +35,24 @@ class AuthCubit extends Cubit<AuthState> {
       codeSent: codeSent,
       codeAutoRetrievalTimeout: codeAutoRetrievalTimeout,
     );
+  }
+
+  void getUserProfileData(String userId) async {
+    emit(AuthLoading());
+    var result = _authRepoImple.getUserProfileData(userId);
+
+    result.fold((falure) {
+      emit(AuthFailer(message: falure.errorMessage));
+    }, (riderData) async {
+      var rider = await riderData;
+      if (rider != null) {
+        prefs.setBool('hasProfile', true);
+        saveUserDataLocal(rider);
+        emit(AuthUserExiste());
+      } else {
+        emit(AuthUserNotExiste());
+      }
+    });
   }
 
   void verificationCompleted(PhoneAuthCredential credential) async {

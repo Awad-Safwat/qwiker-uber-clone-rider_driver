@@ -38,7 +38,7 @@ class LogInViewBody extends StatelessWidget {
           Gap(20.h),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 35.w),
-            child: const LoginTFieldWithButtonSecction(),
+            child: const LoginFieldWithButtonSecction(),
           ),
           Gap(160.h),
           // DontORHaveAccountSecction(

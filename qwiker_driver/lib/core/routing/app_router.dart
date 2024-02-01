@@ -11,14 +11,12 @@ import 'package:qwiker_driver/features/auth/presentation/view/pin_code_input_vie
 import 'package:qwiker_driver/features/home/presentation/view/home_view.dart';
 import 'package:qwiker_driver/features/onpoarding/view/onpoarding_view.dart';
 import 'package:qwiker_driver/features/profile/presentation/view/complete_profile_data.dart';
-import 'package:qwiker_driver/test_ui_view.dart';
 
 class AppRouter {
   final router = GoRouter(routes: [
     GoRoute(
       path: '/',
       builder: (context, state) {
-        // return const TestUiView();
         if (isFirstTime ?? false) {
           return const OnBoardingView();
         } else if (FirebaseAuth.instance.currentUser == null) {
@@ -31,6 +29,7 @@ class AppRouter {
       },
     ),
     GoRoute(
+      name: ViewsName.logInView,
       path: ViewsName.logInView,
       builder: (context, state) => const LogInView(),
     ),
@@ -39,8 +38,14 @@ class AppRouter {
       builder: (context, state) => const PinCodeInputView(),
     ),
     GoRoute(
+      name: ViewsName.homeView,
       path: ViewsName.homeView,
       builder: (context, state) => const HomeView(),
+    ),
+    GoRoute(
+      name: ViewsName.completeProfileDataView,
+      path: ViewsName.completeProfileDataView,
+      builder: (context, state) => const CompleteProfileDataView(),
     ),
     GoRoute(
       path: ViewsName.currentTrip,
@@ -48,10 +53,6 @@ class AppRouter {
         value: getIt<AccepteATripCubit>(),
         child: const CurrentTripView(),
       ),
-    ),
-    GoRoute(
-      path: ViewsName.testUiView,
-      builder: (context, state) => const TestUiView(),
     ),
   ]);
 }

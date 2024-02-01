@@ -1,6 +1,8 @@
 // check first time or not to show onboarding screen
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:qwiker_rider/core/theaming/app_colors.dart';
+import 'package:qwiker_rider/features/messages/presentation/views/messages_view.dart';
 import 'package:qwiker_rider/features/profile/data/user_model/rider_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -76,3 +78,16 @@ showProgressIndicator(BuildContext context) {
     },
   );
 }
+
+void showMessagesView(BuildContext context) => showAdaptiveDialog(
+    context: context,
+    builder: (context) => Padding(
+          padding: EdgeInsets.symmetric(horizontal: 30.w, vertical: 70.h),
+          child: Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(15),
+                color: AppColors.mainBlue,
+              ),
+              clipBehavior: Clip.hardEdge,
+              child: const MessagesView()),
+        ));

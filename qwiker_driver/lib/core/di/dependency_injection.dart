@@ -9,6 +9,7 @@ import 'package:qwiker_driver/features/auth/data/data_sources/remote_data_source
 import 'package:qwiker_driver/features/auth/presentation/manager/auth_cubit/auth_cubit.dart';
 import 'package:qwiker_driver/features/history/data/history_data_source.dart';
 import 'package:qwiker_driver/features/history/data/history_repo_imple.dart';
+import 'package:qwiker_driver/features/messages/presentation/manager/messaging_cubit/messaging_cubit.dart';
 import 'package:qwiker_driver/features/profile/data/data_sources/remote_data_source.dart';
 import 'package:qwiker_driver/features/profile/data/user_repo_imple.dart';
 import 'package:qwiker_driver/features/reviews/data/reviewes_repo_imple.dart';
@@ -41,4 +42,6 @@ Future<void> setupGetIt() async {
       () => HistoryRepoImple(historyDataSource: HistoryDataSource()));
   getIt.registerLazySingleton(
       () => ReviewesRepoImple(reviewesDataSource: ReviewesDataSource()));
+
+  getIt.registerLazySingleton(() => MessagingCubit());
 }

@@ -6,6 +6,7 @@ import 'package:qwiker_driver/core/routing/views_name.dart';
 import 'package:qwiker_driver/core/theaming/app_fonts.dart';
 import 'package:qwiker_driver/core/widgets/custom_button.dart';
 import 'package:qwiker_driver/features/accepte_a_trip/presentation/manager/accepte_a_trip/accepte_a_trip_cubit.dart';
+import 'package:qwiker_driver/features/messages/presentation/manager/messaging_cubit/messaging_cubit.dart';
 
 class TripCostWidget extends StatelessWidget {
   const TripCostWidget({
@@ -40,7 +41,8 @@ class TripCostWidget extends StatelessWidget {
               .endATrip(accepteATripCubit.acceptedTripe!)
               .then((_) {
             getIt.resetLazySingleton<AccepteATripCubit>();
-            GoRouter.of(context).pushReplacement(ViewsName.homeView);
+            getIt.resetLazySingleton<MessagingCubit>();
+            GoRouter.of(context).goNamed(ViewsName.homeView);
           });
         },
         title: 'Collect',

@@ -8,8 +8,8 @@ import 'package:qwiker_rider/core/widgets/custom_button.dart';
 import 'package:qwiker_rider/features/auth/presentation/manager/auth_cubit/auth_cubit.dart';
 import '../../../../../core/theaming/app_fonts.dart';
 
-class LoginTFieldWithButtonSecction extends StatelessWidget {
-  const LoginTFieldWithButtonSecction({
+class LoginFieldWithButtonSecction extends StatelessWidget {
+  const LoginFieldWithButtonSecction({
     super.key,
   });
 

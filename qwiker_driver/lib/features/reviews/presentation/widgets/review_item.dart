@@ -47,7 +47,7 @@ class ReviewItem extends StatelessWidget {
               Gap(18.h),
               Center(
                 child: RatingBarIndicator(
-                  rating: review.rate!.toDouble(),
+                  rating: review.rate?.toDouble() ?? 1,
                   itemBuilder: (context, index) => const Icon(
                     Icons.star,
                     color: Colors.amber,

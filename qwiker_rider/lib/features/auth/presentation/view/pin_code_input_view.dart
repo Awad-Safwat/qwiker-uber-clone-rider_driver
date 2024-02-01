@@ -32,10 +32,9 @@ class PinCodeInputView extends StatelessWidget {
                 GoRouter.of(context).pop();
                 showCustomToast(message: state.message).show(context);
               } else if (state is AuthUserNotExiste) {
-                GoRouter.of(context)
-                    .pushReplacement(ViewsName.completeProfileInfoView);
+                GoRouter.of(context).goNamed(ViewsName.completeProfileInfoView);
               } else if (state is AuthUserExiste) {
-                GoRouter.of(context).pushReplacement(ViewsName.homeView);
+                GoRouter.of(context).goNamed(ViewsName.homeView);
               }
             },
             child: const PinCodeInputViewBody(),

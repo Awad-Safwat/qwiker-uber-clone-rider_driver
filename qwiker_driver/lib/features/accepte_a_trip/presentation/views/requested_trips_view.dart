@@ -26,6 +26,7 @@ class RequestedTripsView extends StatelessWidget {
             BlocConsumer<FindTripsCubit, FindTripsState>(
                 listener: (context, state) {
               if (state is TripAccepted) {
+                GoRouter.of(context).pop();
                 GoRouter.of(context).push(ViewsName.currentTrip);
               }
             }, builder: (context, state) {

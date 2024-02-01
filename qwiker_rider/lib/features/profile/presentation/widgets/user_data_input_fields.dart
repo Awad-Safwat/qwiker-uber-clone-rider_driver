@@ -32,7 +32,7 @@ class UserDataInputFields extends StatelessWidget {
     var userDataCubit = BlocProvider.of<UserDataCubit>(context);
     return Form(
       autovalidateMode: AutovalidateMode.onUserInteraction,
-      key: userDataCubit.formKey,
+      key: userDataCubit.userDataFormKey,
       child: Column(
         children: [
           CustomTextFormField(

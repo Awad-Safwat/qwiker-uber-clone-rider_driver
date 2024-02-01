@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 import 'package:qwiker_driver/core/global_functions.dart';
@@ -8,6 +9,7 @@ import 'package:qwiker_driver/core/widgets/custom_bickup_icon.dart';
 import 'package:qwiker_driver/core/widgets/custom_button.dart';
 import 'package:qwiker_driver/core/widgets/custom_destination_icon.dart';
 import 'package:qwiker_driver/core/widgets/custom_list_tile.dart';
+import 'package:qwiker_driver/features/messages/presentation/manager/messaging_cubit/messaging_cubit.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class TripDetailsSection extends StatelessWidget {
@@ -82,7 +84,7 @@ class TripDetailsSection extends StatelessWidget {
                   children: [
                     CircleAvatar(
                       backgroundColor: AppColors.mainBlue,
-                      radius: 20.r,
+                      radius: 24.r,
                       child: IconButton(
                         onPressed: () async {
                           launchUrl(Uri(
@@ -97,13 +99,34 @@ class TripDetailsSection extends StatelessWidget {
                       ),
                     ),
                     Gap(8.w),
-                    CircleAvatar(
-                      backgroundColor: AppColors.mainBlue,
-                      radius: 20.r,
-                      child: const Icon(
-                        Icons.message,
-                        color: AppColors.whaite,
-                      ),
+                    BlocBuilder<MessagingCubit, MessagingState>(
+                      builder: (context, state) {
+                        if (state is NewMessages) {
+                          return CircleAvatar(
+                            backgroundColor: AppColors.red,
+                            radius: 24.r,
+                            child: IconButton(
+                              onPressed: () {
+                                showMessagesView(context);
+                              },
+                              icon: const Icon(Icons.message),
+                              color: AppColors.whaite,
+                            ),
+                          );
+                        } else {
+                          return CircleAvatar(
+                            backgroundColor: AppColors.mainBlue,
+                            radius: 24.r,
+                            child: IconButton(
+                              onPressed: () {
+                                showMessagesView(context);
+                              },
+                              icon: const Icon(Icons.message),
+                              color: AppColors.whaite,
+                            ),
+                          );
+                        }
+                      },
                     ),
                   ],
                 ),

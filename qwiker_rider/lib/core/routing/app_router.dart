@@ -15,14 +15,13 @@ import 'package:qwiker_rider/features/request_ride/presentation/manager/serch_pl
 import 'package:qwiker_rider/features/request_ride/presentation/view/confirm_ride_view.dart';
 import 'package:qwiker_rider/features/request_ride/presentation/view/search_view.dart';
 import 'package:qwiker_rider/features/request_ride/presentation/widgets/on_going_tirp_view.dart';
-import 'package:qwiker_rider/test_ui_view.dart';
 
 class AppRouter {
   final router = GoRouter(routes: [
     GoRoute(
       path: '/',
       builder: (context, state) {
-        //return const TestUiView();
+        // return const TestUiView();
         if (isFirstTime ?? false) {
           return const OnBoardingView();
         } else if (FirebaseAuth.instance.currentUser == null) {
@@ -35,10 +34,12 @@ class AppRouter {
       },
     ),
     GoRoute(
+      name: ViewsName.logInView,
       path: ViewsName.logInView,
       builder: (context, state) => const LogInView(),
     ),
     GoRoute(
+      name: ViewsName.completeProfileInfoView,
       path: ViewsName.completeProfileInfoView,
       builder: (context, state) => const CompleteProfileDataView(),
     ),
@@ -47,6 +48,7 @@ class AppRouter {
       builder: (context, state) => const PinCodeInputView(),
     ),
     GoRoute(
+      name: ViewsName.homeView,
       path: ViewsName.homeView,
       builder: (context, state) => const HomeView(),
     ),
@@ -68,10 +70,6 @@ class AppRouter {
     GoRoute(
       path: ViewsName.confirmRideView,
       builder: (context, state) => const ConfirmRideView(),
-    ),
-    GoRoute(
-      path: ViewsName.testUiView,
-      builder: (context, state) => const TestUiView(),
     ),
     GoRoute(
         path: ViewsName.onGoingTrip,

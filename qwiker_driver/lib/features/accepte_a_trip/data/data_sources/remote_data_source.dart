@@ -20,7 +20,19 @@ class AccepteAtripRemoteDataSource {
   // after accepting the trip will delet it from the OnGoing collection
   Future<void> deleteTripFromOnGoing(String riderPhone) async {
     final docRef = _firestoreOnGoingTripsCollection.doc(riderPhone);
+    await deleteChatMessages(docRef);
     await docRef.delete();
+  }
+
+  // delet chat messages manually
+  Future<void> deleteChatMessages(
+      DocumentReference<Map<String, dynamic>> tripDoc) async {
+    var supCollectionRef = tripDoc.collection('messages');
+    supCollectionRef.get().then((value) async {
+      for (var message in value.docs) {
+        await message.reference.delete();
+      }
+    });
   }
 
 // after accepting the trip will add it to the OnGoingTrips collection
